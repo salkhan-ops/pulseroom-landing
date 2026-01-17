@@ -60,7 +60,8 @@ export const site = {
         enabled: true,
         title: "Run a paid pilot",
         blurb: "For organizations running workshops and wanting measurable outcomes in 2–4 weeks.",
-        href: "https://calendly.com/your-link/pilot"
+        href: "https://calendar.app.google/WMFb5GpB8wNxyWcZ8",
+
       },
       {
         key: "early",
