@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 const nextConfig = {
-  output: "export",
-  images: { unoptimized: true },
-  trailingSlash: true,
-  basePath,
-  assetPrefix: basePath,
+  output: 'export', // Required for GitHub Pages
+  basePath: '/pulseroom-landing', 
+  images: {
+    unoptimized: true, // Required for static export
+  },
 };
 
 export default nextConfig;
