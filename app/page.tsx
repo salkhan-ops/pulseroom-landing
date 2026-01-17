@@ -8,6 +8,7 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import FAQ from "@/components/sections/FAQ";
 import { CtaGrid } from "@/components/cta/CtaGrid";
 import { site } from "@/lib/site";
+import SchedulePilot from "@/components/sections/SchedulePilot";
 
 export default function Page() {
   return (
@@ -21,6 +22,7 @@ export default function Page() {
       <section id="engage" className="scroll-mt-24">
         <CtaGrid title={site.sections.engagementTitle} subtitle={site.sections.engagementSubtitle} />
       </section>
+      <SchedulePilot />
       <FAQ />
       <FinalCTA />
     </>

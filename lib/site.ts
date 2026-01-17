@@ -23,6 +23,8 @@ export const site = {
     { label: "Proof", href: "#proof" },
     { label: "Engage", href: "#engage" },
     { label: "FAQ", href: "#faq" },
+    { label: "Schedule", href: "#schedule" },
+
   ] as NavItem[], // Changed from satisfies to 'as' for metadata compatibility
 
   seo: {
