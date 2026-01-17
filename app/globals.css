@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Note: In v4, @apply works best inside specific selectors */
+body {
+  background-color: white;
+  color: rgb(15 23 42); /* slate-900 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgb(199 210 254); /* indigo-200 */
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgb(79 70 229);
+  outline-offset: 3px;
+}
