@@ -30,8 +30,10 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build (static export with basePath for GitHub Pages)
-        run: NEXT_PUBLIC_BASE_PATH=/${{ github.event.repository.name }} npm run build
+      - name: Build (static export with GH Pages basePath)
+        env:
+          NEXT_PUBLIC_BASE_PATH: "/pulseroom-landing"
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
