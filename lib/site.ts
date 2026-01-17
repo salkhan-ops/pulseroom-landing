@@ -15,7 +15,7 @@ export type EngagementCta = {
 export const site = {
   name: "PulseRoom",
   tagline: "Dot Collector",
-  url: "https://example.com", 
+  url: "https://salkhan-ops.github.io/pulseroom-landing",
   nav: [
     { label: "Why now", href: "#why-now" },
     { label: "How it works", href: "#how-it-works" },
