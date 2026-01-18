@@ -68,12 +68,7 @@ export default function CaseSnapshots() {
             <p className="mt-2 text-sm text-slate-600">{c.context}</p>
 
             <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-              <img
-                src={c.image}
-                alt={c.title}
-                loading="lazy"
-                className="h-auto w-full"
-              />
+           
               <img
                 src={withBasePath(c.image)}
                 alt={c.title}
