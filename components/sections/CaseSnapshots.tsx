@@ -1,4 +1,5 @@
 import Section from "@/components/layout/Section";
+import { withBasePath } from "@/lib/paths";
 
 type Case = {
   title: string;
@@ -73,6 +74,13 @@ export default function CaseSnapshots() {
                 loading="lazy"
                 className="h-auto w-full"
               />
+              <img
+                src={withBasePath(c.image)}
+                alt={c.title}
+                loading="lazy"
+                className="h-auto w-full"
+              />
+
             </div>
 
             <ul className="mt-4 grid gap-2 text-sm text-slate-700">
