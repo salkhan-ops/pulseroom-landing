@@ -1,5 +1,6 @@
 import Section from "@/components/layout/Section";
 import Badge from "@/components/ui/Badge";
+import { withBasePath } from "@/lib/paths"; // Ensure this import is correct
 
 function ProofCard({
   title,
@@ -40,20 +41,21 @@ export default function VisualProof() {
       subtitle="Even simple visuals change the conversation: they make trade-offs and alignment explicit."
     >
       <div className="grid gap-5 md:grid-cols-3">
+        {/* We wrap the image paths here using withBasePath */}
         <ProofCard
           title="Live alignment snapshot"
           desc="A clear view of convergence vs divergence during the session."
-          imageSrc="/proof/alignment.png"
+          imageSrc={withBasePath("/proof/alignment.png")}
         />
         <ProofCard
           title="Decision summary artifact"
           desc="A shareable one-page summary with decision + rationale."
-          imageSrc="/proof/summary.png"
+          imageSrc={withBasePath("/proof/summary.png")}
         />
         <ProofCard
           title="Actionable outcomes"
           desc="Owners and next steps that survive beyond the meeting."
-          imageSrc="/proof/actions.png"
+          imageSrc={withBasePath("/proof/actions.png")}
         />
       </div>
 

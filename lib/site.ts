@@ -48,7 +48,7 @@ export const site = {
 
     learn: [
       // Enable later when blog exists
-      { label: "Decision insights (Blog)", href: "/blog", enabled: false },
+      { label: "Decision insights (Blog)", href: "/blog", enabled: true },
       { label: "FAQ (quick answers)", href: "/#faq" },
     ] as NavItem[],
 

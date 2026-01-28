@@ -24,7 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -52,9 +56,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <meta name="google" content="notranslate" />
-
       </head>
-      <body>
+      {/* suppressHydrationWarning={true} handles attributes injected by 
+        browser extensions (like Grammarly) to prevent hydration mismatch errors.
+      */}
+      <body suppressHydrationWarning={true}>
         <Header />
         <main>{children}</main>
         <Footer />

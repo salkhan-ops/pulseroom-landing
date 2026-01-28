@@ -68,20 +68,18 @@ export default function CaseSnapshots() {
             <p className="mt-2 text-sm text-slate-600">{c.context}</p>
 
             <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-           
               <img
                 src={withBasePath(c.image)}
                 alt={c.title}
                 loading="lazy"
                 className="h-auto w-full"
               />
-
             </div>
 
             <ul className="mt-4 grid gap-2 text-sm text-slate-700">
               {c.outcomes.map((o) => (
                 <li key={o} className="flex items-start gap-2">
-                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-brand-950" />
+                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-slate-900" />
                   <span>{o}</span>
                 </li>
               ))}
