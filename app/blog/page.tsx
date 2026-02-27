@@ -1,6 +1,6 @@
 // app/blog/page.tsx
 import Container from "@/components/ui/Container";
-import { site } from "@/lib/site";
+import { APP_URL } from "@/lib/site";
 
 type Post = {
   slug: string;
@@ -19,7 +19,7 @@ const posts: Post[] = [
       "Most tools collect opinions. Real decision work requires making trade-offs visible and reducing ambiguity about what the group actually agreed to.",
     bullets: [
       "Polling captures preference; alignment captures shared constraints and trade-offs.",
-      "Re-litigation happens when “agreement” is not recorded as an artifact.",
+      "Re-litigation happens when 'agreement' is not recorded as an artifact.",
       "Visual aggregation changes the discussion from persuasion to diagnosis.",
     ],
     readingTime: "4 min",
@@ -33,7 +33,7 @@ const posts: Post[] = [
     bullets: [
       "Early divergence is information, not conflict—surface it quickly.",
       "Interfaces should reduce dominance effects and increase participation parity.",
-      "A shared visualization can act as a “truth surface” for discussion.",
+      "A shared visualization can act as a 'truth surface' for discussion.",
     ],
     readingTime: "5 min",
     dateLabel: "Workshop pattern",
@@ -42,11 +42,11 @@ const posts: Post[] = [
     slug: "decision-artifacts",
     title: "The missing layer: decision artifacts teams can reuse",
     excerpt:
-      "What matters after a workshop is not the conversation. It’s the artifact—what you can point to, share, and build on without restarting the debate.",
+      "What matters after a workshop is not the conversation. It's the artifact—what you can point to, share, and build on without restarting the debate.",
     bullets: [
       "Artifacts reduce post-meeting ambiguity and prevent scope drift.",
       "A one-page snapshot beats 40 slides and fragmented chat threads.",
-      "Artifacts create accountability: what was decided, why, and what’s next.",
+      "Artifacts create accountability: what was decided, why, and what's next.",
     ],
     readingTime: "4 min",
     dateLabel: "Product principle",
@@ -116,10 +116,10 @@ function PostCard({ post }: { post: Post }) {
 
       <div className="mt-5 flex items-center justify-between gap-3">
         <a
-          href="/#engage"
+          href={APP_URL}
           className="text-sm font-medium text-brand-700 hover:text-brand-800"
         >
-          Discuss a pilot →
+          Try PulseRoom →
         </a>
 
         <a
@@ -151,23 +151,24 @@ export default function BlogPage() {
               Want these turned into full posts?
             </div>
             <p className="mt-2 text-sm text-slate-600 max-w-3xl">
-              These are intentionally short “decision notes.” As you run pilots,
-              we can convert them into case-based writeups with screenshots and
-              before/after artifacts — without adding any backend or CMS.
+              These are intentionally short "decision notes." As you run real
+              sessions, we can convert them into case-based writeups with
+              screenshots and before/after artifacts — without adding any
+              backend or CMS.
             </p>
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
-                href={site.engagement.ctas.find((c) => c.key === "pilot")?.href ?? "/#engage"}
+                href={APP_URL}
                 className="inline-flex items-center justify-center rounded-2xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-brand-700"
               >
-                Run a paid pilot
+                Try PulseRoom →
               </a>
               <a
-                href="/#engage"
+                href="/#faq"
                 className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
               >
-                Explore engagement options
+                Read the FAQ
               </a>
             </div>
           </div>
