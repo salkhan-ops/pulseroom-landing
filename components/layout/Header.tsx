@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import Link from "next/link"; // Standard Next.js Link
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { site } from "@/lib/site";
+import { site, APP_URL } from "@/lib/site";
 
 type SimpleItem = { label: string; href: string };
 
@@ -100,10 +100,7 @@ export default function Header() {
 
   const productId = useId();
   const proofId = useId();
-  const engageId = useId();
 
-  // Next.js Link handles the /pulseroom-landing prefix automatically
-  // We use root-relative paths (starting with /)
   const product: SimpleItem[] = useMemo(
     () => [
       { label: "Why now", href: "/#why-now" },
@@ -120,14 +117,6 @@ export default function Header() {
       { label: "Visual proof", href: "/#proof" },
       { label: "FAQ", href: "/#faq" },
       { label: "Decision notes (Blog)", href: "/blog" },
-    ],
-    []
-  );
-
-  const engage: SimpleItem[] = useMemo(
-    () => [
-      { label: "Engagement options", href: "/#engage" },
-      { label: "Schedule pilot", href: "/#schedule" },
     ],
     []
   );
@@ -159,30 +148,15 @@ export default function Header() {
             label="Proof"
             items={proof}
           />
-          <DropMenu
-            id={engageId}
-            openId={openId}
-            setOpenId={setOpenId}
-            label="Engage"
-            items={engage}
-          />
         </nav>
 
         <div className="flex items-center gap-3">
           <Button
-            href="/#engage"
-            variant="secondary"
-            className="hidden sm:inline-flex"
-          >
-            Explore options
-          </Button>
-
-          <Button
-            href="https://calendar.app.google/WMFb5GpB8wNxyWcZ8"
+            href={APP_URL}
             variant="primary"
             external={true}
           >
-            Run a paid pilot
+            Try PulseRoom
           </Button>
         </div>
       </Container>

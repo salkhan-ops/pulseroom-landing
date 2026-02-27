@@ -2,7 +2,7 @@
 
 export type NavItem = { label: string; href: string; enabled?: boolean };
 
-export type CtaKey = "waitlist" | "pilot" | "early" | "invest";
+export type CtaKey = "app" | "early";
 
 export type EngagementCta = {
   key: CtaKey;
@@ -14,29 +14,21 @@ export type EngagementCta = {
   badge?: string;
 };
 
+export const APP_URL = "https://my-pulseroom-project.web.app";
+
 export const site = {
   name: "PulseRoom",
   tagline: "Dot Collector",
   url: "https://salkhan-ops.github.io/pulseroom-landing",
 
-  /**
-   * ✅ Keep your original flat nav for backwards compatibility.
-   * (Header will not use this anymore, but keeping it avoids surprises.)
-   */
   nav: [
     { label: "Why now", href: "#why-now" },
     { label: "How it works", href: "#how-it-works" },
     { label: "Use cases", href: "#use-cases" },
     { label: "Proof", href: "#proof" },
-    { label: "Engage", href: "#engage" },
     { label: "FAQ", href: "#faq" },
-    { label: "Schedule", href: "#schedule" },
   ] as NavItem[],
 
-  /**
-   * ✅ New grouped nav for a neat executive header.
-   * Use "/#..." so these links work even when you add /blog later.
-   */
   navGroups: {
     product: [
       { label: "Why now", href: "/#why-now" },
@@ -47,7 +39,6 @@ export const site = {
     ] as NavItem[],
 
     learn: [
-      // Enable later when blog exists
       { label: "Decision insights (Blog)", href: "/blog", enabled: true },
       { label: "FAQ (quick answers)", href: "/#faq" },
     ] as NavItem[],
@@ -55,19 +46,15 @@ export const site = {
     proof: [
       { label: "Visual proof", href: "/#proof" },
       { label: "Representative scenarios", href: "/#use-cases" },
-      { label: "Engagement options", href: "/#engage" },
     ] as NavItem[],
   },
 
-  /**
-   * ✅ Single primary CTA for the header button
-   */
-  primaryCtaKey: "pilot" as CtaKey,
+  primaryCtaKey: "app" as CtaKey,
 
   seo: {
     title: "PulseRoom — turn conversations into aligned decisions",
     description:
-      "PulseRoom (Dot Collector) helps teams capture signals in real time, visualize alignment, and convert discussion into clear next actions — without heavy process.",
+      "PulseRoom helps teams capture signals in real time, visualize alignment, and convert discussion into clear next actions — without heavy process.",
     keywords: [
       "decision making",
       "meeting analytics",
@@ -84,44 +71,28 @@ export const site = {
   engagement: {
     ctas: [
       {
-        key: "waitlist",
+        key: "app",
         enabled: true,
         primary: true,
-        badge: "Most popular",
-        title: "Join the waitlist",
-        blurb: "For teams who want early access and occasional product feedback.",
-        href: "https://example.com/waitlist",
-      },
-      {
-        key: "pilot",
-        enabled: true,
-        title: "Run a paid pilot",
-        blurb:
-          "For organizations running workshops and wanting measurable outcomes in 2–4 weeks.",
-        href: "https://calendar.app.google/WMFb5GpB8wNxyWcZ8",
+        badge: "Free to start",
+        title: "Try PulseRoom",
+        blurb: "Jump straight into the web app — no setup, no credit card required.",
+        href: APP_URL,
       },
       {
         key: "early",
         enabled: true,
-        title: "Pre-subscribe / early access",
-        blurb: "For power users who want priority onboarding and discounted pricing.",
-        href: "https://example.com/early-access",
-      },
-      {
-        key: "invest",
-        enabled: true,
-        title: "Register interest (invest / partner)",
-        blurb:
-          "For investors, accelerators, and strategic partners exploring collaboration.",
-        href: "https://example.com/partner",
+        title: "Request early access",
+        blurb: "Get priority onboarding and be first to hear about new features.",
+        href: APP_URL,
       },
     ] as EngagementCta[],
   },
 
   hero: {
-    headline: "Turn live discussion into aligned decisions.",
+    headline: "Stop re-deciding. Capture alignment live.",
     subheadline:
-      "PulseRoom (Dot Collector) captures real-time signals, visualizes group alignment, and makes the next step obvious — for meetings, classes, and workshops.",
+      "PulseRoom captures real-time signals, visualizes group alignment, and makes the next step obvious — for meetings, classes, and workshops.",
     highlights: [
       "Fast to run (no heavy setup)",
       "Works live + async follow-ups",
@@ -130,14 +101,11 @@ export const site = {
   },
 
   sections: {
-    engagementTitle: "Pick the engagement path that fits you",
+    engagementTitle: "Get started with PulseRoom",
     engagementSubtitle:
-      "No login, no friction — each option links to a simple form or scheduling page. Enable/disable CTAs via configuration.",
+      "Free to try. No credit card needed.",
   },
 
-  /**
-   * ✅ App-focused FAQ (more relevant than generic site/hosting questions)
-   */
   faq: [
     {
       q: "What does PulseRoom actually do?",
@@ -145,15 +113,23 @@ export const site = {
     },
     {
       q: "How is this different from polling tools?",
-      a: "Polling collects opinions. PulseRoom is designed for decision alignment—making trade-offs visible and reducing re-litigation after the meeting.",
+      a: "Polling collects opinions. PulseRoom is designed for decision alignment — making trade-offs visible and reducing re-litigation after the meeting.",
     },
     {
-      q: "What does a paid pilot include?",
-      a: "A scoped pilot over 2–4 weeks with real sessions, support on setup and facilitation flow, and outcomes you can evaluate internally.",
+      q: "When does PulseRoom work best?",
+      a: "PulseRoom works best in workshops, executive sessions, and cohort-based settings where a small to mid-sized group (roughly 6–30 people) needs to make or validate important decisions in real time.",
     },
     {
-      q: "Do participants need accounts?",
-      a: "No heavy onboarding. The participant experience is lightweight by design.",
+      q: "Is PulseRoom a facilitation tool or a decision tool?",
+      a: "It supports both. Facilitators use PulseRoom to structure conversation, while decision-makers use it to see alignment, document rationale, and move forward with confidence.",
+    },
+    {
+      q: "Do participants need training or accounts?",
+      a: "No heavy onboarding. PulseRoom is designed to feel lightweight for participants while giving facilitators and decision owners structured outputs.",
+    },
+    {
+      q: "Is this meant to replace meetings?",
+      a: "No. PulseRoom enhances important meetings by making the decision dynamics explicit and the outcomes durable.",
     },
   ],
 } as const;

@@ -3,7 +3,7 @@ import Section from "@/components/layout/Section";
 const faqs = [
   {
     q: "What exactly does PulseRoom do?",
-    a: "PulseRoom helps groups capture key signals during live discussion, visualize alignment, and leave with clear, shared decisions. It’s designed for situations where conversation alone is not enough to create accountability or clarity.",
+    a: "PulseRoom helps groups capture key signals during live discussion, visualize alignment, and leave with clear, shared decisions. It's designed for situations where conversation alone is not enough to create accountability or clarity.",
   },
   {
     q: "How is this different from polling or survey tools?",
@@ -16,10 +16,6 @@ const faqs = [
   {
     q: "Is PulseRoom a facilitation tool or a decision tool?",
     a: "It supports both. Facilitators use PulseRoom to structure conversation, while decision-makers use it to see alignment, document rationale, and move forward with confidence.",
-  },
-  {
-    q: "What does a paid pilot typically involve?",
-    a: "Most pilots run 2–4 weeks and include a small number of real sessions. The goal is to test PulseRoom in a live context and produce concrete outcomes you can evaluate internally.",
   },
   {
     q: "Do participants need training or accounts?",

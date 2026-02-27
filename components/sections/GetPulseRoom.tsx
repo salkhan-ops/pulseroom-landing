@@ -1,10 +1,6 @@
 import Section from "@/components/layout/Section";
 import Button from "@/components/ui/Button";
-
-const PILOT_URL = "https://calendar.app.google/WMFb5GpB8wNxyWcZ8";
-
-// If you later have a real web app URL, replace null with the URL
-const WEB_APP_URL: string | null = null;
+import { APP_URL } from "@/lib/site";
 
 function DisabledPill({ label = "Coming soon" }: { label?: string }) {
   return (
@@ -27,7 +23,7 @@ function AppCard({
 }: {
   label: string;
   sublabel: string;
-  href?: string; // optional for disabled cards
+  href?: string;
   state: "active" | "comingSoon";
 }) {
   return (
@@ -37,8 +33,8 @@ function AppCard({
 
       <div className="mt-4">
         {state === "active" && href ? (
-          <Button href={href} variant="primary">
-            Open
+          <Button href={href} variant="primary" external={true}>
+            Open →
           </Button>
         ) : (
           <DisabledPill />
@@ -54,14 +50,14 @@ export default function GetPulseRoom() {
       id="get-pulseroom"
       eyebrow="Access"
       title="Get PulseRoom"
-      subtitle="PulseRoom is currently available via pilot engagements. Web and mobile apps will follow."
+      subtitle="The web app is live. Mobile apps are on the way."
       className="bg-slate-50"
     >
       <div className="grid gap-5 md:grid-cols-3">
         <AppCard
           label="Web app"
-          sublabel={WEB_APP_URL ? "Access via modern browser" : "Available through pilot sessions"}
-          href={WEB_APP_URL ?? PILOT_URL}
+          sublabel="Works in any modern browser — no install needed."
+          href={APP_URL}
           state="active"
         />
 
@@ -79,7 +75,7 @@ export default function GetPulseRoom() {
       </div>
 
       <p className="mt-6 text-xs text-slate-500">
-        Want early access? Schedule a pilot call — mobile apps will follow once usage patterns stabilize.
+        Mobile apps will follow once usage patterns stabilize. Web app is fully functional today.
       </p>
     </Section>
   );

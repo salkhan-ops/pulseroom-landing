@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
-import { site } from "@/lib/site";
+import { site, APP_URL } from "@/lib/site";
 
 function DotViz() {
   return (
@@ -26,7 +26,7 @@ function DotViz() {
         </div>
 
         <p className="mt-5 text-sm text-slate-600">
-          PulseRoom makes alignment visible during the session—so decisions don’t get re-litigated afterward.
+          PulseRoom makes alignment visible during the session—so decisions don't get re-litigated afterward.
         </p>
       </div>
     </div>
@@ -62,8 +62,8 @@ export default function Hero() {
             </ul>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button href="#schedule" variant="primary" external={false}>
-                Schedule a pilot call
+              <Button href={APP_URL} variant="primary" external={true}>
+                Try PulseRoom
               </Button>
               <Button href="#demo" variant="secondary" external={false}>
                 See it live
@@ -71,7 +71,7 @@ export default function Hero() {
             </div>
 
             <p className="mt-4 text-xs text-slate-500">
-              Scheduling uses Google Calendar · Google Meet included.
+              Free to start · No credit card required
             </p>
           </div>
 
