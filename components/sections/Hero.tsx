@@ -19,35 +19,26 @@ function AlignmentViz() {
     <div
       className="rounded-2xl overflow-hidden bg-white float-anim"
       style={{
-        boxShadow:
-          "0 0 0 1px rgba(255,255,255,0.9) inset, 0 8px 60px rgba(99,102,241,0.2), 0 2px 8px rgba(0,0,0,0.05)",
+        boxShadow: "0 0 0 1px rgba(255,255,255,0.9) inset, 0 8px 60px rgba(99,102,241,0.2), 0 2px 8px rgba(0,0,0,0.05)",
         border: "1px solid rgba(99,102,241,0.12)",
       }}
     >
-      {/* Header */}
-      <div
-        className="flex items-center justify-between px-5 py-4"
-        style={{ borderBottom: "1px solid #F1F5F9" }}
-      >
+      <div className="flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4" style={{ borderBottom: "1px solid #F1F5F9" }}>
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full pulse-dot" style={{ background: "#22C55E" }} />
-          <span className="text-sm font-semibold" style={{ color: "#1E293B" }}>
+          <span className="text-xs sm:text-sm font-semibold" style={{ color: "#1E293B" }}>
             Live session · 6 participants
           </span>
         </div>
-        <span
-          className="rounded-full px-3 py-1 text-xs font-bold"
-          style={{ background: "#EEF2FF", color: "#6366F1" }}
-        >
-          Alignment: 78%
+        <span className="rounded-full px-2.5 py-1 text-xs font-bold" style={{ background: "#EEF2FF", color: "#6366F1" }}>
+          78% aligned
         </span>
       </div>
 
-      {/* Bars */}
-      <div className="px-5 py-4 space-y-3">
+      <div className="px-4 py-3 sm:px-5 sm:py-4 space-y-2.5">
         {signals.map((s) => (
           <div key={s.label}>
-            <div className="flex items-center justify-between mb-1.5">
+            <div className="flex items-center justify-between mb-1">
               <span className="text-xs font-medium" style={{ color: "#94A3B8" }}>{s.label}</span>
               <span className="text-xs font-bold" style={{ color: s.color }}>{s.score}/10</span>
             </div>
@@ -57,11 +48,9 @@ function AlignmentViz() {
                 style={{
                   width: `${s.score * 10}%`,
                   background:
-                    s.color === "#F43F5E"
-                      ? "linear-gradient(90deg, #FDA4AF, #F43F5E)"
-                      : s.color === "#F59E0B"
-                      ? "linear-gradient(90deg, #FDE68A, #F59E0B)"
-                      : "linear-gradient(90deg, #A5B4FC, #6366F1)",
+                    s.color === "#F43F5E" ? "linear-gradient(90deg,#FDA4AF,#F43F5E)"
+                    : s.color === "#F59E0B" ? "linear-gradient(90deg,#FDE68A,#F59E0B)"
+                    : "linear-gradient(90deg,#A5B4FC,#6366F1)",
                 }}
               />
             </div>
@@ -69,16 +58,12 @@ function AlignmentViz() {
         ))}
       </div>
 
-      {/* Footer */}
-      <div
-        className="flex items-center justify-between px-5 py-3"
-        style={{ borderTop: "1px solid #F1F5F9", background: "#FAFCFF" }}
-      >
+      <div className="flex items-center justify-between px-4 py-3 sm:px-5" style={{ borderTop: "1px solid #F1F5F9", background: "#FAFCFF" }}>
         <div className="flex -space-x-2">
           {participantInitials.map((p, i) => (
             <div
               key={i}
-              className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white"
+              className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full text-xs font-bold text-white"
               style={{ background: participantColors[i], border: "2px solid white", zIndex: participantInitials.length - i }}
             >
               {p}
@@ -97,23 +82,22 @@ export default function Hero() {
       id="top"
       className="relative overflow-hidden"
       style={{
-        /* Bright, luminous — like Synthesia's mirror-white */
         background: "linear-gradient(180deg, #EEF2FF 0%, #F5F7FF 30%, #ffffff 70%)",
         minHeight: "88vh",
       }}
     >
-      {/* Top radial bloom — the "mirror" shine */}
+      {/* Radial bloom */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           background:
-            "radial-gradient(ellipse 80% 50% at 50% -5%, rgba(165,180,252,0.5) 0%, transparent 60%), " +
+            "radial-gradient(ellipse 80% 50% at 50% -5%, rgba(165,180,252,0.5) 0%, transparent 60%)," +
             "radial-gradient(ellipse 50% 40% at 80% 20%, rgba(196,181,253,0.2) 0%, transparent 55%)",
         }}
       />
 
-      {/* Subtle dot grid */}
+      {/* Dot grid */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
@@ -125,20 +109,18 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-12">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+      <div className="relative mx-auto max-w-7xl px-5 pt-14 pb-16 sm:px-6 sm:pt-20 lg:px-12">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
 
-          {/* Left */}
+          {/* Left — text */}
           <div>
-            <div
-              className="eyebrow-pill anim-hidden"
-            >
-              <span className="h-1.5 w-1.5 rounded-full pulse-dot" style={{ background: "#6366F1", flexShrink: 0 }} />
+            <div className="eyebrow-pill anim-hidden">
+              <span className="h-1.5 w-1.5 rounded-full pulse-dot flex-shrink-0" style={{ background: "#6366F1" }} />
               Decision intelligence platform
             </div>
 
             <h1
-              className="text-5xl font-extrabold sm:text-6xl xl:text-7xl anim-hidden"
+              className="text-4xl font-extrabold sm:text-5xl xl:text-7xl anim-hidden"
               style={{
                 color: "#0F172A",
                 lineHeight: "1.06",
@@ -151,40 +133,37 @@ export default function Hero() {
               <br />
               Capture{" "}
               <span className="gradient-text">alignment</span>
-              <br />
-              live.
+              <br className="hidden sm:block" />
+              {" "}live.
             </h1>
 
             <p
-              className="mt-6 text-lg leading-relaxed anim-hidden"
+              className="mt-5 text-base sm:text-lg leading-relaxed anim-hidden"
               style={{ color: "#64748B", maxWidth: "26rem", transitionDelay: "120ms" }}
             >
               PulseRoom surfaces real-time signals, quantifies group alignment,
               and leaves you with a clear decision artifact — not just notes.
             </p>
 
-            <div className="mt-10 anim-hidden" style={{ transitionDelay: "180ms" }}>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 anim-hidden" style={{ transitionDelay: "180ms" }}>
               <a
                 href={APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-glow inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white"
-                style={{
-                  background: "#6366F1",
-                  boxShadow: "0 4px 24px rgba(99,102,241,0.38)",
-                }}
+                className="btn-glow inline-flex items-center justify-center gap-2 rounded-2xl px-7 py-4 text-base font-bold text-white"
+                style={{ background: "#6366F1", boxShadow: "0 4px 24px rgba(99,102,241,0.38)" }}
               >
                 Try PulseRoom for free →
               </a>
             </div>
 
-            <p className="mt-4 text-sm anim-hidden" style={{ color: "#94A3B8", transitionDelay: "220ms" }}>
+            <p className="mt-3 text-sm anim-hidden" style={{ color: "#94A3B8", transitionDelay: "220ms" }}>
               No credit card required
             </p>
 
             {/* Stats */}
             <div
-              className="mt-10 flex flex-wrap gap-x-8 gap-y-4 pt-8 anim-hidden"
+              className="mt-8 flex flex-wrap gap-x-6 gap-y-4 pt-7 anim-hidden"
               style={{ borderTop: "1px solid #E2E8F0", transitionDelay: "260ms" }}
             >
               {[
@@ -193,16 +172,15 @@ export default function Hero() {
                 { val: "0", label: "training needed" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-xl font-extrabold" style={{ color: "#0F172A" }}>{s.val}</div>
+                  <div className="text-lg sm:text-xl font-extrabold" style={{ color: "#0F172A" }}>{s.val}</div>
                   <div className="text-xs mt-0.5" style={{ color: "#94A3B8" }}>{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right */}
-          <div className="relative anim-scale" style={{ transitionDelay: "160ms" }}>
-            {/* Card glow */}
+          {/* Right — card (hidden on very small screens, shown from sm up) */}
+          <div className="relative hidden sm:block anim-scale" style={{ transitionDelay: "160ms" }}>
             <div
               className="pointer-events-none absolute -inset-8 rounded-3xl blur-3xl"
               aria-hidden
@@ -211,11 +189,21 @@ export default function Hero() {
             <AlignmentViz />
           </div>
         </div>
+
+        {/* Mobile-only card — shown below text on small screens */}
+        <div className="mt-10 sm:hidden anim-scale" style={{ transitionDelay: "200ms" }}>
+          <div
+            className="pointer-events-none absolute left-0 right-0 h-48 blur-3xl -z-10"
+            aria-hidden
+            style={{ background: "radial-gradient(ellipse, rgba(99,102,241,0.15), transparent 70%)" }}
+          />
+          <AlignmentViz />
+        </div>
       </div>
 
-      {/* Bottom fade to white */}
+      {/* Bottom fade */}
       <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-24"
         aria-hidden
         style={{ background: "linear-gradient(to bottom, transparent, #ffffff)" }}
       />
