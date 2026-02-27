@@ -19,7 +19,8 @@ export default function Section({
   return (
     <section id={id} className={cn("scroll-mt-24 py-20 sm:py-24", className)}>
       <Container>
-        <div className="mb-12 max-w-2xl">
+        {/* Header block animates up on scroll */}
+        <div className="mb-12 max-w-2xl anim-hidden">
           {eyebrow ? (
             <div
               className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-5"
@@ -30,7 +31,7 @@ export default function Section({
               }}
             >
               <span
-                className="h-1.5 w-1.5 rounded-full"
+                className="h-1.5 w-1.5 rounded-full pulse-dot"
                 style={{ background: "#6366F1" }}
               />
               {eyebrow}
@@ -48,7 +49,11 @@ export default function Section({
             </p>
           ) : null}
         </div>
-        {children}
+
+        {/* Children animate in after header */}
+        <div className="anim-hidden" style={{ transitionDelay: "120ms" }}>
+          {children}
+        </div>
       </Container>
     </section>
   );

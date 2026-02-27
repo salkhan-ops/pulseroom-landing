@@ -1,7 +1,7 @@
 import Section from "@/components/layout/Section";
 
 const outcomes = [
- {
+{
     title: "Fewer decision replays",
     desc: "Make trade-offs explicit so you don't re-litigate the same issue next week.",
     before: `"Let's revisit this."`,
@@ -29,11 +29,11 @@ export default function Outcomes() {
       title="Outcomes, not features."
       subtitle="PulseRoom is designed to change what happens after the meeting—not just what happens during it."
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-3 anim-stagger">
         {outcomes.map((o) => (
           <div
             key={o.title}
-            className="rounded-2xl bg-white p-6 flex flex-col"
+            className="rounded-2xl bg-white p-6 flex flex-col card-glow anim-hidden"
             style={{
               border: "1px solid #E2E8F0",
               boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
@@ -48,15 +48,10 @@ export default function Outcomes() {
               style={{ background: "#F8FAFC", border: "1px solid #E2E8F0" }}
             >
               <div>
-                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">
-                  Before
-                </div>
+                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Before</div>
                 <div className="text-sm font-medium text-slate-600">{o.before}</div>
               </div>
-              <div
-                className="h-px"
-                style={{ background: "#E2E8F0" }}
-              />
+              <div className="h-px" style={{ background: "#E2E8F0" }} />
               <div>
                 <div
                   className="text-xs font-semibold uppercase tracking-wide mb-1"
@@ -73,7 +68,7 @@ export default function Outcomes() {
 
       {/* Executive callout */}
       <div
-        className="mt-8 rounded-2xl p-6"
+        className="mt-8 rounded-2xl p-6 anim-hidden"
         style={{
           background: "rgba(99,102,241,0.05)",
           border: "1px solid rgba(99,102,241,0.15)",

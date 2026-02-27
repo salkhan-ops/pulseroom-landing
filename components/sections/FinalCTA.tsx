@@ -8,23 +8,28 @@ export default function FinalCTA() {
     <section className="py-20 sm:py-24">
       <Container>
         <div
-          className="relative overflow-hidden rounded-3xl p-10 sm:p-14 text-center"
+          className="relative overflow-hidden rounded-3xl p-10 sm:p-16 text-center anim-scale"
           style={{
             background: "linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 50%, #F0F9FF 100%)",
             border: "1px solid rgba(99,102,241,0.2)",
-            boxShadow: "0 8px 60px rgba(99,102,241,0.15)",
+            boxShadow: "0 8px 80px rgba(99,102,241,0.18)",
           }}
         >
-          {/* Decorative blob */}
+          {/* Decorative blobs */}
           <div
-            className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full blur-3xl opacity-50"
+            className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl"
             aria-hidden
-            style={{ background: "rgba(99,102,241,0.2)" }}
+            style={{ background: "rgba(99,102,241,0.22)" }}
           />
           <div
-            className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full blur-3xl opacity-40"
+            className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full blur-3xl"
             aria-hidden
             style={{ background: "rgba(165,180,252,0.3)" }}
+          />
+          <div
+            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full blur-3xl opacity-40"
+            aria-hidden
+            style={{ background: "rgba(99,102,241,0.12)" }}
           />
 
           <div className="relative">
@@ -33,12 +38,12 @@ export default function FinalCTA() {
               className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold mb-6"
               style={{
                 background: "rgba(99,102,241,0.12)",
-                border: "1px solid rgba(99,102,241,0.25)",
+                border: "1px solid rgba(99,102,241,0.3)",
                 color: "#6366F1",
               }}
             >
-              <span className="h-1.5 w-1.5 rounded-full" style={{ background: "#6366F1" }} />
-              Free to start
+              <span className="h-1.5 w-1.5 rounded-full pulse-dot" style={{ background: "#6366F1" }} />
+              Free to start · No credit card
             </div>
 
             <h2
@@ -48,7 +53,7 @@ export default function FinalCTA() {
               Ready to turn discussion
               <br />
               into{" "}
-              <span style={{ color: "#6366F1" }}>decisions?</span>
+              <span className="gradient-text">decisions?</span>
             </h2>
 
             <p className="mt-4 text-lg text-slate-500 max-w-md mx-auto">
@@ -60,10 +65,10 @@ export default function FinalCTA() {
                 href={APP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl"
+                className="btn-glow inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white"
                 style={{
                   background: "#6366F1",
-                  boxShadow: "0 4px 24px rgba(99,102,241,0.35)",
+                  boxShadow: "0 4px 24px rgba(99,102,241,0.4)",
                 }}
               >
                 Try PulseRoom for free →

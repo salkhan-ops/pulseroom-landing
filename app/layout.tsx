@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { site } from "@/lib/site";
+import ScrollAnimator from "@/components/ui/ScrollAnimator";
 
 export const metadata: Metadata = {
   title: site.seo.title,
@@ -62,6 +63,7 @@ export default function RootLayout({
       */}
       <body suppressHydrationWarning={true}>
         <Header />
+        <ScrollAnimator />
         <main>{children}</main>
         <Footer />
       </body>

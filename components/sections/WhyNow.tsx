@@ -35,12 +35,12 @@ export default function WhyNow() {
       title="Meetings create motion. Decisions require alignment."
       subtitle="PulseRoom is built for rooms where stakes are real and outcomes must hold up after the session."
     >
-      {/* 3 problem cards */}
-      <div className="grid gap-5 md:grid-cols-3">
+      {/* 3 problem cards — staggered */}
+      <div className="grid gap-5 md:grid-cols-3 anim-stagger">
         {items.map((it) => (
           <div
             key={it.title}
-            className="rounded-2xl bg-white p-6"
+            className="rounded-2xl bg-white p-6 card-glow anim-hidden"
             style={{
               border: "1px solid #E2E8F0",
               boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
@@ -55,7 +55,7 @@ export default function WhyNow() {
       {/* Before / After */}
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
         <div
-          className="rounded-2xl p-6"
+          className="rounded-2xl p-6 anim-hidden card-glow"
           style={{
             background: "rgba(99,102,241,0.05)",
             border: "1px solid rgba(99,102,241,0.15)",
@@ -64,16 +64,12 @@ export default function WhyNow() {
           <h3 className="text-base font-bold text-slate-900 mb-3">Before PulseRoom</h3>
           <ul className="grid gap-2.5">
             {[
-             '"We\'ll circle back." (and you never do)',
+            `"We'll circle back." (and you never do)`,
               "Six people talking, two dominating",
               "Summary buried in a long deck",
             ].map((b) => (
               <li key={b} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span
-                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
-                  style={{ background: "#CBD5E1" }}
-                  aria-hidden
-                />
+                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#CBD5E1" }} aria-hidden />
                 {b}
               </li>
             ))}
@@ -81,7 +77,7 @@ export default function WhyNow() {
         </div>
 
         <div
-          className="rounded-2xl bg-white p-6"
+          className="rounded-2xl bg-white p-6 anim-hidden card-glow"
           style={{
             border: "1px solid #E2E8F0",
             boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
@@ -95,11 +91,7 @@ export default function WhyNow() {
               "One clean artifact people actually reference",
             ].map((a) => (
               <li key={a} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span
-                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
-                  style={{ background: "#6366F1" }}
-                  aria-hidden
-                />
+                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#6366F1" }} aria-hidden />
                 {a}
               </li>
             ))}
@@ -110,21 +102,14 @@ export default function WhyNow() {
       {/* For / Not for */}
       <div className="mt-5 grid gap-5 md:grid-cols-2">
         <div
-          className="rounded-2xl bg-white p-6"
-          style={{
-            border: "1px solid #E2E8F0",
-            boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
-          }}
+          className="rounded-2xl bg-white p-6 anim-hidden card-glow"
+          style={{ border: "1px solid #E2E8F0", boxShadow: "0 4px 40px rgba(99,102,241,0.07)" }}
         >
           <h3 className="text-base font-bold text-slate-900 mb-3">PulseRoom is for</h3>
           <ul className="grid gap-2.5">
             {forTeams.map((x) => (
               <li key={x} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span
-                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
-                  style={{ background: "#6366F1" }}
-                  aria-hidden
-                />
+                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#6366F1" }} aria-hidden />
                 {x}
               </li>
             ))}
@@ -132,21 +117,14 @@ export default function WhyNow() {
         </div>
 
         <div
-          className="rounded-2xl bg-white p-6"
-          style={{
-            border: "1px solid #E2E8F0",
-            boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
-          }}
+          className="rounded-2xl bg-white p-6 anim-hidden card-glow"
+          style={{ border: "1px solid #E2E8F0", boxShadow: "0 4px 40px rgba(99,102,241,0.07)" }}
         >
           <h3 className="text-base font-bold text-slate-900 mb-3">Not ideal for</h3>
           <ul className="grid gap-2.5">
             {notIdeal.map((x) => (
               <li key={x} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span
-                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
-                  style={{ background: "#CBD5E1" }}
-                  aria-hidden
-                />
+                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#CBD5E1" }} aria-hidden />
                 {x}
               </li>
             ))}
