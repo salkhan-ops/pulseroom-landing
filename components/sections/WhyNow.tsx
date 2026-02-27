@@ -1,6 +1,6 @@
 import Section from "@/components/layout/Section";
 
-const items = [
+const problems = [
   {
     title: "Decisions get re-litigated",
     desc: "People leave the room with different interpretations, and the same debate restarts in Slack or email.",
@@ -27,6 +27,16 @@ const notIdeal = [
   "Icebreakers without follow-through",
 ];
 
+function Dot({ active }: { active?: boolean }) {
+  return (
+    <span
+      className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
+      style={{ background: active ? "#6366F1" : "#CBD5E1" }}
+      aria-hidden
+    />
+  );
+}
+
 export default function WhyNow() {
   return (
     <Section
@@ -34,64 +44,66 @@ export default function WhyNow() {
       eyebrow="Why now"
       title="Meetings create motion. Decisions require alignment."
       subtitle="PulseRoom is built for rooms where stakes are real and outcomes must hold up after the session."
+      className="section-bright"
     >
-      {/* 3 problem cards — staggered */}
-      <div className="grid gap-5 md:grid-cols-3 anim-stagger">
-        {items.map((it) => (
-          <div
-            key={it.title}
-            className="rounded-2xl bg-white p-6 card-glow anim-hidden"
-            style={{
-              border: "1px solid #E2E8F0",
-              boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
-            }}
-          >
-            <h3 className="text-base font-bold text-slate-900">{it.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-500">{it.desc}</p>
+      {/* 3 problem cards */}
+      <div className="grid gap-4 md:grid-cols-3 anim-stagger">
+        {problems.map((it) => (
+          <div key={it.title} className="rounded-2xl p-6 card-bright anim-hidden">
+            <h3
+              className="text-base font-bold"
+              style={{ color: "#0F172A" }}
+            >
+              {it.title}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: "#64748B" }}>
+              {it.desc}
+            </p>
           </div>
         ))}
       </div>
 
       {/* Before / After */}
-      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+        {/* Before */}
         <div
-          className="rounded-2xl p-6 anim-hidden card-glow"
+          className="rounded-2xl p-6 anim-hidden"
           style={{
-            background: "rgba(99,102,241,0.05)",
-            border: "1px solid rgba(99,102,241,0.15)",
+            background: "linear-gradient(135deg, #FAFBFF 0%, #F5F3FF 100%)",
+            border: "1px solid rgba(99,102,241,0.12)",
+            boxShadow: "0 2px 16px rgba(99,102,241,0.06)",
           }}
         >
-          <h3 className="text-base font-bold text-slate-900 mb-3">Before PulseRoom</h3>
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#94A3B8" }}>
+            Before PulseRoom
+          </p>
           <ul className="grid gap-2.5">
             {[
-            `"We'll circle back." (and you never do)`,
-              "Six people talking, two dominating",
-              "Summary buried in a long deck",
+              `"We'll circle back." (and you never do)`,
+              `Six people talking, two dominating`,
+              `Summary buried in a long deck`,
             ].map((b) => (
-              <li key={b} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#CBD5E1" }} aria-hidden />
+              <li key={b} className="flex items-start gap-2.5 text-sm" style={{ color: "#475569" }}>
+                <Dot />
                 {b}
               </li>
             ))}
           </ul>
         </div>
 
-        <div
-          className="rounded-2xl bg-white p-6 anim-hidden card-glow"
-          style={{
-            border: "1px solid #E2E8F0",
-            boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
-          }}
-        >
-          <h3 className="text-base font-bold text-slate-900 mb-3">After PulseRoom</h3>
+        {/* After */}
+        <div className="rounded-2xl p-6 card-bright anim-hidden">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>
+            After PulseRoom
+          </p>
           <ul className="grid gap-2.5">
             {[
               "Decision locked in the room (with rationale)",
               "Every voice counted through structured signals",
               "One clean artifact people actually reference",
             ].map((a) => (
-              <li key={a} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#6366F1" }} aria-hidden />
+              <li key={a} className="flex items-start gap-2.5 text-sm" style={{ color: "#475569" }}>
+                <Dot active />
                 {a}
               </li>
             ))}
@@ -100,31 +112,29 @@ export default function WhyNow() {
       </div>
 
       {/* For / Not for */}
-      <div className="mt-5 grid gap-5 md:grid-cols-2">
-        <div
-          className="rounded-2xl bg-white p-6 anim-hidden card-glow"
-          style={{ border: "1px solid #E2E8F0", boxShadow: "0 4px 40px rgba(99,102,241,0.07)" }}
-        >
-          <h3 className="text-base font-bold text-slate-900 mb-3">PulseRoom is for</h3>
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl p-6 card-bright anim-hidden">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#6366F1" }}>
+            PulseRoom is for
+          </p>
           <ul className="grid gap-2.5">
             {forTeams.map((x) => (
-              <li key={x} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#6366F1" }} aria-hidden />
+              <li key={x} className="flex items-start gap-2.5 text-sm" style={{ color: "#475569" }}>
+                <Dot active />
                 {x}
               </li>
             ))}
           </ul>
         </div>
 
-        <div
-          className="rounded-2xl bg-white p-6 anim-hidden card-glow"
-          style={{ border: "1px solid #E2E8F0", boxShadow: "0 4px 40px rgba(99,102,241,0.07)" }}
-        >
-          <h3 className="text-base font-bold text-slate-900 mb-3">Not ideal for</h3>
+        <div className="rounded-2xl p-6 card-bright anim-hidden">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#94A3B8" }}>
+            Not ideal for
+          </p>
           <ul className="grid gap-2.5">
             {notIdeal.map((x) => (
-              <li key={x} className="flex items-start gap-2.5 text-sm text-slate-600">
-                <span className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full" style={{ background: "#CBD5E1" }} aria-hidden />
+              <li key={x} className="flex items-start gap-2.5 text-sm" style={{ color: "#475569" }}>
+                <Dot />
                 {x}
               </li>
             ))}

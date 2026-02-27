@@ -215,3 +215,247 @@ html {
     opacity: 1 !important;
   }
 }
+/* ============================================================
+   PULSEROOM — GLOBAL ANIMATIONS & SMOOTH SCROLL
+   Paste at the bottom of app/globals.css
+   ============================================================ */
+
+/* ── 1. Silky smooth scroll ─────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background: #ffffff;
+}
+
+body {
+  background: #ffffff;
+}
+
+/* ── 2. Keyframes ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(16px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1;   transform: scale(1);   }
+  50%       { opacity: 0.5; transform: scale(1.5); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.9; }
+}
+
+/* ── 3. Scroll-reveal classes (JS observer adds .anim-visible) ─ */
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.anim-hidden.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-scale {
+  opacity: 0;
+  transform: scale(0.95) translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.anim-scale.anim-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Stagger delays for grid children */
+.anim-stagger > *:nth-child(1) { transition-delay:   0ms; }
+.anim-stagger > *:nth-child(2) { transition-delay:  80ms; }
+.anim-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.anim-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.anim-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.anim-stagger > *:nth-child(6) { transition-delay: 400ms; }
+
+/* ── 4. Synthesia-style mirror brightness ───────────────────── */
+
+/* Pure white section base */
+.section-bright {
+  background: #ffffff;
+  position: relative;
+}
+
+/* The radial bloom behind headings — the "mirror" effect */
+.section-bright::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  max-width: 100vw;
+  height: 400px;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    rgba(99, 102, 241, 0.08) 0%,
+    rgba(165, 180, 252, 0.04) 50%,
+    transparent 100%
+  );
+  z-index: 0;
+}
+
+/* Alternate sections: barely-there cool grey */
+.section-cool {
+  background: #fafbff;
+  position: relative;
+}
+.section-cool::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  max-width: 100vw;
+  height: 400px;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    rgba(99, 102, 241, 0.06) 0%,
+    transparent 100%
+  );
+  z-index: 0;
+}
+
+/* Section content above pseudo-element */
+.section-bright > *,
+.section-cool > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 5. Card styles ─────────────────────────────────────────── */
+.card-bright {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 24px rgba(99, 102, 241, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-bright:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    0 12px 40px rgba(99, 102, 241, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* ── 6. Animated gradient text ──────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #4F46E5 0%,
+    #6366F1 30%,
+    #818CF8 55%,
+    #A5B4FC 75%,
+    #6366F1 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ── 7. Floating / pulsing ──────────────────────────────────── */
+.float-anim  { animation: floatY   4s ease-in-out infinite; }
+.pulse-dot   { animation: pulseDot 2s ease-in-out infinite; }
+.glow-pulse  { animation: glowPulse 3s ease-in-out infinite; }
+
+/* ── 8. Button glow ─────────────────────────────────────────── */
+.btn-glow {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.btn-glow:hover {
+  transform: scale(1.03) translateY(-1px) !important;
+  box-shadow: 0 8px 36px rgba(99, 102, 241, 0.5) !important;
+}
+
+/* ── 9. Gradient divider ─────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.15) 25%,
+    rgba(99, 102, 241, 0.3)  50%,
+    rgba(99, 102, 241, 0.15) 75%,
+    transparent 100%
+  );
+}
+
+/* ── 10. Eyebrow pill ───────────────────────────────────────── */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #4F46E5;
+  background: rgba(99, 102, 241, 0.07);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  margin-bottom: 20px;
+}
+
+/* ── 11. Reduce motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .anim-hidden,
+  .anim-scale,
+  .card-bright,
+  .float-anim,
+  .gradient-text,
+  .pulse-dot,
+  .glow-pulse {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ── 11. Footer link hover (avoids JS event handlers) ──────── */
+.footer-link {
+  color: #64748B;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.footer-link:hover {
+  color: #0F172A;
+}

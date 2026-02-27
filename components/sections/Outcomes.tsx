@@ -28,54 +28,57 @@ export default function Outcomes() {
       eyebrow="Outcomes"
       title="Outcomes, not features."
       subtitle="PulseRoom is designed to change what happens after the meeting—not just what happens during it."
+      className="section-bright"
     >
-      <div className="grid gap-5 md:grid-cols-3 anim-stagger">
+      <div className="grid gap-4 md:grid-cols-3 anim-stagger">
         {outcomes.map((o) => (
           <div
             key={o.title}
-            className="rounded-2xl bg-white p-6 flex flex-col card-glow anim-hidden"
-            style={{
-              border: "1px solid #E2E8F0",
-              boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
-            }}
+            className="rounded-2xl p-6 flex flex-col card-bright anim-hidden"
           >
-            <h3 className="text-base font-bold text-slate-900">{o.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-500 flex-1">{o.desc}</p>
+            <h3 className="text-base font-bold" style={{ color: "#0F172A" }}>
+              {o.title}
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed flex-1" style={{ color: "#64748B" }}>
+              {o.desc}
+            </p>
 
-            {/* Before / After pill */}
+            {/* Before / After */}
             <div
-              className="mt-5 rounded-xl p-4 grid gap-3"
-              style={{ background: "#F8FAFC", border: "1px solid #E2E8F0" }}
+              className="mt-5 rounded-xl p-4"
+              style={{
+                background: "#F8FAFC",
+                border: "1px solid #EEF2F7",
+              }}
             >
-              <div>
-                <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Before</div>
-                <div className="text-sm font-medium text-slate-600">{o.before}</div>
+              <div className="mb-3">
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#94A3B8" }}>
+                  Before
+                </p>
+                <p className="text-sm font-medium" style={{ color: "#64748B" }}>{o.before}</p>
               </div>
-              <div className="h-px" style={{ background: "#E2E8F0" }} />
+              <div className="h-px" style={{ background: "#E2E8F0", marginBottom: "12px" }} />
               <div>
-                <div
-                  className="text-xs font-semibold uppercase tracking-wide mb-1"
-                  style={{ color: "#6366F1" }}
-                >
+                <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#6366F1" }}>
                   After
-                </div>
-                <div className="text-sm font-bold text-slate-900">{o.after}</div>
+                </p>
+                <p className="text-sm font-bold" style={{ color: "#0F172A" }}>{o.after}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Executive callout */}
+      {/* Callout */}
       <div
-        className="mt-8 rounded-2xl p-6 anim-hidden"
+        className="mt-6 rounded-2xl p-6 anim-hidden"
         style={{
-          background: "rgba(99,102,241,0.05)",
+          background: "linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%)",
           border: "1px solid rgba(99,102,241,0.15)",
         }}
       >
-        <p className="text-sm text-slate-600">
-          <span className="font-bold text-slate-900">Executive note: </span>
+        <p className="text-sm" style={{ color: "#475569" }}>
+          <span className="font-bold" style={{ color: "#0F172A" }}>Executive note: </span>
           PulseRoom is designed for serious rooms where accountability matters—workshops, exec
           education, and pilot programs.
         </p>
