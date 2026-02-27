@@ -7,11 +7,11 @@ const items = [
   },
   {
     title: "A few voices dominate",
-    desc: "In high-stakes rooms, quieter signals often matter most—but they’re the easiest to miss.",
+    desc: "In high-stakes rooms, quieter signals often matter most—but they're the easiest to miss.",
   },
   {
     title: "No durable artifact",
-    desc: "A long doc or slide deck isn’t the same as a clear decision record with rationale and ownership.",
+    desc: "A long doc or slide deck isn't the same as a clear decision record with rationale and ownership.",
   },
 ];
 
@@ -35,69 +35,119 @@ export default function WhyNow() {
       title="Meetings create motion. Decisions require alignment."
       subtitle="PulseRoom is built for rooms where stakes are real and outcomes must hold up after the session."
     >
+      {/* 3 problem cards */}
       <div className="grid gap-5 md:grid-cols-3">
         {items.map((it) => (
-          <div key={it.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-            <h3 className="text-base font-semibold text-slate-900">{it.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{it.desc}</p>
+          <div
+            key={it.title}
+            className="rounded-2xl bg-white p-6"
+            style={{
+              border: "1px solid #E2E8F0",
+              boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+            }}
+          >
+            <h3 className="text-base font-bold text-slate-900">{it.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-500">{it.desc}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-10 grid gap-5 lg:grid-cols-2">
-        <div className="rounded-2xl border border-brand-100 bg-brand-50 p-6 shadow-soft">
-          <h3 className="text-base font-semibold text-slate-900">Before PulseRoom</h3>
-          <ul className="mt-3 grid gap-2 text-sm text-slate-700">
+      {/* Before / After */}
+      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        <div
+          className="rounded-2xl p-6"
+          style={{
+            background: "rgba(99,102,241,0.05)",
+            border: "1px solid rgba(99,102,241,0.15)",
+          }}
+        >
+          <h3 className="text-base font-bold text-slate-900 mb-3">Before PulseRoom</h3>
+          <ul className="grid gap-2.5">
             {[
-              "“We’ll circle back.” (and you never do)",
+             '"We\'ll circle back." (and you never do)',
               "Six people talking, two dominating",
               "Summary buried in a long deck",
             ].map((b) => (
-              <li key={b} className="flex items-start gap-2">
-                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-brand-950" aria-hidden />
-                <span>{b}</span>
+              <li key={b} className="flex items-start gap-2.5 text-sm text-slate-600">
+                <span
+                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
+                  style={{ background: "#CBD5E1" }}
+                  aria-hidden
+                />
+                {b}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <h3 className="text-base font-semibold text-slate-900">After PulseRoom</h3>
-          <ul className="mt-3 grid gap-2 text-sm text-slate-700">
+        <div
+          className="rounded-2xl bg-white p-6"
+          style={{
+            border: "1px solid #E2E8F0",
+            boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+          }}
+        >
+          <h3 className="text-base font-bold text-slate-900 mb-3">After PulseRoom</h3>
+          <ul className="grid gap-2.5">
             {[
               "Decision locked in the room (with rationale)",
               "Every voice counted through structured signals",
               "One clean artifact people actually reference",
             ].map((a) => (
-              <li key={a} className="flex items-start gap-2">
-                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-brand-950" aria-hidden />
-                <span>{a}</span>
+              <li key={a} className="flex items-start gap-2.5 text-sm text-slate-600">
+                <span
+                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
+                  style={{ background: "#6366F1" }}
+                  aria-hidden
+                />
+                {a}
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <h3 className="text-base font-semibold text-slate-900">PulseRoom is for</h3>
-          <ul className="mt-3 grid gap-2 text-sm text-slate-700">
+      {/* For / Not for */}
+      <div className="mt-5 grid gap-5 md:grid-cols-2">
+        <div
+          className="rounded-2xl bg-white p-6"
+          style={{
+            border: "1px solid #E2E8F0",
+            boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+          }}
+        >
+          <h3 className="text-base font-bold text-slate-900 mb-3">PulseRoom is for</h3>
+          <ul className="grid gap-2.5">
             {forTeams.map((x) => (
-              <li key={x} className="flex items-start gap-2">
-                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-brand-950" aria-hidden />
-                <span>{x}</span>
+              <li key={x} className="flex items-start gap-2.5 text-sm text-slate-600">
+                <span
+                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
+                  style={{ background: "#6366F1" }}
+                  aria-hidden
+                />
+                {x}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-          <h3 className="text-base font-semibold text-slate-900">Not ideal for</h3>
-          <ul className="mt-3 grid gap-2 text-sm text-slate-700">
+        <div
+          className="rounded-2xl bg-white p-6"
+          style={{
+            border: "1px solid #E2E8F0",
+            boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+          }}
+        >
+          <h3 className="text-base font-bold text-slate-900 mb-3">Not ideal for</h3>
+          <ul className="grid gap-2.5">
             {notIdeal.map((x) => (
-              <li key={x} className="flex items-start gap-2">
-                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-brand-950" aria-hidden />
-                <span>{x}</span>
+              <li key={x} className="flex items-start gap-2.5 text-sm text-slate-600">
+                <span
+                  className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
+                  style={{ background: "#CBD5E1" }}
+                  aria-hidden
+                />
+                {x}
               </li>
             ))}
           </ul>

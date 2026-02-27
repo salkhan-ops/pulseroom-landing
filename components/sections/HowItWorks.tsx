@@ -28,15 +28,34 @@ export default function HowItWorks() {
       className="bg-slate-50"
     >
       <div className="grid gap-5 md:grid-cols-3">
-        {steps.map((s) => (
-          <div key={s.n} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-            <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-sm font-semibold text-white">
-                {s.n}
-              </span>
-              <h3 className="text-base font-semibold text-slate-900">{s.title}</h3>
+        {steps.map((s, i) => (
+          <div
+            key={s.n}
+            className="rounded-2xl bg-white p-6 relative overflow-hidden"
+            style={{
+              border: "1px solid #E2E8F0",
+              boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+            }}
+          >
+            {/* Large ghost number */}
+            <div
+              className="absolute -top-3 -right-1 text-8xl font-extrabold pointer-events-none select-none"
+              style={{ color: "rgba(99,102,241,0.06)", lineHeight: 1 }}
+              aria-hidden
+            >
+              {s.n}
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">{s.desc}</p>
+
+            <div className="relative">
+              <div
+                className="grid h-10 w-10 place-items-center rounded-xl text-sm font-bold text-white mb-4"
+                style={{ background: "#6366F1" }}
+              >
+                {s.n}
+              </div>
+              <h3 className="text-base font-bold text-slate-900">{s.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-500">{s.desc}</p>
+            </div>
           </div>
         ))}
       </div>

@@ -55,39 +55,57 @@ export default function CaseSnapshots() {
       eyebrow="Representative scenarios"
       title="Where PulseRoom is used"
       subtitle="These examples illustrate typical contexts and outcomes. They are representative—not endorsements."
+      className="bg-slate-50"
     >
       <div className="grid gap-6 md:grid-cols-3">
         {cases.map((c) => (
           <div
             key={c.title}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft"
+            className="rounded-2xl bg-white flex flex-col overflow-hidden"
+            style={{
+              border: "1px solid #E2E8F0",
+              boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+            }}
           >
-            <h3 className="text-base font-semibold text-slate-900">
-              {c.title}
-            </h3>
-            <p className="mt-2 text-sm text-slate-600">{c.context}</p>
-
-            <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+            {/* Image */}
+            <div
+              className="overflow-hidden"
+              style={{ background: "#F1F5F9" }}
+            >
               <img
                 src={withBasePath(c.image)}
                 alt={c.title}
                 loading="lazy"
-                className="h-auto w-full"
+                className="h-auto w-full object-cover"
               />
             </div>
 
-            <ul className="mt-4 grid gap-2 text-sm text-slate-700">
-              {c.outcomes.map((o) => (
-                <li key={o} className="flex items-start gap-2">
-                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-slate-900" />
-                  <span>{o}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Content */}
+            <div className="p-6 flex flex-col flex-1">
+              <h3 className="text-base font-bold text-slate-900">{c.title}</h3>
+              <p className="mt-1.5 text-sm text-slate-500">{c.context}</p>
 
-            <p className="mt-4 text-xs text-slate-500">
-              Artifact produced: <span className="font-medium">{c.artifact}</span>
-            </p>
+              <ul className="mt-4 grid gap-2 flex-1">
+                {c.outcomes.map((o) => (
+                  <li key={o} className="flex items-start gap-2.5 text-sm text-slate-600">
+                    <span
+                      className="mt-1.5 flex-shrink-0 h-1.5 w-1.5 rounded-full"
+                      style={{ background: "#6366F1" }}
+                      aria-hidden
+                    />
+                    {o}
+                  </li>
+                ))}
+              </ul>
+
+              <div
+                className="mt-5 pt-4"
+                style={{ borderTop: "1px solid #F1F5F9" }}
+              >
+                <span className="text-xs text-slate-400">Artifact produced: </span>
+                <span className="text-xs font-semibold text-slate-700">{c.artifact}</span>
+              </div>
+            </div>
           </div>
         ))}
       </div>

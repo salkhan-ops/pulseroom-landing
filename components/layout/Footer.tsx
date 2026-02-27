@@ -3,26 +3,40 @@ import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer style={{ borderTop: "1px solid #E2E8F0", background: "#F8FAFC" }}>
       <Container className="py-10">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold text-slate-900">{site.name}</p>
-            <p className="mt-1 text-sm text-slate-600">
-              © {new Date().getFullYear()} {site.name}. All rights reserved.
-            </p>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          {/* Brand */}
+          <div className="flex items-center gap-3">
+            <div
+              className="grid h-8 w-8 place-items-center rounded-xl text-white text-xs font-bold"
+              style={{ background: "#6366F1" }}
+            >
+              PR
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-slate-900">{site.name}</p>
+              <p className="text-xs text-slate-400">
+                © {new Date().getFullYear()} {site.name}. All rights reserved.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4 text-sm">
-            <a className="text-slate-600 hover:text-slate-900" href="#faq">
-              FAQ
-            </a>
-            <a className="text-slate-600 hover:text-slate-900" href="#engage">
-              Engagement
-            </a>
-            <a className="text-slate-600 hover:text-slate-900" href="#top">
-              Back to top
-            </a>
+          {/* Links */}
+          <div className="flex items-center gap-6 text-sm">
+            {[
+              { label: "FAQ", href: "#faq" },
+              { label: "Engagement", href: "#engage" },
+              { label: "Back to top ↑", href: "#top" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </Container>

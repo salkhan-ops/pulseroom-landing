@@ -6,10 +6,9 @@ export function CtaGrid({ title, subtitle }: { title: string; subtitle: string }
   const enabled = site.engagement.ctas.filter((c) => c.enabled);
   const primaryCount = enabled.filter((c) => c.primary).length;
 
-  // Safety: if user accidentally sets none/too many primary, we still render cleanly.
   const normalized = enabled.map((c, i) => {
     if (primaryCount === 1) return c;
-    return { ...c, primary: i === 0 }; // first enabled becomes primary
+    return { ...c, primary: i === 0 };
   });
 
   return (
@@ -18,7 +17,6 @@ export function CtaGrid({ title, subtitle }: { title: string; subtitle: string }
       eyebrow="Engagement"
       title={title}
       subtitle={subtitle}
-      className="bg-slate-50"
     >
       <div className="grid gap-5 md:grid-cols-2">
         {normalized.map((cta) => (
@@ -26,10 +24,22 @@ export function CtaGrid({ title, subtitle }: { title: string; subtitle: string }
         ))}
       </div>
 
-      <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-6">
-        <p className="text-sm text-slate-700">
-          <span className="font-semibold">Tip:</span> You can enable/disable options and switch the
-          highlighted CTA in <code className="rounded bg-slate-50 px-2 py-1">lib/site.ts</code>{" "}
+      <div
+        className="mt-8 rounded-2xl p-5"
+        style={{
+          background: "rgba(99,102,241,0.04)",
+          border: "1px solid rgba(99,102,241,0.12)",
+        }}
+      >
+        <p className="text-sm text-slate-600">
+          <span className="font-semibold text-slate-800">Tip:</span> You can
+          enable/disable options and switch the highlighted CTA in{" "}
+          <code
+            className="rounded px-1.5 py-0.5 text-xs"
+            style={{ background: "rgba(99,102,241,0.08)", color: "#6366F1" }}
+          >
+            lib/site.ts
+          </code>{" "}
           without touching UI logic.
         </p>
       </div>

@@ -1,20 +1,35 @@
 import Section from "@/components/layout/Section";
 
-const cards = [
+const useCases = [
   {
-    title: "Product & strategy workshops",
-    desc: "Turn debate into visible alignment. Keep momentum after the session.",
-    bullets: ["Prioritize features", "De-risk decisions", "Clarify ownership"],
+    icon: "🧭",
+    title: "Strategy workshops",
+    desc: "Align cross-functional teams on roadmap priorities. Capture trade-offs live, not in a follow-up email.",
   },
   {
-    title: "Executive meetings",
-    desc: "Make trade-offs explicit and reduce re-litigation of decisions.",
-    bullets: ["Decision trace", "Fast summaries", "Alignment over opinions"],
+    icon: "🎓",
+    title: "Executive education",
+    desc: "Cohort-based programs that need reflection, debate, and defensible conclusions participants can reference.",
   },
   {
-    title: "Classrooms & cohort learning",
-    desc: "Engage every participant and surface patterns across groups.",
-    bullets: ["Live feedback", "Group vectors", "Reflection loops"],
+    icon: "🤝",
+    title: "Facilitation engagements",
+    desc: "Give clients a structured decision record from every engagement—not just notes and next steps.",
+  },
+  {
+    icon: "📋",
+    title: "Budget & hiring decisions",
+    desc: "High-stakes rooms where every voice needs to be heard and the rationale needs to survive the meeting.",
+  },
+  {
+    icon: "🔍",
+    title: "Retrospectives",
+    desc: "Turn post-mortems into actionable decisions with visible alignment and clear ownership.",
+  },
+  {
+    icon: "⚡",
+    title: "Sprint planning",
+    desc: "Surface divergence early, align on priorities quickly, and start the sprint with shared conviction.",
   },
 ];
 
@@ -23,22 +38,29 @@ export default function UseCases() {
     <Section
       id="use-cases"
       eyebrow="Use cases"
-      title="Built for teams that must decide — together."
-      subtitle="Three common scenarios, designed to feel lightweight but powerful."
+      title="Built for the rooms that matter."
+      subtitle="Wherever a group needs to decide something important and make it stick."
+      className=""
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        {cards.map((c) => (
-          <div key={c.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
-            <h3 className="text-base font-semibold text-slate-900">{c.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{c.desc}</p>
-            <ul className="mt-4 grid gap-2 text-sm text-slate-700">
-              {c.bullets.map((b) => (
-                <li key={b} className="flex items-start gap-2">
-                  <span className="mt-1 inline-block h-2 w-2 rounded-full bg-indigo-600" aria-hidden />
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {useCases.map((uc) => (
+          <div
+            key={uc.title}
+            className="rounded-2xl bg-white p-6 group transition-all hover:-translate-y-0.5"
+            style={{
+              border: "1px solid #E2E8F0",
+              boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+              transition: "transform 0.2s, box-shadow 0.2s",
+            }}
+          >
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-xl mb-4"
+              style={{ background: "rgba(99,102,241,0.08)" }}
+            >
+              {uc.icon}
+            </div>
+            <h3 className="text-base font-bold text-slate-900">{uc.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-500">{uc.desc}</p>
           </div>
         ))}
       </div>

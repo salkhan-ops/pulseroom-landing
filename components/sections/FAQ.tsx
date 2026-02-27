@@ -34,25 +34,42 @@ export default function FAQ() {
       eyebrow="FAQ"
       title="Questions, answered."
       subtitle="These are the questions we hear most often from facilitators, executives, and program leads."
-      className="bg-slate-50"
     >
-      <div className="mx-auto max-w-3xl divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white shadow-soft">
-        {faqs.map((item) => (
-          <details key={item.q} className="group p-6">
-            <summary className="cursor-pointer list-none text-base font-semibold text-slate-900">
+      <div
+        className="mx-auto max-w-3xl rounded-2xl overflow-hidden"
+        style={{
+          border: "1px solid #E2E8F0",
+          boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
+        }}
+      >
+        {faqs.map((item, i) => (
+          <details
+            key={item.q}
+            className="group bg-white"
+            style={
+              i < faqs.length - 1
+                ? { borderBottom: "1px solid #F1F5F9" }
+                : {}
+            }
+          >
+            <summary className="cursor-pointer list-none px-6 py-5 text-sm font-bold text-slate-900 hover:bg-slate-50 transition-colors">
               <span className="flex items-center justify-between gap-4">
                 {item.q}
                 <span
-                  className="text-slate-400 transition group-open:rotate-45"
+                  className="flex-shrink-0 grid h-6 w-6 place-items-center rounded-full text-xs font-bold transition-transform group-open:rotate-45"
+                  style={{
+                    background: "rgba(99,102,241,0.08)",
+                    color: "#6366F1",
+                  }}
                   aria-hidden
                 >
                   +
                 </span>
               </span>
             </summary>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              {item.a}
-            </p>
+            <div className="px-6 pb-5">
+              <p className="text-sm leading-relaxed text-slate-500">{item.a}</p>
+            </div>
           </details>
         ))}
       </div>
