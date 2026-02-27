@@ -321,3 +321,29 @@
   color: #94A3B8;
   margin-top: 0.5rem;
 }
+
+/* ── Mobile drawer list (replaces div wrappers) ─────────────── */
+.mobile-drawer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-drawer__list li {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Dropdown panel as ul ────────────────────────────────────── */
+.dropmenu__panel {
+  list-style: none;
+  margin: 0;
+}
+
+.dropmenu__panel li {
+  margin: 0;
+  padding: 0;
+}

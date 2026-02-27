@@ -2,68 +2,160 @@
 
 import { useEffect, useRef } from "react";
 
+/**
+ * SmoothScroll
+ * ─────────────────────────────────────────────────────────────
+ * How it works:
+ *  1. Fixes #smooth-content with position:fixed so it doesn't
+ *     scroll natively — we drive it entirely with translate3d.
+ *  2. Sets document.body height to match content height so the
+ *     browser scrollbar still appears and has the right size.
+ *  3. On every wheel event, advances `target` by deltaY.
+ *  4. Every RAF frame, lerps `current` toward `target` by LERP%.
+ *     This is what creates the "drag / coast" feel.
+ *  5. Uses a `running` flag (not the RAF id) to stop the loop
+ *     on cleanup — fixes the cancel bug.
+ *
+ * Usage
+ * ─────
+ * In layout.tsx:
+ *   <SmoothScroll />
+ *   <div id="smooth-content">
+ *     {children}
+ *   </div>
+ *
+ * Disabled automatically on touch devices.
+ */
+
+const LERP        = 0.07;   // 0.04 = heavy/dreamy · 0.07 = balanced · 0.12 = snappy
+const SENSITIVITY = 1.0;    // wheel delta multiplier
+
 export default function SmoothScroll() {
-  const scrollRef = useRef({
-    current: 0,
-    target: 0,
-    limit: 0,
-  });
+  const state = useRef({ current: 0, target: 0, running: false });
 
   useEffect(() => {
+    // Skip on touch — native momentum scroll is better there
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) return;
+
     const content = document.getElementById("smooth-content");
-    if (!content) return;
+    if (!content) {
+      console.warn("[SmoothScroll] #smooth-content not found in DOM.");
+      return;
+    }
 
-    // 1. SETTINGS - Tune these for the "Drag" feel
-    const LERP = 0.05;       // LOWER = Heavier/More Drag (0.03 to 0.07 is the sweet spot)
-    const SENSITIVITY = 0.8; // Adjust how far one wheel notch moves the page
+    // ── Setup ────────────────────────────────────────────────
+    const getLimit = () =>
+      content.scrollHeight - window.innerHeight;
 
-    const updateLimit = () => {
-      scrollRef.current.limit = content.getBoundingClientRect().height - window.innerHeight;
-      // Sync body height so the scrollbar looks correct
-      document.body.style.height = `${content.getBoundingClientRect().height}px`;
+    const syncBodyHeight = () => {
+      document.body.style.height = `${content.scrollHeight}px`;
     };
 
+    // Fix content in place — we move it via transform
+    content.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      will-change: transform;
+      overflow: hidden;
+    `;
+
+    syncBodyHeight();
+
+    // ── Wheel handler ────────────────────────────────────────
     const onWheel = (e: WheelEvent) => {
-      // Prevent native scroll - we are taking over entirely
       e.preventDefault();
-      
-      const { target, limit } = scrollRef.current;
-      // Accumulate the "Target" (where we want to be)
-      scrollRef.current.target = Math.max(0, Math.min(limit, target + e.deltaY * SENSITIVITY));
+      const limit = getLimit();
+      state.current.target = Math.max(
+        0,
+        Math.min(limit, state.current.target + e.deltaY * SENSITIVITY)
+      );
     };
 
-    const raf = () => {
-      const { current, target } = scrollRef.current;
-      
-      // The "Drag" Math: Move a small percentage of the distance every frame
-      const newY = current + (target - current) * LERP;
-      
-      if (Math.abs(target - newY) > 0.01) {
-        scrollRef.current.current = newY;
-        // Move the content using GPU-accelerated transform
-        content.style.transform = `translate3d(0, -${newY}px, 0)`;
+    // ── Anchor click — smooth jump to section ────────────────
+    const onAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a[href^="#"]');
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href) as HTMLElement | null;
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + state.current.current;
+      state.current.target = Math.max(0, Math.min(getLimit(), top - 80));
+    };
+
+    // ── Keyboard scroll ──────────────────────────────────────
+    const onKeyDown = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement).tagName;
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
+
+      const ph = window.innerHeight;
+      const map: Record<string, number> = {
+        ArrowDown:  80,
+        ArrowUp:   -80,
+        PageDown:   ph * 0.85,
+        PageUp:    -ph * 0.85,
+        " ":        ph * 0.85,
+        Home:      -999999,
+        End:        999999,
+      };
+      const delta = map[e.key];
+      if (delta === undefined) return;
+      e.preventDefault();
+      state.current.target = Math.max(
+        0,
+        Math.min(getLimit(), state.current.target + delta)
+      );
+    };
+
+    // ── RAF loop — the lerp that creates the drag feel ───────
+    state.current.running = true;
+
+    const loop = () => {
+      if (!state.current.running) return; // ← clean stop on unmount
+
+      const { current, target } = state.current;
+      const next = current + (target - current) * LERP;
+
+      // Only update DOM when there's meaningful movement
+      if (Math.abs(target - next) > 0.05) {
+        state.current.current = next;
+        content.style.transform = `translate3d(0, ${-next}px, 0)`;
+      } else if (next !== target) {
+        // Snap to exact target when close enough
+        state.current.current = target;
+        content.style.transform = `translate3d(0, ${-target}px, 0)`;
       }
 
-      requestAnimationFrame(raf);
+      requestAnimationFrame(loop);
     };
 
-    // Initialize
-    updateLimit();
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("resize", updateLimit);
-    const animationId = requestAnimationFrame(raf);
+    requestAnimationFrame(loop);
 
-    // CSS for the wrapper
-    content.style.position = "fixed";
-    content.style.top = "0";
-    content.style.width = "100%";
-    content.style.willChange = "transform";
+    // ── Resize ───────────────────────────────────────────────
+    const onResize = () => {
+      syncBodyHeight();
+      // Clamp target if page got shorter
+      state.current.target = Math.min(state.current.target, getLimit());
+    };
 
+    // ── Attach ───────────────────────────────────────────────
+    window.addEventListener("wheel",     onWheel,      { passive: false });
+    window.addEventListener("keydown",   onKeyDown);
+    window.addEventListener("resize",    onResize);
+    document.addEventListener("click",   onAnchorClick);
+
+    // ── Cleanup ──────────────────────────────────────────────
     return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("resize", updateLimit);
-      cancelAnimationFrame(animationId);
+      state.current.running = false;          // stops RAF loop
+      window.removeEventListener("wheel",   onWheel);
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize",  onResize);
+      document.removeEventListener("click", onAnchorClick);
       document.body.style.height = "";
+      content.style.cssText = "";
     };
   }, []);
 
