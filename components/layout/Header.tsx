@@ -2,25 +2,9 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import Container from "@/components/ui/Container";
-import Button from "@/components/ui/Button";
 import { site, APP_URL } from "@/lib/site";
 
 type SimpleItem = { label: string; href: string };
-
-function LogoMark() {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="grid h-9 w-9 place-items-center rounded-xl bg-indigo-600 text-white shadow-soft">
-        <span className="text-sm font-bold">PR</span>
-      </div>
-      <div className="leading-tight">
-        <div className="text-sm font-semibold text-slate-900">{site.name}</div>
-        <div className="text-xs text-slate-500">{site.tagline}</div>
-      </div>
-    </div>
-  );
-}
 
 function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: () => void) {
   useEffect(() => {
@@ -70,20 +54,40 @@ function DropMenu({
     <div className="relative" ref={rootRef}>
       <button
         type="button"
-        className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+        className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-sm font-medium transition-colors"
+        style={{ color: "#94A3B8" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "#E2E8F0")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "#94A3B8")}
         onClick={() => setOpenId(isOpen ? null : id)}
       >
         {label}
-        <span aria-hidden className="text-slate-400 ml-1">▾</span>
+        <span aria-hidden className="ml-1 text-xs opacity-60">▾</span>
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 mt-2 w-64 rounded-2xl border border-slate-200 bg-white shadow-lg p-2 z-50">
+        <div
+          className="absolute left-0 mt-2 w-56 rounded-2xl p-2 z-50"
+          style={{
+            background: "rgba(15,23,42,0.95)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+          }}
+        >
           {items.map((it) => (
             <Link
               key={it.href + it.label}
               href={it.href}
-              className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+              className="block rounded-xl px-3 py-2 text-sm transition-colors"
+              style={{ color: "#94A3B8" }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "#E2E8F0";
+                e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "#94A3B8";
+                e.currentTarget.style.background = "transparent";
+              }}
               onClick={() => setOpenId(null)}
             >
               {it.label}
@@ -97,9 +101,8 @@ function DropMenu({
 
 export default function Header() {
   const [openId, setOpenId] = useState<string | null>(null);
-
   const productId = useId();
-  const proofId = useId();
+  const resultsId = useId();
 
   const product: SimpleItem[] = useMemo(
     () => [
@@ -112,9 +115,9 @@ export default function Header() {
     []
   );
 
-  const proof: SimpleItem[] = useMemo(
+  const results: SimpleItem[] = useMemo(
     () => [
-      { label: "Visual proof", href: "/#proof" },
+      { label: "Visual results", href: "/#proof" },
       { label: "FAQ", href: "/#faq" },
       { label: "Decision notes (Blog)", href: "/blog" },
     ],
@@ -122,18 +125,43 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between gap-4">
+    <header
+      className="sticky top-0 z-40"
+      style={{
+        background: "rgba(10,15,30,0.85)",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        backdropFilter: "blur(20px)",
+      }}
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6 lg:px-12">
+        {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-3"
           aria-label={`${site.name} home`}
           onClick={() => setOpenId(null)}
         >
-          <LogoMark />
+          <div
+            className="grid h-9 w-9 place-items-center rounded-xl text-white"
+            style={{
+              background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
+              boxShadow: "0 0 16px rgba(99,102,241,0.4)",
+            }}
+          >
+            <span className="text-sm font-bold">PR</span>
+          </div>
+          <div className="leading-tight">
+            <div className="text-sm font-semibold" style={{ color: "#E2E8F0" }}>
+              {site.name}
+            </div>
+            <div className="text-xs" style={{ color: "#64748B" }}>
+              {site.tagline}
+            </div>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-2 md:flex" aria-label="Primary navigation">
+        {/* Nav */}
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
           <DropMenu
             id={productId}
             openId={openId}
@@ -142,24 +170,29 @@ export default function Header() {
             items={product}
           />
           <DropMenu
-            id={proofId}
+            id={resultsId}
             openId={openId}
             setOpenId={setOpenId}
-            label="Proof"
-            items={proof}
+            label="Results"
+            items={results}
           />
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Button
-            href={APP_URL}
-            variant="primary"
-            external={true}
-          >
-            Try PulseRoom
-          </Button>
-        </div>
-      </Container>
+        {/* CTA */}
+        <a
+          href={APP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold transition-all hover:scale-[1.02]"
+          style={{
+            background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
+            color: "white",
+            boxShadow: "0 0 20px rgba(99,102,241,0.3)",
+          }}
+        >
+          Try PulseRoom →
+        </a>
+      </div>
     </header>
   );
 }
