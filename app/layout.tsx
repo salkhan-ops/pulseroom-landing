@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { site } from "@/lib/site";
 import ScrollAnimator from "@/components/ui/ScrollAnimator";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 
 export const metadata: Metadata = {
   title: site.seo.title,
@@ -63,6 +64,7 @@ export default function RootLayout({
       */}
       <body suppressHydrationWarning={true}>
         <Header />
+        <SmoothScroll />
         <ScrollAnimator />
         <main>{children}</main>
         <Footer />
