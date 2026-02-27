@@ -11,6 +11,7 @@ import { CtaGrid } from "@/components/cta/CtaGrid";
 import { site } from "@/lib/site";
 import GetPulseRoom from "@/components/sections/GetPulseRoom";
 import CaseSnapshots from "@/components/sections/CaseSnapshots";
+import Pricing from "@/components/sections/Pricing";
 
 export default function Page() {
   return (
@@ -19,6 +20,7 @@ export default function Page() {
       <WhyNow />
       <HowItWorks />
       <Outcomes />
+      <Pricing />
       <CaseSnapshots />
       <UseCases />
       <DemoVideo />

@@ -1,0 +1,285 @@
+/* ── Pricing grid ────────────────────────────────────────────── */
+.pricing-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 640px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Base card ───────────────────────────────────────────────── */
+.pricing-card {
+  position: relative;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 16px rgba(99, 102, 241, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.14);
+}
+
+/* ── Highlight card (most popular) ──────────────────────────── */
+.pricing-card--highlight {
+  background: linear-gradient(160deg, #EEF2FF 0%, #E8EDFF 100%);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 32px rgba(99, 102, 241, 0.15);
+}
+
+/* ── Dark card (enterprise) ──────────────────────────────────── */
+.pricing-card--dark {
+  background: #0F172A;
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Badge ───────────────────────────────────────────────────── */
+.pricing-badge {
+  padding: 0.5rem 1rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  background: #E2E8F0;
+  color: #64748B;
+}
+
+.pricing-badge--highlight {
+  background: #6366F1;
+  color: #ffffff;
+}
+
+.pricing-badge--dark {
+  background: rgba(99, 102, 241, 0.3);
+  color: #A5B4FC;
+}
+
+/* ── Card body ───────────────────────────────────────────────── */
+.pricing-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Name ────────────────────────────────────────────────────── */
+.pricing-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.pricing-card--dark .pricing-name {
+  color: #F1F5F9;
+}
+
+/* ── Price ───────────────────────────────────────────────────── */
+.pricing-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-card--dark .pricing-price {
+  color: #94A3B8;
+}
+
+.pricing-price-note {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  margin-bottom: 0.75rem;
+}
+
+.pricing-price-old {
+  font-size: 0.875rem;
+  color: #94A3B8;
+  text-decoration: line-through;
+  margin-bottom: 0.15rem;
+}
+
+/* ── Description ─────────────────────────────────────────────── */
+.pricing-desc {
+  font-size: 0.8rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.pricing-card--dark .pricing-desc {
+  color: #64748B;
+}
+
+/* ── CTA button ──────────────────────────────────────────────── */
+.pricing-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.875rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.25rem;
+}
+
+.pricing-cta:hover {
+  transform: scale(1.02);
+}
+
+.pricing-cta--secondary {
+  background: #ffffff;
+  color: #0F172A;
+  border: 1.5px solid #E2E8F0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.pricing-cta--secondary:hover {
+  border-color: #C7D2FE;
+  box-shadow: 0 2px 12px rgba(99, 102, 241, 0.12);
+}
+
+.pricing-cta--primary {
+  background: #6366F1;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+}
+
+.pricing-cta--primary:hover {
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45);
+}
+
+.pricing-cta--dark {
+  background: #6366F1;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+}
+
+/* ── Divider ─────────────────────────────────────────────────── */
+.pricing-divider {
+  height: 1px;
+  background: #F1F5F9;
+  margin-bottom: 1.25rem;
+}
+
+.pricing-card--dark .pricing-divider {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Features label ──────────────────────────────────────────── */
+.pricing-features-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94A3B8;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Features list ───────────────────────────────────────────── */
+.pricing-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.pricing-card--dark .pricing-feature {
+  color: #94A3B8;
+}
+
+.pricing-check {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #6366F1;
+}
+
+.pricing-card--dark .pricing-check {
+  color: #818CF8;
+}
+
+/* ── Loading skeleton ────────────────────────────────────────── */
+.pricing-skeleton {
+  border-radius: 1.25rem;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  height: 480px;
+  animation: pricingSkeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes pricingSkeleton {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Error state ─────────────────────────────────────────────── */
+.pricing-error {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #94A3B8;
+  font-size: 0.875rem;
+}
+
+.pricing-error a {
+  color: #6366F1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ── Footer note ─────────────────────────────────────────────── */
+.pricing-footer {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94A3B8;
+  margin-top: 0.5rem;
+}
+
+.pricing-footer a {
+  color: #6366F1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pricing-footer a:hover {
+  text-decoration: underline;
+}
