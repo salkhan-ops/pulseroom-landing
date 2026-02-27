@@ -4,62 +4,65 @@ import { useEffect, useRef } from "react";
 
 export default function SmoothScroll() {
   const scrollRef = useRef({
-    target: 0,
     current: 0,
-    max: 0,
+    target: 0,
+    limit: 0,
   });
 
   useEffect(() => {
-    // 1. Setup Wrapper and Body
     const content = document.getElementById("smooth-content");
     if (!content) return;
 
-    // We give the body a huge height so the browser scrollbar still works
-    const updateBodyHeight = () => {
+    // 1. SETTINGS - Tune these for the "Drag" feel
+    const LERP = 0.05;       // LOWER = Heavier/More Drag (0.03 to 0.07 is the sweet spot)
+    const SENSITIVITY = 0.8; // Adjust how far one wheel notch moves the page
+
+    const updateLimit = () => {
+      scrollRef.current.limit = content.getBoundingClientRect().height - window.innerHeight;
+      // Sync body height so the scrollbar looks correct
       document.body.style.height = `${content.getBoundingClientRect().height}px`;
-      scrollRef.current.max = content.getBoundingClientRect().height - window.innerHeight;
     };
 
-    // 2. Linear Interpolation (Lerp)
-    const LERP_FACTOR = 0.08; // Lower = smoother/slower, Higher = snappier
+    const onWheel = (e: WheelEvent) => {
+      // Prevent native scroll - we are taking over entirely
+      e.preventDefault();
+      
+      const { target, limit } = scrollRef.current;
+      // Accumulate the "Target" (where we want to be)
+      scrollRef.current.target = Math.max(0, Math.min(limit, target + e.deltaY * SENSITIVITY));
+    };
 
-    const animate = () => {
-      const { target, current, max } = scrollRef.current;
+    const raf = () => {
+      const { current, target } = scrollRef.current;
       
-      // Calculate new position
-      const next = current + (target - current) * LERP_FACTOR;
+      // The "Drag" Math: Move a small percentage of the distance every frame
+      const newY = current + (target - current) * LERP;
       
-      // Apply the transform (Translate3d is GPU accelerated)
-      if (Math.abs(target - next) > 0.1) {
-        content.style.transform = `translate3d(0, -${next}px, 0)`;
-        scrollRef.current.current = next;
+      if (Math.abs(target - newY) > 0.01) {
+        scrollRef.current.current = newY;
+        // Move the content using GPU-accelerated transform
+        content.style.transform = `translate3d(0, -${newY}px, 0)`;
       }
 
-      requestAnimationFrame(animate);
+      requestAnimationFrame(raf);
     };
 
-    // 3. Listen for Native Scroll
-    const onScroll = () => {
-      scrollRef.current.target = window.scrollY;
-    };
+    // Initialize
+    updateLimit();
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("resize", updateLimit);
+    const animationId = requestAnimationFrame(raf);
 
-    // Initial setup
-    updateBodyHeight();
-    window.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", updateBodyHeight);
-    const raf = requestAnimationFrame(animate);
-
-    // Styling to make it work
+    // CSS for the wrapper
     content.style.position = "fixed";
     content.style.top = "0";
-    content.style.left = "0";
     content.style.width = "100%";
     content.style.willChange = "transform";
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", updateBodyHeight);
-      cancelAnimationFrame(raf);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("resize", updateLimit);
+      cancelAnimationFrame(animationId);
       document.body.style.height = "";
     };
   }, []);
