@@ -39,7 +39,7 @@ import "./pricing.css";  // → components/sections/pricing.css
 //   Update admin panel → update FALLBACK_TIERS here.
 //
 // ─────────────────────────────────────────────────────────────
-const PRICING_API  = "";                       // ← paste your API URL here
+const PRICING_API  = "https://us-central1-my-pulseroom-project.cloudfunctions.net/pricing";                       // ← paste your API URL here
 const PRICING_PAGE = `${APP_URL}/pricing`;     // ← full pricing page in app
 
 // ─────────────────────────────────────────────────────────────
