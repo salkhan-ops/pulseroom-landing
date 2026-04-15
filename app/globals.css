@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import "../components/sections/pricing.css";
 :root {
   color-scheme: light;
 }
@@ -331,5 +331,12 @@ html, body {
     width: 100vw;
     height: 200px;
     top: -30px;
+  }
+}
+
+/* Footer responsive grid */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
   }
 }

@@ -32,12 +32,11 @@ function DropMenu({
   label: string;
   items: SimpleItem[];
 }) {
-  const rootRef   = useRef<HTMLDivElement>(null);
-  const btnRef    = useRef<HTMLButtonElement>(null);
-  const panelId   = `dropmenu-panel-${id}`;
-  const isOpen    = openId === id;
+  const rootRef = useRef<HTMLDivElement>(null);
+  const btnRef  = useRef<HTMLButtonElement>(null);
+  const panelId = `dropmenu-panel-${id}`;
+  const isOpen  = openId === id;
 
-  // Set aria-expanded via DOM so linter never sees a JSX expression
   useEffect(() => {
     btnRef.current?.setAttribute("aria-expanded", isOpen ? "true" : "false");
   }, [isOpen]);
@@ -59,18 +58,21 @@ function DropMenu({
       <button
         ref={btnRef}
         type="button"
-        className="dropmenu__trigger"
+        className={`dropmenu__trigger${isOpen ? " dropmenu__trigger--active" : ""}`}
         aria-haspopup="listbox"
-        aria-expanded="false"          /* static — useEffect keeps it in sync */
+        aria-expanded="false"
         aria-controls={panelId}
         onClick={() => setOpenId(isOpen ? null : id)}
       >
         {label}
-        <span aria-hidden="true" className="dropmenu__chevron">▾</span>
+        <span aria-hidden="true" className={`dropmenu__chevron${isOpen ? " dropmenu__chevron--open" : ""}`}>
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
       </button>
 
       {isOpen && (
-        /* ✅ role="listbox" has no required children constraint */
         <ul
           id={panelId}
           role="listbox"
@@ -84,6 +86,7 @@ function DropMenu({
                 className="dropmenu__item"
                 onClick={() => setOpenId(null)}
               >
+                <span className="dropmenu__item-dot" aria-hidden="true" />
                 {it.label}
               </Link>
             </li>
@@ -97,16 +100,22 @@ function DropMenu({
 export default function Header() {
   const [openId,     setOpenId]     = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled,   setScrolled]   = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
-  const productId = useId();
-  const resultsId = useId();
+  const productId   = useId();
+  const resourcesId = useId();
 
-  // Set aria attributes via DOM — no JSX expressions
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   useEffect(() => {
     burgerRef.current?.setAttribute("aria-expanded", mobileOpen ? "true" : "false");
     burgerRef.current?.setAttribute("aria-label", mobileOpen ? "Close menu" : "Open menu");
-    drawerRef.current?.setAttribute("aria-hidden",   mobileOpen ? "false" : "true");
+    drawerRef.current?.setAttribute("aria-hidden",  mobileOpen ? "false" : "true");
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -122,23 +131,25 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const product: SimpleItem[] = useMemo(() => [
-    { label: "Why now",       href: "/#why-now"       },
+  const productItems: SimpleItem[] = useMemo(() => [
     { label: "How it works",  href: "/#how-it-works"  },
-    { label: "Outcomes",      href: "/#outcomes"      },
     { label: "Use cases",     href: "/#use-cases"     },
+    { label: "Outcomes",      href: "/#outcomes"      },
     { label: "Get PulseRoom", href: "/#get-pulseroom" },
   ], []);
 
-  const results: SimpleItem[] = useMemo(() => [
-    { label: "Visual results",        href: "/#proof" },
+  const resourcesItems: SimpleItem[] = useMemo(() => [
+    { label: "Visual proof",          href: "/#proof" },
     { label: "FAQ",                   href: "/#faq"   },
-    { label: "Decision notes (Blog)", href: "/blog"   },
+    { label: "Blog / Decision notes", href: "/blog"   },
   ], []);
 
   return (
     <>
-      <header className="header">
+      <header className={`header${scrolled ? " header--scrolled" : ""}`}>
+        {/* Animated gradient bar at the very top */}
+        <div className="header__rainbow" aria-hidden="true" />
+
         <div className="header__inner">
 
           {/* Logo */}
@@ -148,7 +159,10 @@ export default function Header() {
             aria-label={`${site.name} home`}
             onClick={() => { setOpenId(null); setMobileOpen(false); }}
           >
-            <div className="header__logo-mark" aria-hidden="true">PR</div>
+            <div className="header__logo-mark" aria-hidden="true">
+              <span>PR</span>
+              <div className="header__logo-glow" aria-hidden="true" />
+            </div>
             <div>
               <div className="header__logo-name">{site.name}</div>
               <div className="header__logo-tagline">{site.tagline}</div>
@@ -157,20 +171,27 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="header__nav" aria-label="Primary navigation">
+            <Link href="/" className="header__nav-link">Home</Link>
+
             <DropMenu
               id={productId}
               openId={openId}
               setOpenId={setOpenId}
               label="Product"
-              items={product}
+              items={productItems}
             />
+
+            <Link href="/pricing" className="header__nav-link">Pricing</Link>
+
             <DropMenu
-              id={resultsId}
+              id={resourcesId}
               openId={openId}
               setOpenId={setOpenId}
-              label="Results"
-              items={results}
+              label="Resources"
+              items={resourcesItems}
             />
+
+            <Link href="/contact" className="header__nav-link">Contact</Link>
           </nav>
 
           {/* Right side */}
@@ -181,7 +202,9 @@ export default function Header() {
               rel="noopener noreferrer"
               className="header__cta"
             >
-              Try PulseRoom →
+              <span className="header__cta-text">Get Started</span>
+              <span className="header__cta-arrow" aria-hidden="true">→</span>
+              <span className="header__cta-shimmer" aria-hidden="true" />
             </a>
 
             <button
@@ -218,15 +241,19 @@ export default function Header() {
         aria-hidden="true"
       >
         <nav className="mobile-drawer__inner" aria-label="Mobile navigation">
+
+          <Link href="/" className="mobile-drawer__link mobile-drawer__link--home" onClick={() => setMobileOpen(false)}>
+            <span className="mobile-drawer__dot" aria-hidden="true" />
+            Home
+          </Link>
+
+          <div className="mobile-drawer__divider" role="separator" />
+
           <p className="mobile-drawer__label">Product</p>
           <ul className="mobile-drawer__list">
-            {product.map((item) => (
+            {productItems.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="mobile-drawer__link"
-                  onClick={() => setMobileOpen(false)}
-                >
+                <Link href={item.href} className="mobile-drawer__link" onClick={() => setMobileOpen(false)}>
                   <span className="mobile-drawer__dot" aria-hidden="true" />
                   {item.label}
                 </Link>
@@ -236,21 +263,31 @@ export default function Header() {
 
           <div className="mobile-drawer__divider" role="separator" />
 
-          <p className="mobile-drawer__label">Results</p>
+          <Link href="/pricing" className="mobile-drawer__link" onClick={() => setMobileOpen(false)}>
+            <span className="mobile-drawer__dot" aria-hidden="true" />
+            Pricing
+          </Link>
+
+          <div className="mobile-drawer__divider" role="separator" />
+
+          <p className="mobile-drawer__label">Resources</p>
           <ul className="mobile-drawer__list">
-            {results.map((item) => (
+            {resourcesItems.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="mobile-drawer__link"
-                  onClick={() => setMobileOpen(false)}
-                >
+                <Link href={item.href} className="mobile-drawer__link" onClick={() => setMobileOpen(false)}>
                   <span className="mobile-drawer__dot" aria-hidden="true" />
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
+
+          <div className="mobile-drawer__divider" role="separator" />
+
+          <Link href="/contact" className="mobile-drawer__link" onClick={() => setMobileOpen(false)}>
+            <span className="mobile-drawer__dot" aria-hidden="true" />
+            Contact
+          </Link>
 
           <div className="mobile-drawer__divider" role="separator" />
 
@@ -261,9 +298,8 @@ export default function Header() {
             className="mobile-drawer__cta"
             onClick={() => setMobileOpen(false)}
           >
-            Try PulseRoom for free →
+            Get Started →
           </a>
-          <p className="mobile-drawer__hint">No credit card required</p>
         </nav>
       </div>
     </>

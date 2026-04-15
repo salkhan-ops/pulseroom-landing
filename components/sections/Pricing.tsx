@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Section from "@/components/layout/Section";
 import { APP_URL } from "@/lib/site";
-import "./pricing.css";  // → components/sections/pricing.css
+ // → components/sections/pricing.css
 
 // ─────────────────────────────────────────────────────────────
 // CONFIGURATION

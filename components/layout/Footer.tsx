@@ -1,54 +1,118 @@
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#ffffff", borderTop: "1px solid #F1F5F9" }}>
-      {/* Indigo gradient top line */}
-      <div
-        style={{
-          height: "1px",
-          background:
-            "linear-gradient(90deg, transparent, rgba(99,102,241,0.25) 25%, rgba(99,102,241,0.5) 50%, rgba(99,102,241,0.25) 75%, transparent)",
-        }}
-      />
-      <Container className="py-10">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <div
-              className="grid h-8 w-8 place-items-center rounded-xl text-white text-xs font-bold"
-              style={{
-                background: "linear-gradient(135deg, #818CF8, #6366F1)",
-                boxShadow: "0 2px 8px rgba(99,102,241,0.3)",
-              }}
-            >
-              PR
+    <footer
+      style={{
+        background: "#ffffff",
+        borderTop: "1px solid #E2E8F0",
+        marginTop: 56,
+      }}
+    >
+      <Container className="py-12">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "2fr 1fr 1fr 1.2fr",
+            gap: 28,
+          }}
+        >
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+              <div
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 12,
+                  display: "grid",
+                  placeItems: "center",
+                  color: "#fff",
+                  fontWeight: 800,
+                  background: "linear-gradient(135deg, #818CF8, #6366F1)",
+                }}
+              >
+                PR
+              </div>
+              <div>
+                <div style={{ fontWeight: 800, color: "#0F172A" }}>{site.name}</div>
+                <div style={{ fontSize: 13, color: "#64748B" }}>
+                  Decision intelligence for meetings, classrooms, and workshops
+                </div>
+              </div>
             </div>
-            <div>
-              <p className="text-sm font-bold" style={{ color: "#0F172A" }}>{site.name}</p>
-              <p className="text-xs" style={{ color: "#94A3B8" }}>
-                © {new Date().getFullYear()} {site.name}. All rights reserved.
-              </p>
+
+            <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.7, maxWidth: 420 }}>
+              PulseRoom is a web-based software platform that helps facilitators, educators,
+              and teams structure discussion, collect multi-dimensional input, visualize alignment,
+              and produce clearer decision outcomes.
+            </p>
+          </div>
+
+          <div>
+            <h4 style={{ color: "#0F172A", fontWeight: 700, marginBottom: 12 }}>Product</h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <Link href="/#how-it-works" className="footer-link">How it works</Link>
+              <Link href="/#use-cases" className="footer-link">Use cases</Link>
+              <Link href="/pricing" className="footer-link">Pricing</Link>
+              <a href="https://app.pulseroom.app" target="_blank" rel="noopener noreferrer" className="footer-link">
+                Open app
+              </a>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-sm">
-            {[
-              { label: "FAQ", href: "#faq" },
-              { label: "Engagement", href: "#engage" },
-              { label: "Back to top ↑", href: "#top" },
-            ].map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="footer-link"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div>
+            <h4 style={{ color: "#0F172A", fontWeight: 700, marginBottom: 12 }}>Company</h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <Link href="/about" className="footer-link">About</Link>
+              <Link href="/contact" className="footer-link">Contact</Link>
+              <Link href="/blog" className="footer-link">Blog</Link>
+              <Link href="/#faq" className="footer-link">FAQ</Link>
+            </div>
+          </div>
+
+          <div>
+            <h4 style={{ color: "#0F172A", fontWeight: 700, marginBottom: 12 }}>Legal</h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <Link href="/privacy" className="footer-link">Privacy Policy</Link>
+              <Link href="/terms" className="footer-link">Terms of Service</Link>
+              <Link href="/pricing" className="footer-link">Billing & pricing</Link>
+            </div>
+
+            <div style={{ marginTop: 18, color: "#64748B", fontSize: 14, lineHeight: 1.7 }}>
+              <div>Email: {site.supportEmail}</div>
+              <div>Sales: {site.salesEmail}</div>
+            </div>
           </div>
         </div>
+
+        <div
+          style={{
+            marginTop: 28,
+            paddingTop: 18,
+            borderTop: "1px solid #F1F5F9",
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 12,
+            flexWrap: "wrap",
+            color: "#94A3B8",
+            fontSize: 13,
+          }}
+        >
+          <div>© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+          <div>Software platform for structured group decision-making.</div>
+        </div>
       </Container>
+
+          <div
+            className="footer-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr 1fr 1fr 1.2fr",
+              gap: 28,
+            }}
+></div>
     </footer>
   );
 }

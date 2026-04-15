@@ -2,16 +2,13 @@ import Hero from "@/components/sections/Hero";
 import WhyNow from "@/components/sections/WhyNow";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Outcomes from "@/components/sections/Outcomes";
+import Pricing from "@/components/sections/Pricing";
+import CaseSnapshots from "@/components/sections/CaseSnapshots";
 import UseCases from "@/components/sections/UseCases";
 import DemoVideo from "@/components/sections/DemoVideo";
 import VisualProof from "@/components/sections/VisualProof";
 import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
-import { CtaGrid } from "@/components/cta/CtaGrid";
-import { site } from "@/lib/site";
-import GetPulseRoom from "@/components/sections/GetPulseRoom";
-import CaseSnapshots from "@/components/sections/CaseSnapshots";
-import Pricing from "@/components/sections/Pricing";
 
 export default function Page() {
   return (
@@ -25,15 +22,6 @@ export default function Page() {
       <UseCases />
       <DemoVideo />
       <VisualProof />
-      <GetPulseRoom />
-
-      <section id="engage" className="scroll-mt-24">
-        <CtaGrid
-          title={site.sections.engagementTitle}
-          subtitle={site.sections.engagementSubtitle}
-        />
-      </section>
-
       <FAQ />
       <FinalCTA />
     </>
