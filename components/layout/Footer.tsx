@@ -38,7 +38,7 @@ export default function Footer() {
               <div>
                 <div style={{ fontWeight: 800, color: "#0F172A" }}>{site.name}</div>
                 <div style={{ fontSize: 13, color: "#64748B" }}>
-                  Decision intelligence for meetings, classrooms, and workshops
+                  Decision intelligence platform
                 </div>
               </div>
             </div>

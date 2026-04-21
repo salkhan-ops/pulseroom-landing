@@ -68,7 +68,7 @@ export default function FinalCTA() {
                   boxShadow: "0 4px 24px rgba(99,102,241,0.4)",
                 }}
               >
-                Try PulseRoom for free →
+                Get Started →
               </a>
               <a
                 href="#why-now"

@@ -1,7 +1,7 @@
 export type NavItem = { label: string; href: string; enabled?: boolean };
 
 export const APP_URL = "https://app.pulseroom.app";
-// Add this near the top of lib/site.ts, after the NavItem type
+
 export type EngagementCta = {
   key: string;
   title: string;
@@ -11,9 +11,10 @@ export type EngagementCta = {
   primary: boolean;
   enabled: boolean;
 };
+
 export const site = {
   name: "PulseRoom",
-  tagline: "Decision intelligence for meetings, classrooms, and workshops",
+  tagline: "Decision intelligence platform",
   url: "https://pulseroom.app",
   supportEmail: "support@pulseroom.app",
   salesEmail: "sales@pulseroom.app",
@@ -36,7 +37,7 @@ export const site = {
   nav: {
     product: [
       { label: "How it works", href: "/#how-it-works" },
-      { label: "Use cases", href: "/#use-cases" },
+      { label: "Use cases", href: "/use-cases" },
       { label: "Results", href: "/#proof" },
       { label: "Pricing", href: "/pricing" },
     ] as NavItem[],
@@ -49,6 +50,7 @@ export const site = {
     legal: [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
+      { label: "Refund Policy", href: "/refund" },
     ] as NavItem[],
   },
 
@@ -68,26 +70,27 @@ export const site = {
     engagementSubtitle:
       "Explore the live product or contact us for pilots, training, or institutional use.",
   },
+
   engagement: {
-  ctas: [
-    {
-      key: "start",
-      title: "Try PulseRoom free",
-      blurb: "Run your first session in minutes. No credit card required.",
-      href: APP_URL,
-      badge: "Free tier",
-      primary: true,
-      enabled: true,
-    },
-    {
-      key: "pilot",
-      title: "Book a pilot call",
-      blurb: "For teams, educators, or institutions exploring a broader rollout.",
-      href: "https://calendar.app.google/WMFb5GpB8wNxyWcZ8",
-      badge: "Enterprise",
-      primary: false,
-      enabled: true,
-    },
-  ] as EngagementCta[],
-},
+    ctas: [
+      {
+        key: "start",
+        title: "Try PulseRoom free",
+        blurb: "Run your first session in minutes. No credit card required.",
+        href: APP_URL,
+        badge: "Free tier",
+        primary: true,
+        enabled: true,
+      },
+      {
+        key: "pilot",
+        title: "Book a pilot call",
+        blurb: "For teams, educators, or institutions exploring a broader rollout.",
+        href: "https://calendar.app.google/WMFb5GpB8wNxyWcZ8",
+        badge: "Enterprise",
+        primary: false,
+        enabled: true,
+      },
+    ] as EngagementCta[],
+  },
 } as const;

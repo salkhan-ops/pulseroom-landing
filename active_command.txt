@@ -1,0 +1,6 @@
+
+
+
+
+npm run build     
+firebase deploy --only hosting --project my-pulseroom-project

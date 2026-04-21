@@ -75,7 +75,7 @@ const CHANNELS = [
 const FAQ = [
   {
     q: "Can I try PulseRoom before buying?",
-    a: "Yes — the free tier lets you run unlimited sessions with up to 5 participants. No credit card needed.",
+    a: "Yes — the free tier lets you run unlimited sessions with up to 5 participants.",
   },
   {
     q: "Do you offer volume or institutional pricing?",

@@ -153,14 +153,11 @@ export default function Hero() {
                 className="btn-glow inline-flex items-center justify-center gap-2 rounded-2xl px-7 py-4 text-base font-bold text-white"
                 style={{ background: "#6366F1", boxShadow: "0 4px 24px rgba(99,102,241,0.38)" }}
               >
-                Try PulseRoom for free →
+                Get Started →
               </a>
             </div>
 
-            <p className="mt-3 text-sm anim-hidden" style={{ color: "#94A3B8", transitionDelay: "220ms" }}>
-              No credit card required
-            </p>
-
+         
             {/* Stats */}
             <div
               className="mt-8 flex flex-wrap gap-x-6 gap-y-4 pt-7 anim-hidden"

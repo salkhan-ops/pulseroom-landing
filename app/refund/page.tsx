@@ -1,149 +1,69 @@
-import { site } from "@/lib/site";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — PulseRoom",
-  description: "PulseRoom Terms of Service. Clear, plain-language terms governing access to and use of the platform.",
+  title: "Refund Policy — PulseRoom",
+  description: "PulseRoom billing terms, refund conditions, and how to request a refund.",
 };
 
-type LegalSection = {
-  num: string;
-  title: string;
-  icon: ReactNode;
-  body: ReactNode;
-};
-
-const SECTIONS: LegalSection[] = [
+const SECTIONS = [
   {
     num: "01",
-    title: "The service",
+    title: "General policy",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="3" width="16" height="14" rx="2.5" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M6 7h8M6 10.5h5M6 14h3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect x="2" y="4" width="16" height="13" rx="2" stroke="#6366F1" strokeWidth="1.5"/>
+        <path d="M6 9h8M6 12h5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    body: `PulseRoom provides a web-based software platform for structured group decision-making, meeting facilitation, multi-dimensional scoring, and related analytics outputs. By accessing or using PulseRoom — including the website at pulseroom.app, the application at app.pulseroom.app, and any associated APIs — you agree to these Terms. If you are using PulseRoom on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.`,
+    body: `All PulseRoom subscription fees are non-refundable. When you subscribe to a paid plan, you receive immediate access to the full functionality of that plan. Because the service is delivered digitally and access is granted instantly upon payment, charges are final except where the law in your jurisdiction provides otherwise. Partial-month credits, proration for unused days, and voluntary cancellation refunds are not available. This approach is consistent with standard industry practice for SaaS subscription products.`,
   },
   {
     num: "02",
-    title: "Accounts and access",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="7" r="3.5" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M3.5 17c0-3.3 2.9-5.5 6.5-5.5s6.5 2.2 6.5 5.5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    body: `You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. Notify us immediately at support@pulseroom.app if you suspect unauthorised access. You must provide accurate account information and keep it current. PulseRoom accounts are non-transferable without written consent. We reserve the right to suspend or terminate accounts that violate these Terms.`,
-  },
-  {
-    num: "03",
-    title: "Acceptable use",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2L3 5v5c0 4.4 3.2 7.9 7 9 3.8-1.1 7-4.6 7-9V5L10 2z" stroke="#6366F1" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M7 10l2 2 4-4" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    body: `You may use PulseRoom only for lawful purposes and in accordance with these Terms. You may not: attempt to gain unauthorised access to any part of the platform; interfere with or disrupt the integrity or performance of the service; use the platform to transmit unlawful, harassing, defamatory, or harmful content; reverse-engineer, decompile, or extract source code from the platform; resell or sublicense access to PulseRoom without written consent; or use automated tools to scrape, crawl, or extract data at scale.`,
-  },
-  {
-    num: "04",
-    title: "Billing and subscriptions",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="5" width="16" height="11" rx="2" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M2 9h16" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M5 13h3M14 13h1" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    body: `Paid plans are presented within the PulseRoom application and associated billing flow. Subscription fees are charged in advance on a monthly or annual basis depending on your plan. All fees are non-refundable except where required by applicable law or as stated in a separate commercial agreement. If your payment fails, your access may be downgraded or suspended until payment is resolved. Enterprise and institutional pricing is agreed in writing and supersedes these standard billing terms.`,
-  },
-  {
-    num: "05",
-    title: "Refunds",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 10c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M3 7v3h3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M10 7v3l2 2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-    body: (
-      <>
-        PulseRoom does not offer refunds for unused subscription periods, except in the
-        following circumstances: (a) you were charged in error; (b) applicable consumer
-        protection law in your jurisdiction requires a refund; or (c) a written commercial
-        agreement with PulseRoom specifies different terms. Refund requests may be submitted
-        in accordance with our{" "}
-        <Link href="/refund" className="legal-inline-link">
-          Refund Policy
-        </Link>
-        .
-      </>
-    ),
-  },
-  {
-    num: "06",
-    title: "Intellectual property",
+    title: "Billing cycle",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <circle cx="10" cy="10" r="7.5" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M8 8c0-1.1.9-2 2-2s2 .9 2 2c0 1.5-2 2-2 3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="10" cy="14.5" r="0.75" fill="#6366F1"/>
+        <path d="M10 6v4l3 2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    body: `PulseRoom, its logo, interface design, software, and related materials are the proprietary property of PulseRoom and its licensors. These Terms do not grant you any right to use PulseRoom's name, trademarks, logos, or branding without prior written consent. Content you submit through the platform — including session inputs, scores, and decision notes — remains yours. By using PulseRoom, you grant us a limited licence to process that content solely to deliver the service.`,
+   body: `PulseRoom subscriptions are billed in arrears at the end of each calendar month in Australian dollars (AUD). Your first invoice covers the period from your activation date to the end of that month. Subsequent invoices are issued on the last business day of each month for the preceding billing period. Payments are processed automatically via Paddle, our authorised reseller and Merchant of Record. You will receive an itemised receipt by email after each successful charge. If a payment fails, we will notify you and provide a short grace period to update your payment method before access is suspended.`,
   },
   {
-    num: "07",
-    title: "Disclaimer of warranties",
+    num: "03",
+    title: "EU & UK consumers — 14-day right of withdrawal",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 3l7 4v4c0 3.7-2.9 7-7 8C5.9 18 3 14.7 3 11V7l7-4z" stroke="#6366F1" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M10 8v3M10 13.5v.5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="10" cy="10" r="7.5" stroke="#6366F1" strokeWidth="1.5"/>
+        <path d="M5 10h10M10 5a7.5 7.5 0 010 10M10 5a7.5 7.5 0 000 10" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    body: `PulseRoom is provided on an "as is" and "as available" basis, without warranties of any kind — either express or implied — including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, or uninterrupted availability. We do not warrant that the service will be error-free, that defects will be corrected, or that the service or the servers that make it available are free of viruses or other harmful components.`,
+    body: `If you are a consumer located in the European Union or the United Kingdom, you have a statutory right to withdraw from a digital services contract within 14 days of purchase without giving a reason (the "cooling-off period"). However, by completing your purchase and accessing the PulseRoom platform, you expressly request that service delivery begin immediately. You acknowledge that you thereby lose your right of withdrawal once the service has been fully performed, or — for an ongoing subscription — once you have actively used the platform during the cooling-off period. If you have not accessed or used the service at all within 14 days of purchase, you may still request a full refund by contacting support@pulseroom.app within that 14-day window. Requests received after 14 days, or from users who have accessed the service, will not qualify under this provision.`,
   },
   {
-    num: "08",
-    title: "Limitation of liability",
+    num: "04",
+    title: "Exceptions we will honour",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 10a7 7 0 1014 0A7 7 0 003 10z" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M7 13l6-6M7 7l6 6" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M10 2L3 5v5c0 4.4 3 8 7 9 4-1 7-4.6 7-9V5L10 2z" stroke="#6366F1" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M7 10l2 2 4-4" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    body: `To the maximum extent permitted by applicable law, PulseRoom and its directors, employees, and licensors shall not be liable for any indirect, incidental, special, consequential, or punitive damages — including loss of profits, data, or goodwill — arising out of or in connection with your use of or inability to use the service, even if PulseRoom has been advised of the possibility of such damages. Our aggregate liability for any claim arising under these Terms shall not exceed the amount you paid to PulseRoom in the 12 months preceding the claim.`,
+    body: `Outside of statutory entitlements, we will consider a refund in the following limited circumstances: (a) you were charged in error due to a billing system fault on our side; (b) the platform experienced a verified, extended outage that materially prevented you from using the service for a significant portion of a billing period; or (c) you were charged after a confirmed cancellation that was processed correctly on your end. In all such cases, please contact support@pulseroom.app with details and supporting information. We review each request individually and aim to respond within 5 business days. Approved refunds are issued to the original payment method and may take 5–10 business days to appear depending on your card issuer or bank.`,
   },
   {
-    num: "09",
-    title: "Changes to these terms",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M4 5h12M4 10h8M4 15h10" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M14 13l2 2 2-2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    body: `We may revise these Terms from time to time. When we make material changes, we will notify you by email or by displaying a prominent notice in the application at least 14 days before the changes take effect. Continued use of PulseRoom after changes take effect constitutes your acceptance of the revised Terms.`,
-  },
-  {
-    num: "10",
-    title: "Contact",
+    num: "05",
+    title: "How to request a refund",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <rect x="2" y="5" width="16" height="11" rx="2" stroke="#6366F1" strokeWidth="1.5"/>
         <path d="M2 8l8 5 8-5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    body: `Questions about these Terms may be directed to support@pulseroom.app. For enterprise or commercial legal queries, contact sales@pulseroom.app. We will respond to every inquiry.`,
+    body: `To submit a refund request, email support@pulseroom.app from the address associated with your PulseRoom account. Include your account name, the invoice date and amount in question, and a brief description of the reason for your request. For EU/UK withdrawal requests, please include the subject line "Withdrawal request" and confirm you have not accessed the service. We will acknowledge your request within 2 business days and communicate our decision within 5 business days. Payments are processed by Paddle as Merchant of Record; where a refund is approved, Paddle will process the return to your original payment method.`,
   },
 ];
 
-export default function TermsPage() {
+export default function RefundPage() {
   return (
     <>
       <style>{`
@@ -160,7 +80,7 @@ export default function TermsPage() {
           position: relative;
           padding: 100px 24px 90px;
           overflow: hidden;
-          background: linear-gradient(160deg, #06060f 0%, #0e0d30 50%, #0a0f1e 100%);
+          background: linear-gradient(160deg, #080720 0%, #120f3a 50%, #0D1225 100%);
         }
 
         .legal-hero__grid {
@@ -175,12 +95,22 @@ export default function TermsPage() {
 
         .legal-hero__glow {
           position: absolute;
-          top: -100px;
+          top: -120px;
           left: 50%;
           transform: translateX(-50%);
-          width: 900px;
+          width: 800px;
           height: 500px;
-          background: radial-gradient(ellipse at center, rgba(79,70,229,0.22) 0%, rgba(99,102,241,0.08) 45%, transparent 70%);
+          background: radial-gradient(ellipse at center, rgba(99,102,241,0.25) 0%, rgba(139,92,246,0.1) 40%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .legal-hero__glow-r {
+          position: absolute;
+          bottom: -80px;
+          right: -100px;
+          width: 500px;
+          height: 400px;
+          background: radial-gradient(ellipse at center, rgba(139,92,246,0.12) 0%, transparent 65%);
           pointer-events: none;
         }
 
@@ -236,7 +166,7 @@ export default function TermsPage() {
           font-size: 16px;
           color: #64748B;
           margin: 16px 0 0;
-          max-width: 440px;
+          max-width: 420px;
           line-height: 1.6;
         }
 
@@ -326,7 +256,7 @@ export default function TermsPage() {
           font-size: 12.5px;
           color: #64748B;
           text-decoration: none;
-          transition: background 0.15s, color 0.15s, border-color 0.15s;
+          transition: background 0.15s, color 0.15s;
           cursor: pointer;
           border-left: 2px solid transparent;
         }
@@ -380,14 +310,10 @@ export default function TermsPage() {
           line-height: 1.55;
         }
 
-        .legal-banner__text a {
-          color: #4F46E5;
-          text-decoration: none;
-        }
-
         .legal-content {
           display: flex;
           flex-direction: column;
+          gap: 0;
         }
 
         .legal-section {
@@ -418,6 +344,7 @@ export default function TermsPage() {
         .legal-section__num {
           font-family: 'Instrument Serif', serif;
           font-size: 13px;
+          font-weight: 400;
           color: #CBD5E1;
           letter-spacing: 0.05em;
         }
@@ -446,16 +373,6 @@ export default function TermsPage() {
           font-size: 15px;
           line-height: 1.9;
           color: #475569;
-        }
-
-        .legal-inline-link {
-          color: #4F46E5;
-          text-decoration: none;
-          font-weight: 600;
-        }
-
-        .legal-inline-link:hover {
-          text-decoration: underline;
         }
 
         .legal-cta {
@@ -532,16 +449,18 @@ export default function TermsPage() {
         <section className="legal-hero">
           <div className="legal-hero__grid" />
           <div className="legal-hero__glow" />
+          <div className="legal-hero__glow-r" />
           <div className="legal-hero__inner">
             <div className="legal-hero__eyebrow">
               <span className="legal-hero__eyebrow-dot" />
               Legal
             </div>
             <h1 className="legal-hero__h1">
-              Terms of <em>Service</em>
+              Refund <em>Policy</em>
             </h1>
             <p className="legal-hero__sub">
-              Written to be read. Plain language that explains what we mean, not just what protects us.
+              Straightforward billing terms. No hidden conditions — just honest
+              information about how charges and refunds work.
             </p>
             <div className="legal-hero__meta">
               {[
@@ -561,16 +480,15 @@ export default function TermsPage() {
                       <path d="M7 4v3l2 1.5" stroke="#A5B4FC" strokeWidth="1.2" strokeLinecap="round"/>
                     </svg>
                   ),
-                  label: "10 sections",
+                  label: "5 sections",
                 },
                 {
                   icon: (
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <rect x="1" y="2" width="12" height="10" rx="1.5" stroke="#A5B4FC" strokeWidth="1.2"/>
-                      <path d="M4 6h6M4 8.5h4" stroke="#A5B4FC" strokeWidth="1.2" strokeLinecap="round"/>
+                      <path d="M2 7h10M7 2v10" stroke="#A5B4FC" strokeWidth="1.2" strokeLinecap="round"/>
                     </svg>
                   ),
-                  label: "Plain language",
+                  label: "Billed end of month",
                 },
               ].map((item) => (
                 <div key={item.label} className="legal-hero__meta-item">
@@ -588,7 +506,7 @@ export default function TermsPage() {
             <ul className="legal-toc__list">
               {SECTIONS.map((s) => (
                 <li key={s.num}>
-                  <a className="legal-toc__item" href={`#terms-${s.num}`}>
+                  <a className="legal-toc__item" href={`#refund-${s.num}`}>
                     <span className="legal-toc__num">{s.num}</span>
                     {s.title}
                   </a>
@@ -601,29 +519,32 @@ export default function TermsPage() {
             <div className="legal-banner">
               <div className="legal-banner__icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <rect x="2" y="2" width="16" height="16" rx="3" stroke="#6366F1" strokeWidth="1.5"/>
-                  <path d="M5 7h10M5 10.5h10M5 14h6" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="2" y="4" width="16" height="13" rx="2" stroke="#6366F1" strokeWidth="1.5"/>
+                  <path d="M6 9h8M6 12h5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+                  <path d="M6 3v2M14 3v2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </div>
               <div>
-                <div className="legal-banner__title">Written to be read.</div>
+                <div className="legal-banner__title">
+                  Subscription charges are generally non-refundable.
+                </div>
                 <div className="legal-banner__text">
-                  These are plain-language terms. We explain what we mean, not just what protects us.
-                  If something is unclear, email{" "}
-                  <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
+                  PulseRoom subscriptions are billed at the end of each month. Refunds are
+                  not provided except where required by applicable law. Where a statutory
+                  right to a refund exists, it is honoured in full.
                 </div>
               </div>
             </div>
 
             {SECTIONS.map((s) => (
-              <div key={s.num} id={`terms-${s.num}`} className="legal-section">
+              <div key={s.num} id={`refund-${s.num}`} className="legal-section">
                 <div className="legal-section__aside">
                   <span className="legal-section__num">{s.num}</span>
                   <div className="legal-section__icon-wrap">{s.icon}</div>
                 </div>
                 <div>
                   <h2 className="legal-section__title">{s.title}</h2>
-                  <div className="legal-section__text">{s.body}</div>
+                  <p className="legal-section__text">{s.body}</p>
                 </div>
               </div>
             ))}
@@ -631,12 +552,12 @@ export default function TermsPage() {
             <div className="legal-cta">
               <div>
                 <div className="legal-cta__eyebrow">Questions?</div>
-                <div className="legal-cta__title">We&apos;re here to clarify anything.</div>
+                <div className="legal-cta__title">We&apos;re happy to help.</div>
                 <div className="legal-cta__sub">
-                  These terms are written to inform, not intimidate. Reach out any time.
+                  Reach out with any billing or refund questions — we respond to every inquiry.
                 </div>
               </div>
-              <a href={`mailto:${site.supportEmail}`} className="legal-cta__btn">
+              <a href="mailto:support@pulseroom.app" className="legal-cta__btn">
                 Contact us →
               </a>
             </div>
