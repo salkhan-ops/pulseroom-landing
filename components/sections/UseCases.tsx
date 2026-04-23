@@ -2,110 +2,147 @@ import Link from "next/link";
 import Section from "@/components/layout/Section";
 import { useCaseCategories, useCases } from "@/lib/useCases";
 
+function getDimensionLabel(dimension: unknown): string {
+  if (typeof dimension === "string") return dimension;
+  if (
+    typeof dimension === "object" &&
+    dimension !== null &&
+    "label" in dimension &&
+    typeof (dimension as { label?: unknown }).label === "string"
+  ) {
+    return (dimension as { label: string }).label;
+  }
+  return String(dimension);
+}
+
 export default function UseCases() {
   return (
     <Section
       id="use-cases"
       eyebrow="Resources"
-      title="Use cases for the rooms where understanding needs to move."
-      subtitle="Academic and executive settings where PulseRoom makes learning, alignment, and judgment visible before the moment is lost."
+      title="Use cases built for real rooms."
+      subtitle="Academic and executive settings where PulseRoom helps a room become clearer while the discussion is still alive."
     >
-      <div className="space-y-12">
+      <div className="space-y-16">
         {useCaseCategories.map((category) => {
-          const items = useCases.filter((item) => item.category === category).slice(0, 4);
+          const items = useCases
+            .filter((item) => item.category === category)
+            .slice(0, 4);
 
           return (
-            <section key={category} className="space-y-5">
-              <div className="flex items-end justify-between gap-4">
+            <section key={category} className="space-y-6">
+              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-violet-600">
                     {category}
                   </p>
-                  <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
-                    {category === "Academic" ? "Learning environments" : "Decision environments"}
+                  <h3 className="mt-1.5 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+                    {category === "Academic"
+                      ? "Learning environments"
+                      : "Decision environments"}
                   </h3>
                 </div>
 
                 <Link
                   href="/use-cases"
-                  className="text-sm font-medium text-slate-600 transition hover:text-slate-900"
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-violet-200 bg-white px-5 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50"
                 >
-                  View all articles →
+                  View all articles
+                  <span>→</span>
                 </Link>
               </div>
 
               <div className="grid gap-5 xl:grid-cols-2">
-                {items.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={`/use-cases/${item.slug}`}
-                    className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_16px_60px_rgba(15,23,42,0.07)] transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)]"
-                  >
-                    <div className="border-b border-slate-200 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.12),transparent_34%),radial-gradient(circle_at_top_right,rgba(34,211,238,0.10),transparent_34%)] px-6 py-5">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="inline-flex rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
-                          {item.category}
-                        </span>
-                        <span className="text-slate-300 transition group-hover:text-slate-500">↗</span>
-                      </div>
+                {items.map((item) => {
+                  const dimensionLabels = item.dimensions
+                    .slice(0, 3)
+                    .map((dimension) => getDimensionLabel(dimension));
 
-                      <h4 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">
-                        {item.cardTitle}
-                      </h4>
-                      <p className="mt-3 max-w-2xl text-[15px] leading-7 text-slate-600">
-                        {item.excerpt}
-                      </p>
-                    </div>
+                  const steps = item.flow.slice(0, 3);
 
-                    <div className="grid gap-5 px-6 py-6 md:grid-cols-[1.15fr_0.85fr] md:items-start">
-                      <div className="space-y-3">
-                        {item.flow.slice(0, 3).map((step, index) => (
-                          <div
-                            key={step.title}
-                            className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
-                          >
-                            <div className="flex items-start gap-3">
-                              <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
-                                {index + 1}
-                              </span>
-                              <div>
-                                <p className="text-sm font-semibold text-slate-900">{step.title}</p>
-                                <p className="mt-1 text-sm leading-6 text-slate-600">{step.note}</p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                  return (
+                    <Link
+                      key={item.slug}
+                      href={`/use-cases/${item.slug}`}
+                      className="group block rounded-2xl border border-violet-200 bg-white shadow-[0_8px_32px_rgba(124,58,237,0.06)] transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-[0_12px_40px_rgba(124,58,237,0.10)]"
+                    >
+                      <div className="flex h-full flex-col p-6">
 
-                      <div className="rounded-[1.5rem] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] p-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          Live dimensions
+                        {/* Badge + arrow */}
+                        <div className="flex items-center justify-between gap-4">
+                          <span className="inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-700">
+                            {item.category}
+                          </span>
+                          <span className="text-base text-slate-300 transition group-hover:text-violet-400">
+                            ↗
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <h4 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-slate-900">
+                          {item.cardTitle ?? item.title}
+                        </h4>
+
+                        {/* Description */}
+                        <p className="mt-2.5 text-sm leading-7 text-slate-500">
+                          {item.excerpt}
                         </p>
-                        <div className="mt-4 space-y-3">
-                          {item.dimensions.slice(0, 4).map((dimension, index) => (
-                            <div key={dimension.label}>
-                              <div className="mb-1 flex items-center justify-between gap-3">
-                                <p className="text-sm text-slate-700">{dimension.label}</p>
-                                <span className="text-xs font-semibold text-slate-500">
-                                  {dimension.value.toFixed(1)}/5
-                                </span>
-                              </div>
-                              <div className="h-2 rounded-full bg-slate-100">
-                                <div
-                                  className="h-2 rounded-full bg-[linear-gradient(90deg,#6366F1,#22D3EE)]"
-                                  style={{ width: `${(dimension.value / 5) * 100}%` }}
-                                />
-                              </div>
-                              {index < item.dimensions.slice(0, 4).length - 1 ? (
-                                <div className="mt-3 h-px bg-slate-100" />
-                              ) : null}
-                            </div>
+
+                        {/* Dimension tags */}
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {dimensionLabels.map((label) => (
+                            <span
+                              key={label}
+                              className="rounded-full border border-violet-100 bg-white px-3 py-1 text-xs font-medium text-slate-600"
+                            >
+                              {label}
+                            </span>
                           ))}
                         </div>
+
+                        {/* Flow block — compact vertical steps */}
+                        <div className="mt-5 rounded-xl border border-violet-100 bg-gradient-to-b from-[#fdfcff] to-[#f9f6ff] p-4">
+                          <div className="mb-3 flex items-center justify-between">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-600">
+                              How it flows
+                            </p>
+                            <p className="text-[10px] text-slate-400">
+                              3-step preview
+                            </p>
+                          </div>
+
+                          <div className="flex flex-col">
+                            {steps.map((step, index) => (
+                              <div key={step.title}>
+                                <div className="flex items-center gap-2.5 rounded-lg border border-violet-100 bg-white px-3 py-2.5 shadow-sm">
+                                  {/* Compact number circle */}
+                                  <div className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-600 text-[11px] font-bold text-white">
+                                    {index + 1}
+                                  </div>
+                                  <p className="text-[13px] font-medium text-slate-800">
+                                    {step.title}
+                                  </p>
+                                </div>
+
+                                {index < steps.length - 1 && (
+                                  <div className="py-1 pl-[1.1rem] text-[11px] text-violet-300">
+                                    ↓
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Read more */}
+                        <div className="mt-4 text-sm font-medium text-violet-600">
+                          Read article →
+                        </div>
+
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
               </div>
             </section>
           );

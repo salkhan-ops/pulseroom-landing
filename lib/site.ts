@@ -55,7 +55,7 @@ export const site = {
   },
 
   hero: {
-    headline: "Stop re-deciding. Capture alignment live.",
+    headline: "See alignment live.",
     subheadline:
       "PulseRoom helps groups structure discussion, collect multi-dimensional input, visualize alignment, and leave with a clear decision artifact — not just notes.",
     highlights: [

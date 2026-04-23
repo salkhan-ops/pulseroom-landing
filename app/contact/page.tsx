@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Contact PulseRoom — Talk to a Human",
   description:
     "Reach PulseRoom for support, enterprise pilots, product questions, or press. We respond to every message.",
+};
+
+type ContactFaqItem = {
+  q: string;
+  a: ReactNode;
 };
 
 const CHANNELS = [
@@ -13,8 +19,17 @@ const CHANNELS = [
     iconBg: "rgba(255,255,255,0.15)",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M3 5h16a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1z" stroke="white" strokeWidth="1.5"/>
-        <path d="M2 6l9 7 9-7" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        <path
+          d="M3 5h16a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1z"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M2 6l9 7 9-7"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     label: "General support",
@@ -28,9 +43,22 @@ const CHANNELS = [
     iconBg: "rgba(255,255,255,0.15)",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="2" width="18" height="18" rx="5" stroke="white" strokeWidth="1.5"/>
-        <path d="M7 11h8M7 15h5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="11" cy="7.5" r="1" fill="white"/>
+        <rect
+          x="2"
+          y="2"
+          width="18"
+          height="18"
+          rx="5"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M7 11h8M7 15h5"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <circle cx="11" cy="7.5" r="1" fill="white" />
       </svg>
     ),
     label: "Sales & pilots",
@@ -44,9 +72,28 @@ const CHANNELS = [
     iconBg: "rgba(255,255,255,0.15)",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="3" width="18" height="16" rx="3" stroke="white" strokeWidth="1.5"/>
-        <path d="M7 9h3m-3 4h8m-8 0v0" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M14 6l1 1-3 3-2-2-3 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect
+          x="2"
+          y="3"
+          width="18"
+          height="16"
+          rx="3"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M7 9h3m-3 4h8m-8 0v0"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M14 6l1 1-3 3-2-2-3 3"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     label: "Book a pilot call",
@@ -60,8 +107,14 @@ const CHANNELS = [
     iconBg: "rgba(255,255,255,0.15)",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="9" stroke="white" strokeWidth="1.5"/>
-        <path d="M11 7v4l3 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="11" cy="11" r="9" stroke="white" strokeWidth="1.5" />
+        <path
+          d="M11 7v4l3 2"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     label: "Response time",
@@ -72,14 +125,23 @@ const CHANNELS = [
   },
 ];
 
-const FAQ = [
+const FAQ: ContactFaqItem[] = [
   {
     q: "Can I try PulseRoom before buying?",
     a: "Yes — the free tier lets you run unlimited sessions with up to 5 participants.",
   },
   {
     q: "Do you offer volume or institutional pricing?",
-    a: "Yes. Reach out to sales@pulseroom.app and we'll tailor a commercial arrangement that fits your team size and use case.",
+    a: (
+      <>
+        Yes. Reach out to{" "}
+        <a href={`mailto:${site.salesEmail}`} className="contact-inline-link">
+          {site.salesEmail}
+        </a>{" "}
+        and we&apos;ll tailor a commercial arrangement that fits your team size
+        and use case.
+      </>
+    ),
   },
   {
     q: "Is PulseRoom available for self-hosted deployment?",
@@ -87,7 +149,17 @@ const FAQ = [
   },
   {
     q: "How do I report a bug or a security concern?",
-    a: "Email support@pulseroom.app for bugs. For security disclosures, use the same address with 'SECURITY' in the subject line and we'll treat it as priority.",
+    a: (
+      <>
+        Email{" "}
+        <a href={`mailto:${site.supportEmail}`} className="contact-inline-link">
+          {site.supportEmail}
+        </a>{" "}
+        for bugs. For security disclosures, use the same address with{" "}
+        <strong>SECURITY</strong> in the subject line and we&apos;ll treat it as
+        priority.
+      </>
+    ),
   },
 ];
 
@@ -101,6 +173,16 @@ export default function ContactPage() {
           font-family: 'DM Sans', sans-serif;
           color: #0F172A;
           overflow-x: hidden;
+        }
+
+        .contact-inline-link {
+          color: #4F46E5;
+          text-decoration: none;
+          font-weight: 600;
+        }
+
+        .contact-inline-link:hover {
+          text-decoration: underline;
         }
 
         /* ── Hero ── */
@@ -386,24 +468,24 @@ export default function ContactPage() {
       `}</style>
 
       <div className="contact-root">
-        {/* Hero */}
         <section className="contact-hero">
           <div className="contact-hero__grid" />
           <div className="contact-hero__orb" />
           <div className="contact-hero__inner">
             <div className="contact-hero__eyebrow">Get in touch</div>
             <h1 className="contact-hero__h1">
-              We&apos;re real people.<br />
+              We&apos;re real people.
+              <br />
               <em>Talk to us.</em>
             </h1>
             <p className="contact-hero__sub">
-              Support, sales, pilots, or a quick product question — pick the right channel
-              below and we&apos;ll get back to you within one business day.
+              Support, sales, pilots, or a quick product question — pick the
+              right channel below and we&apos;ll get back to you within one
+              business day.
             </p>
           </div>
         </section>
 
-        {/* Channel cards */}
         <div className="contact-channels">
           <div className="contact-channels__grid">
             {CHANNELS.map((ch) => (
@@ -421,6 +503,7 @@ export default function ContactPage() {
                   </div>
                   <div className="contact-channel__note">{ch.note}</div>
                 </div>
+
                 {ch.cta && ch.href && (
                   <div className="contact-channel__bottom">
                     <a
@@ -428,7 +511,11 @@ export default function ContactPage() {
                       className="contact-channel__cta"
                       style={{ background: ch.gradient }}
                       target={ch.href.startsWith("http") ? "_blank" : undefined}
-                      rel={ch.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      rel={
+                        ch.href.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
                     >
                       {ch.cta}
                     </a>
@@ -439,19 +526,48 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Quick reference */}
         <div className="contact-details">
           <div className="contact-details__card">
             {[
-              { label: "Support email", value: site.supportEmail, href: `mailto:${site.supportEmail}`, sub: "General questions, bugs, account issues" },
-              { label: "Sales email", value: site.salesEmail, href: `mailto:${site.salesEmail}`, sub: "Pricing, pilots, enterprise arrangements" },
-              { label: "Product access", value: "app.pulseroom.app", href: "https://app.pulseroom.app", sub: "Your sessions, results, and settings" },
-              { label: "Main website", value: "pulseroom.app", href: "https://pulseroom.app", sub: "Documentation, blog, and announcements" },
+              {
+                label: "Support email",
+                value: site.supportEmail,
+                href: `mailto:${site.supportEmail}`,
+                sub: "General questions, bugs, account issues",
+              },
+              {
+                label: "Sales email",
+                value: site.salesEmail,
+                href: `mailto:${site.salesEmail}`,
+                sub: "Pricing, pilots, enterprise arrangements",
+              },
+              {
+                label: "Product access",
+                value: "app.pulseroom.app",
+                href: "https://app.pulseroom.app",
+                sub: "Your sessions, results, and settings",
+              },
+              {
+                label: "Main website",
+                value: "pulseroom.app",
+                href: "https://pulseroom.app",
+                sub: "Documentation, blog, and announcements",
+              },
             ].map((item) => (
               <div key={item.label}>
                 <div className="contact-detail-item__label">{item.label}</div>
                 <div className="contact-detail-item__value">
-                  <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">{item.value}</a>
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                  >
+                    {item.value}
+                  </a>
                 </div>
                 <div className="contact-detail-item__sub">{item.sub}</div>
               </div>
@@ -459,7 +575,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* FAQ */}
         <div className="contact-faq">
           <p className="contact-faq__label">Common questions</p>
           <h2 className="contact-faq__title">Before you reach out</h2>

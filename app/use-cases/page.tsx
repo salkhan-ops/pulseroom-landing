@@ -1,138 +1,149 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
-import { useCaseCategories, useCases } from "@/lib/useCases";
+import { APP_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Use cases | PulseRoom",
-  description:
-    "Explore PulseRoom use cases across classrooms, experiential learning, panels, research groups, meetings, brainstorming, policy design, and other live decision environments.",
-};
+const featurePills = [
+  "Live signals from every participant",
+  "Visible alignment across dimensions",
+  "A clear decision artifact at the end",
+];
 
-export default function UseCasesIndexPage() {
+const stats = [
+  {
+    label: "Academic & executive rooms",
+    value: "2",
+  },
+  {
+    label: "Live dimensions supported",
+    value: "3–5",
+  },
+  {
+    label: "What changes",
+    value: "Faster clarity",
+  },
+];
+
+export default function Hero() {
   return (
-    <main className="bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_16%,#f8fafc_100%)]">
-      <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 lg:py-24">
-        <section className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-white shadow-[0_18px_80px_rgba(15,23,42,0.08)]">
-          <div className="grid gap-8 px-8 py-10 md:px-10 lg:grid-cols-[minmax(0,1.15fr)_360px] lg:items-end lg:px-12 lg:py-12">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                Resources
-              </p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
-                PulseRoom use cases
-              </h1>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-                A richer library of PulseRoom applications across academic and executive
-                environments — designed as articles, not feature boxes.
-              </p>
+    <section
+      id="top"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#f5f0ff_0%,#fbf8ff_45%,#ffffff_100%)]"
+    >
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(ellipse 52% 30% at 18% 12%, rgba(196,181,253,0.22) 0%, transparent 62%)," +
+            "radial-gradient(ellipse 34% 24% at 78% 16%, rgba(216,180,254,0.18) 0%, transparent 58%)," +
+            "radial-gradient(ellipse 48% 22% at 50% 0%, rgba(167,139,250,0.10) 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6 pb-14 pt-10 md:px-8 md:pb-18 md:pt-14 lg:px-12 lg:pb-20 lg:pt-16">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
+          <div className="self-start">
+            <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
+              <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
+              Decision intelligence platform
+            </span>
+
+            <h1 className="mt-6 max-w-[9.5ch] text-5xl font-semibold leading-[0.95] tracking-tight text-slate-950 sm:text-6xl lg:text-[5.1rem] xl:text-[5.7rem]">
+              Stop re-deciding.
+              <br />
+              Capture alignment live.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+              PulseRoom helps groups structure the room, collect live multi-dimensional
+              input, and leave with a clearer picture of what the audience, class, or
+              leadership team actually understands.
+            </p>
+
+            <div className="mt-7 grid gap-3 sm:max-w-[34rem]">
+              {featurePills.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-full border border-violet-200 bg-white px-6 py-4 text-base font-medium text-slate-700 shadow-sm"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
 
-            <div className="rounded-[1.8rem] border border-slate-200 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.18),transparent_36%),linear-gradient(180deg,#ffffff_0%,#eef2ff_100%)] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                What this library covers
-              </p>
-              <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
-                <p>Teaching, experiential learning, panel moderation, research meetings, and presentation evaluation.</p>
-                <p>Meetings, brainstorming, policy design, budget conversations, and retrospectives.</p>
-                <p>Each article shows how the room is structured, what the live dimensions can look like, and why the method creates stronger outcomes.</p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href={APP_URL}
+                className="inline-flex min-w-[260px] items-center justify-center rounded-full bg-[linear-gradient(90deg,#7c3aed_0%,#9333ea_55%,#6d28d9_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.24)] transition hover:translate-y-[-1px]"
+              >
+                Try PulseRoom free
+              </Link>
+
+              <Link
+                href="/use-cases"
+                className="inline-flex min-w-[290px] items-center justify-center rounded-full border border-violet-200 bg-white px-7 py-4 text-base font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50"
+              >
+                Explore use cases
+              </Link>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-[2rem] border border-violet-200 bg-white p-6 shadow-sm"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                    {stat.label}
+                  </p>
+                  <p className="mt-5 text-3xl font-semibold leading-tight text-violet-700">
+                    {stat.value}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="self-start lg:pt-1">
+            <div className="relative">
+              <div className="absolute -inset-5 rounded-[2.7rem] bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.18),transparent_66%)] blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2.35rem] border border-violet-200 bg-white p-3 shadow-[0_26px_70px_rgba(124,58,237,0.08)]">
+                <div className="overflow-hidden rounded-[2rem]">
+                  <Image
+                    src="/use-cases/cover/board_meeting.png"
+                    alt="PulseRoom in a premium board meeting setting"
+                    width={1792}
+                    height={1024}
+                    priority
+                    unoptimized
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              <div className="rounded-[1.7rem] border border-violet-200 bg-white px-6 py-5 shadow-sm">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  Best-fit room
+                </p>
+                <p className="mt-3 text-[1.05rem] font-semibold leading-7 text-slate-700">
+                  Board meeting / executive alignment
+                </p>
+              </div>
+
+              <div className="rounded-[1.7rem] border border-violet-200 bg-white px-6 py-5 shadow-sm">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  Signal style
+                </p>
+                <p className="mt-3 text-[1.05rem] font-semibold leading-7 text-slate-700">
+                  Live audience + presenter visibility
+                </p>
               </div>
             </div>
           </div>
-        </section>
-
-        <div className="mt-14 space-y-16">
-          {useCaseCategories.map((category) => {
-            const items = useCases.filter((item) => item.category === category);
-
-            return (
-              <section key={category} className="space-y-6">
-                <div className="flex items-end justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                      {category}
-                    </p>
-                    <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
-                      {category === "Academic"
-                        ? "Use cases for learning environments"
-                        : "Use cases for decision environments"}
-                    </h2>
-                  </div>
-                  <span className="hidden rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-500 md:inline-flex">
-                    {items.length} articles
-                  </span>
-                </div>
-
-                <div className="grid gap-6 xl:grid-cols-2">
-                  {items.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/use-cases/${item.slug}`}
-                      className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_16px_60px_rgba(15,23,42,0.07)] transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_22px_70px_rgba(15,23,42,0.10)]"
-                    >
-                      <div className="border-b border-slate-200 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.12),transparent_34%),radial-gradient(circle_at_top_right,rgba(34,211,238,0.10),transparent_34%)] px-6 py-5 md:px-8 md:py-6">
-                        <div className="flex items-center justify-between gap-3">
-                          <span className="inline-flex rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
-                            {item.category}
-                          </span>
-                          <span className="text-slate-300 transition group-hover:text-slate-500">↗</span>
-                        </div>
-                        <h3 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-                          {item.title}
-                        </h3>
-                        <p className="mt-3 max-w-2xl text-[15px] leading-7 text-slate-600 md:text-base md:leading-8">
-                          {item.excerpt}
-                        </p>
-                      </div>
-
-                      <div className="grid gap-6 px-6 py-6 md:grid-cols-[1.12fr_0.88fr] md:px-8 md:py-8">
-                        <div className="space-y-3">
-                          {item.flow.slice(0, 3).map((step, index) => (
-                            <div key={step.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                              <div className="flex gap-3">
-                                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
-                                  {index + 1}
-                                </span>
-                                <div>
-                                  <p className="text-sm font-semibold text-slate-900">{step.title}</p>
-                                  <p className="mt-1 text-sm leading-6 text-slate-600">{step.note}</p>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        <div className="rounded-[1.6rem] border border-slate-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] p-4">
-                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                            Example live profile
-                          </p>
-                          <div className="mt-4 space-y-3">
-                            {item.dimensions.slice(0, 5).map((dimension) => (
-                              <div key={dimension.label}>
-                                <div className="mb-1 flex items-center justify-between gap-3">
-                                  <p className="text-sm text-slate-700">{dimension.label}</p>
-                                  <span className="text-xs font-semibold text-slate-500">
-                                    {dimension.value.toFixed(1)}/5
-                                  </span>
-                                </div>
-                                <div className="h-2 rounded-full bg-slate-100">
-                                  <div
-                                    className="h-2 rounded-full bg-[linear-gradient(90deg,#6366F1,#22D3EE)]"
-                                    style={{ width: `${(dimension.value / 5) * 100}%` }}
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
         </div>
       </div>
-    </main>
+    </section>
   );
 }

@@ -1,12 +1,15 @@
 import { site } from "@/lib/site";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Terms of Service — PulseRoom",
-  description: "PulseRoom Terms of Service. Clear, plain-language terms governing access to and use of the platform.",
+  description:
+    "PulseRoom Terms of Service. Clear, plain-language terms governing access to and use of the platform.",
 };
+
+const PAYMENTS_EMAIL = "payments@pulseroom.app";
 
 type LegalSection = {
   num: string;
@@ -21,8 +24,21 @@ const SECTIONS: LegalSection[] = [
     title: "The service",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="3" width="16" height="14" rx="2.5" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M6 7h8M6 10.5h5M6 14h3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect
+          x="2"
+          y="3"
+          width="16"
+          height="14"
+          rx="2.5"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M6 7h8M6 10.5h5M6 14h3"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     body: `PulseRoom provides a web-based software platform for structured group decision-making, meeting facilitation, multi-dimensional scoring, and related analytics outputs. By accessing or using PulseRoom — including the website at pulseroom.app, the application at app.pulseroom.app, and any associated APIs — you agree to these Terms. If you are using PulseRoom on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.`,
@@ -32,19 +48,47 @@ const SECTIONS: LegalSection[] = [
     title: "Accounts and access",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="7" r="3.5" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M3.5 17c0-3.3 2.9-5.5 6.5-5.5s6.5 2.2 6.5 5.5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="10" cy="7" r="3.5" stroke="#6366F1" strokeWidth="1.5" />
+        <path
+          d="M3.5 17c0-3.3 2.9-5.5 6.5-5.5s6.5 2.2 6.5 5.5"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
-    body: `You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account. Notify us immediately at support@pulseroom.app if you suspect unauthorised access. You must provide accurate account information and keep it current. PulseRoom accounts are non-transferable without written consent. We reserve the right to suspend or terminate accounts that violate these Terms.`,
+    body: (
+      <>
+        You are responsible for maintaining the confidentiality of your account
+        credentials and for all activity that occurs under your account. Notify
+        us immediately at{" "}
+        <a href={`mailto:${site.supportEmail}`} className="legal-inline-link">
+          {site.supportEmail}
+        </a>{" "}
+        if you suspect unauthorised access. You must provide accurate account
+        information and keep it current. PulseRoom accounts are non-transferable
+        without written consent. We reserve the right to suspend or terminate
+        accounts that violate these Terms.
+      </>
+    ),
   },
   {
     num: "03",
     title: "Acceptable use",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2L3 5v5c0 4.4 3.2 7.9 7 9 3.8-1.1 7-4.6 7-9V5L10 2z" stroke="#6366F1" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M7 10l2 2 4-4" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path
+          d="M10 2L3 5v5c0 4.4 3.2 7.9 7 9 3.8-1.1 7-4.6 7-9V5L10 2z"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M7 10l2 2 4-4"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     body: `You may use PulseRoom only for lawful purposes and in accordance with these Terms. You may not: attempt to gain unauthorised access to any part of the platform; interfere with or disrupt the integrity or performance of the service; use the platform to transmit unlawful, harassing, defamatory, or harmful content; reverse-engineer, decompile, or extract source code from the platform; resell or sublicense access to PulseRoom without written consent; or use automated tools to scrape, crawl, or extract data at scale.`,
@@ -54,33 +98,81 @@ const SECTIONS: LegalSection[] = [
     title: "Billing and subscriptions",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="5" width="16" height="11" rx="2" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M2 9h16" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M5 13h3M14 13h1" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect
+          x="2"
+          y="5"
+          width="16"
+          height="11"
+          rx="2"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+        />
+        <path d="M2 9h16" stroke="#6366F1" strokeWidth="1.5" />
+        <path
+          d="M5 13h3M14 13h1"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
-    body: `Paid plans are presented within the PulseRoom application and associated billing flow. Subscription fees are charged in advance on a monthly or annual basis depending on your plan. All fees are non-refundable except where required by applicable law or as stated in a separate commercial agreement. If your payment fails, your access may be downgraded or suspended until payment is resolved. Enterprise and institutional pricing is agreed in writing and supersedes these standard billing terms.`,
+    body: (
+      <>
+        Paid plans are presented within the PulseRoom application and associated
+        billing flow. Subscription fees are charged in advance on a monthly or
+        annual basis depending on your plan. All fees are non-refundable except
+        where required by applicable law or as stated in a separate commercial
+        agreement. If your payment fails, your access may be downgraded or
+        suspended until payment is resolved. Enterprise and institutional
+        pricing is agreed in writing and supersedes these standard billing
+        terms. Billing or payment-related questions may be directed to{" "}
+        <a href={`mailto:${PAYMENTS_EMAIL}`} className="legal-inline-link">
+          {PAYMENTS_EMAIL}
+        </a>
+        .
+      </>
+    ),
   },
   {
     num: "05",
     title: "Refunds",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 10c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M3 7v3h3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M10 7v3l2 2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path
+          d="M3 10c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M3 7v3h3"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10 7v3l2 2"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     body: (
       <>
-        PulseRoom does not offer refunds for unused subscription periods, except in the
-        following circumstances: (a) you were charged in error; (b) applicable consumer
-        protection law in your jurisdiction requires a refund; or (c) a written commercial
-        agreement with PulseRoom specifies different terms. Refund requests may be submitted
-        in accordance with our{" "}
+        PulseRoom does not offer refunds for unused subscription periods, except
+        in the following circumstances: (a) you were charged in error; (b)
+        applicable consumer protection law in your jurisdiction requires a
+        refund; or (c) a written commercial agreement with PulseRoom specifies
+        different terms. Refund requests may be submitted in accordance with our{" "}
         <Link href="/refund" className="legal-inline-link">
           Refund Policy
         </Link>
+        . For payment or refund-related queries, contact{" "}
+        <a href={`mailto:${PAYMENTS_EMAIL}`} className="legal-inline-link">
+          {PAYMENTS_EMAIL}
+        </a>
         .
       </>
     ),
@@ -90,9 +182,14 @@ const SECTIONS: LegalSection[] = [
     title: "Intellectual property",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="10" r="7.5" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M8 8c0-1.1.9-2 2-2s2 .9 2 2c0 1.5-2 2-2 3" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="10" cy="14.5" r="0.75" fill="#6366F1"/>
+        <circle cx="10" cy="10" r="7.5" stroke="#6366F1" strokeWidth="1.5" />
+        <path
+          d="M8 8c0-1.1.9-2 2-2s2 .9 2 2c0 1.5-2 2-2 3"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <circle cx="10" cy="14.5" r="0.75" fill="#6366F1" />
       </svg>
     ),
     body: `PulseRoom, its logo, interface design, software, and related materials are the proprietary property of PulseRoom and its licensors. These Terms do not grant you any right to use PulseRoom's name, trademarks, logos, or branding without prior written consent. Content you submit through the platform — including session inputs, scores, and decision notes — remains yours. By using PulseRoom, you grant us a limited licence to process that content solely to deliver the service.`,
@@ -102,8 +199,18 @@ const SECTIONS: LegalSection[] = [
     title: "Disclaimer of warranties",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 3l7 4v4c0 3.7-2.9 7-7 8C5.9 18 3 14.7 3 11V7l7-4z" stroke="#6366F1" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M10 8v3M10 13.5v.5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path
+          d="M10 3l7 4v4c0 3.7-2.9 7-7 8C5.9 18 3 14.7 3 11V7l7-4z"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M10 8v3M10 13.5v.5"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     body: `PulseRoom is provided on an "as is" and "as available" basis, without warranties of any kind — either express or implied — including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, or uninterrupted availability. We do not warrant that the service will be error-free, that defects will be corrected, or that the service or the servers that make it available are free of viruses or other harmful components.`,
@@ -113,8 +220,17 @@ const SECTIONS: LegalSection[] = [
     title: "Limitation of liability",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 10a7 7 0 1014 0A7 7 0 003 10z" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M7 13l6-6M7 7l6 6" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <path
+          d="M3 10a7 7 0 1014 0A7 7 0 003 10z"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M7 13l6-6M7 7l6 6"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     body: `To the maximum extent permitted by applicable law, PulseRoom and its directors, employees, and licensors shall not be liable for any indirect, incidental, special, consequential, or punitive damages — including loss of profits, data, or goodwill — arising out of or in connection with your use of or inability to use the service, even if PulseRoom has been advised of the possibility of such damages. Our aggregate liability for any claim arising under these Terms shall not exceed the amount you paid to PulseRoom in the 12 months preceding the claim.`,
@@ -124,8 +240,19 @@ const SECTIONS: LegalSection[] = [
     title: "Changes to these terms",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M4 5h12M4 10h8M4 15h10" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M14 13l2 2 2-2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path
+          d="M4 5h12M4 10h8M4 15h10"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M14 13l2 2 2-2"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     body: `We may revise these Terms from time to time. When we make material changes, we will notify you by email or by displaying a prominent notice in the application at least 14 days before the changes take effect. Continued use of PulseRoom after changes take effect constitutes your acceptance of the revised Terms.`,
@@ -135,11 +262,36 @@ const SECTIONS: LegalSection[] = [
     title: "Contact",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="5" width="16" height="11" rx="2" stroke="#6366F1" strokeWidth="1.5"/>
-        <path d="M2 8l8 5 8-5" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect
+          x="2"
+          y="5"
+          width="16"
+          height="11"
+          rx="2"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M2 8l8 5 8-5"
+          stroke="#6366F1"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </svg>
     ),
-    body: `Questions about these Terms may be directed to support@pulseroom.app. For enterprise or commercial legal queries, contact sales@pulseroom.app. We will respond to every inquiry.`,
+    body: (
+      <>
+        Questions about these Terms may be directed to{" "}
+        <a href={`mailto:${site.supportEmail}`} className="legal-inline-link">
+          {site.supportEmail}
+        </a>
+        . For enterprise or commercial legal queries, contact{" "}
+        <a href={`mailto:${site.salesEmail}`} className="legal-inline-link">
+          {site.salesEmail}
+        </a>
+        . We will respond to every inquiry.
+      </>
+    ),
   },
 ];
 
@@ -385,6 +537,10 @@ export default function TermsPage() {
           text-decoration: none;
         }
 
+        .legal-banner__text a:hover {
+          text-decoration: underline;
+        }
+
         .legal-content {
           display: flex;
           flex-direction: column;
@@ -460,16 +616,20 @@ export default function TermsPage() {
 
         .legal-cta {
           margin-top: 56px;
-          background: linear-gradient(135deg, #F8F9FF 0%, #EEF2FF 100%);
-          border: 1px solid rgba(99,102,241,0.15);
-          border-radius: 20px;
-          padding: 40px;
+          background: linear-gradient(135deg,
+            rgba(99,102,241,0.06) 0%,
+            rgba(168,85,247,0.04) 50%,
+            rgba(255,255,255,1) 100%);
+          border: 1px solid rgba(99,102,241,0.12);
+          border-radius: 18px;
+          padding: 28px 30px;
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 18px;
+          align-items: flex-start;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 768px) {
           .legal-cta {
             flex-direction: row;
             align-items: center;
@@ -478,53 +638,55 @@ export default function TermsPage() {
         }
 
         .legal-cta__eyebrow {
-          font-size: 10px;
+          font-size: 11px;
           font-weight: 700;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
           color: #6366F1;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
         }
 
         .legal-cta__title {
-          font-size: 20px;
+          font-size: 22px;
           font-weight: 700;
           color: #0F172A;
-          margin-bottom: 6px;
-          letter-spacing: -0.01em;
+          line-height: 1.2;
+          letter-spacing: -0.02em;
         }
 
         .legal-cta__sub {
           font-size: 14px;
           color: #64748B;
-          line-height: 1.5;
+          line-height: 1.65;
+          margin-top: 6px;
+          max-width: 560px;
         }
 
         .legal-cta__btn {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          border-radius: 12px;
-          padding: 13px 24px;
+          justify-content: center;
+          border-radius: 999px;
+          padding: 12px 18px;
+          background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+          color: white;
+          text-decoration: none;
           font-size: 14px;
           font-weight: 700;
-          color: white;
-          background: linear-gradient(135deg, #6366F1, #7C3AED);
-          text-decoration: none;
-          white-space: nowrap;
-          transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
-          box-shadow: 0 4px 20px rgba(99,102,241,0.35);
-          flex-shrink: 0;
+          min-width: 150px;
+          transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+          box-shadow: 0 10px 30px rgba(99,102,241,0.22);
         }
 
         .legal-cta__btn:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 8px 28px rgba(99,102,241,0.5);
+          transform: translateY(-1px);
+          opacity: 0.96;
+          box-shadow: 0 14px 34px rgba(99,102,241,0.28);
         }
 
         @keyframes pulseDot {
           0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.5; transform: scale(1.5); }
+          50% { opacity: 0.65; transform: scale(1.18); }
         }
       `}</style>
 
@@ -535,21 +697,40 @@ export default function TermsPage() {
           <div className="legal-hero__inner">
             <div className="legal-hero__eyebrow">
               <span className="legal-hero__eyebrow-dot" />
-              Legal
+              Terms of Service
             </div>
+
             <h1 className="legal-hero__h1">
-              Terms of <em>Service</em>
+              Clear terms.
+              <br />
+              <em>Plain language.</em>
             </h1>
+
             <p className="legal-hero__sub">
-              Written to be read. Plain language that explains what we mean, not just what protects us.
+              These terms explain how PulseRoom works, what you can expect from
+              us, and what we expect from anyone using the platform.
             </p>
+
             <div className="legal-hero__meta">
               {[
                 {
                   icon: (
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <rect x="1" y="2" width="12" height="10" rx="1.5" stroke="#A5B4FC" strokeWidth="1.2"/>
-                      <path d="M4 1v2M10 1v2M1 6h12" stroke="#A5B4FC" strokeWidth="1.2" strokeLinecap="round"/>
+                      <rect
+                        x="1"
+                        y="2"
+                        width="12"
+                        height="10"
+                        rx="1.8"
+                        stroke="#A5B4FC"
+                        strokeWidth="1.2"
+                      />
+                      <path
+                        d="M4 1v2M10 1v2M1 6h12"
+                        stroke="#A5B4FC"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   ),
                   label: "Effective: April 2025",
@@ -557,8 +738,19 @@ export default function TermsPage() {
                 {
                   icon: (
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <circle cx="7" cy="7" r="5.5" stroke="#A5B4FC" strokeWidth="1.2"/>
-                      <path d="M7 4v3l2 1.5" stroke="#A5B4FC" strokeWidth="1.2" strokeLinecap="round"/>
+                      <circle
+                        cx="7"
+                        cy="7"
+                        r="5.5"
+                        stroke="#A5B4FC"
+                        strokeWidth="1.2"
+                      />
+                      <path
+                        d="M7 4v3l2 1.5"
+                        stroke="#A5B4FC"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   ),
                   label: "10 sections",
@@ -566,8 +758,21 @@ export default function TermsPage() {
                 {
                   icon: (
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <rect x="1" y="2" width="12" height="10" rx="1.5" stroke="#A5B4FC" strokeWidth="1.2"/>
-                      <path d="M4 6h6M4 8.5h4" stroke="#A5B4FC" strokeWidth="1.2" strokeLinecap="round"/>
+                      <rect
+                        x="1"
+                        y="2"
+                        width="12"
+                        height="10"
+                        rx="1.5"
+                        stroke="#A5B4FC"
+                        strokeWidth="1.2"
+                      />
+                      <path
+                        d="M4 6h6M4 8.5h4"
+                        stroke="#A5B4FC"
+                        strokeWidth="1.2"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   ),
                   label: "Plain language",
@@ -601,15 +806,28 @@ export default function TermsPage() {
             <div className="legal-banner">
               <div className="legal-banner__icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <rect x="2" y="2" width="16" height="16" rx="3" stroke="#6366F1" strokeWidth="1.5"/>
-                  <path d="M5 7h10M5 10.5h10M5 14h6" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect
+                    x="2"
+                    y="2"
+                    width="16"
+                    height="16"
+                    rx="3"
+                    stroke="#6366F1"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M5 7h10M5 10.5h10M5 14h6"
+                    stroke="#6366F1"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
               <div>
                 <div className="legal-banner__title">Written to be read.</div>
                 <div className="legal-banner__text">
-                  These are plain-language terms. We explain what we mean, not just what protects us.
-                  If something is unclear, email{" "}
+                  These are plain-language terms. We explain what we mean, not
+                  just what protects us. If something is unclear, email{" "}
                   <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
                 </div>
               </div>
@@ -631,9 +849,12 @@ export default function TermsPage() {
             <div className="legal-cta">
               <div>
                 <div className="legal-cta__eyebrow">Questions?</div>
-                <div className="legal-cta__title">We&apos;re here to clarify anything.</div>
+                <div className="legal-cta__title">
+                  We&apos;re here to clarify anything.
+                </div>
                 <div className="legal-cta__sub">
-                  These terms are written to inform, not intimidate. Reach out any time.
+                  These terms are written to inform, not intimidate. Reach out
+                  any time.
                 </div>
               </div>
               <a href={`mailto:${site.supportEmail}`} className="legal-cta__btn">
@@ -645,4 +866,4 @@ export default function TermsPage() {
       </div>
     </>
   );
-}
+} 
