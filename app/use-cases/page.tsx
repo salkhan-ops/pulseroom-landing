@@ -110,7 +110,7 @@ export default function Hero() {
               <div className="relative overflow-hidden rounded-[2.35rem] border border-violet-200 bg-white p-3 shadow-[0_26px_70px_rgba(124,58,237,0.08)]">
                 <div className="overflow-hidden rounded-[2rem]">
                   <Image
-                    src="/use-cases/cover/board_meeting.png"
+                    src="/use-cases/cover/board_meeting.webp"
                     alt="PulseRoom in a premium board meeting setting"
                     width={1792}
                     height={1024}

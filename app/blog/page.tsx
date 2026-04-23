@@ -1,61 +1,18 @@
-// app/blog/page.tsx
+import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
+import { blogPosts, type BlogPost } from "@/lib/blog";
 import { APP_URL } from "@/lib/site";
 
-type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  bullets: string[];
-  readingTime: string;
-  dateLabel: string;
+export const metadata: Metadata = {
+  title: "Blog | PulseRoom",
+  description:
+    "Short, practical essays on alignment, decision quality, facilitation, and decision artifacts.",
 };
-
-const posts: Post[] = [
-  {
-    slug: "alignment-vs-polling",
-    title: "Alignment ≠ Polling: why teams keep re-deciding",
-    excerpt:
-      "Most tools collect opinions. Real decision work requires making trade-offs visible and reducing ambiguity about what the group actually agreed to.",
-    bullets: [
-      "Polling captures preference; alignment captures shared constraints and trade-offs.",
-      "Re-litigation happens when 'agreement' is not recorded as an artifact.",
-      "Visual aggregation changes the discussion from persuasion to diagnosis.",
-    ],
-    readingTime: "4 min",
-    dateLabel: "Decision note",
-  },
-  {
-    slug: "meeting-noise-to-signal",
-    title: "From meeting noise to signal: designing for clarity under pressure",
-    excerpt:
-      "Meetings often reward confidence and airtime, not accuracy. A good decision interface makes divergence visible early—before it becomes expensive.",
-    bullets: [
-      "Early divergence is information, not conflict—surface it quickly.",
-      "Interfaces should reduce dominance effects and increase participation parity.",
-      "A shared visualization can act as a 'truth surface' for discussion.",
-    ],
-    readingTime: "5 min",
-    dateLabel: "Workshop pattern",
-  },
-  {
-    slug: "decision-artifacts",
-    title: "The missing layer: decision artifacts teams can reuse",
-    excerpt:
-      "What matters after a workshop is not the conversation. It's the artifact—what you can point to, share, and build on without restarting the debate.",
-    bullets: [
-      "Artifacts reduce post-meeting ambiguity and prevent scope drift.",
-      "A one-page snapshot beats 40 slides and fragmented chat threads.",
-      "Artifacts create accountability: what was decided, why, and what's next.",
-    ],
-    readingTime: "4 min",
-    dateLabel: "Product principle",
-  },
-];
 
 function PageHeader() {
   return (
-    <div className="pt-14 pb-10">
+    <div className="pb-10 pt-14">
       <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 shadow-soft">
         <span className="h-2 w-2 rounded-full bg-brand-600" />
         PulseRoom notes
@@ -64,7 +21,8 @@ function PageHeader() {
       <h1 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
         Decision intelligence notes
       </h1>
-      <p className="mt-3 max-w-2xl text-base text-slate-600 sm:text-lg">
+
+      <p className="mt-3 max-w-3xl text-base text-slate-600 sm:text-lg">
         Short, practical essays on alignment, decision quality, and why teams
         keep re-litigating outcomes — written to support workshops, exec
         education, and product decision-making.
@@ -88,45 +46,64 @@ function PageHeader() {
   );
 }
 
-function PostCard({ post }: { post: Post }) {
+function PostCard({ post }: { post: BlogPost }) {
   return (
     <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:shadow-md">
       <div className="flex items-center justify-between gap-4">
         <div className="text-xs font-medium text-slate-500">
-          {post.dateLabel} · {post.readingTime}
+          {post.category} · {post.readingTime}
         </div>
-        <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
-          Coming soon
-        </span>
+
+        {post.status ? (
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
+            {post.status}
+          </span>
+        ) : null}
       </div>
 
       <h2 className="mt-3 text-lg font-semibold text-slate-900 sm:text-xl">
-        {post.title}
+        <Link
+          href={`/blog/${post.slug}`}
+          className="transition hover:text-brand-700"
+        >
+          {post.title}
+        </Link>
       </h2>
+
       <p className="mt-2 text-sm text-slate-600">{post.excerpt}</p>
 
       <ul className="mt-4 space-y-2 text-sm text-slate-700">
-        {post.bullets.map((b) => (
-          <li key={b} className="flex gap-2">
+        {post.bullets.map((bullet) => (
+          <li key={bullet} className="flex gap-2">
             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
-            <span>{b}</span>
+            <span>{bullet}</span>
           </li>
         ))}
       </ul>
 
       <div className="mt-5 flex items-center justify-between gap-3">
-        <a
-          href={APP_URL}
-          className="text-sm font-medium text-brand-700 hover:text-brand-800"
+        <Link
+          href={`/blog/${post.slug}`}
+          className="text-sm font-medium text-slate-700 hover:text-slate-900"
         >
-          Try PulseRoom →
-        </a>
+          Read article →
+        </Link>
 
         <a
-          href="/"
-          className="text-sm font-medium text-slate-600 hover:text-slate-900"
+          href={post.primaryCtaHref || APP_URL}
+          className="text-sm font-medium text-brand-700 hover:text-brand-800"
+          target={
+            (post.primaryCtaHref || APP_URL).startsWith("http")
+              ? "_blank"
+              : undefined
+          }
+          rel={
+            (post.primaryCtaHref || APP_URL).startsWith("http")
+              ? "noopener noreferrer"
+              : undefined
+          }
         >
-          Back to landing
+          {post.primaryCtaLabel || "Get Started"} →
         </a>
       </div>
     </article>
@@ -141,35 +118,39 @@ export default function BlogPage() {
 
         <section className="pb-16">
           <div className="grid gap-6 md:grid-cols-3">
-            {posts.map((p) => (
-              <PostCard key={p.slug} post={p} />
+            {blogPosts.map((post) => (
+              <PostCard key={post.slug} post={post} />
             ))}
           </div>
 
           <div className="mt-10 rounded-3xl border border-slate-200 bg-slate-50 p-6">
             <div className="text-sm font-semibold text-slate-900">
-              Want these turned into full posts?
+              Want more practical decision notes?
             </div>
-            <p className="mt-2 text-sm text-slate-600 max-w-3xl">
-              These are intentionally short "decision notes." As you run real
-              sessions, we can convert them into case-based writeups with
-              screenshots and before/after artifacts — without adding any
-              backend or CMS.
+
+            <p className="mt-2 max-w-3xl text-sm text-slate-600">
+              These essays are designed to stay short, usable, and grounded in
+              real facilitation and decision-making practice. Start with the
+              platform, then use the notes to sharpen how your rooms are framed,
+              read, and carried forward.
             </p>
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <a
                 href={APP_URL}
                 className="inline-flex items-center justify-center rounded-2xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft hover:bg-brand-700"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Try PulseRoom →
+                Get Started →
               </a>
-              <a
+
+              <Link
                 href="/#faq"
                 className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
               >
                 Read the FAQ
-              </a>
+              </Link>
             </div>
           </div>
         </section>

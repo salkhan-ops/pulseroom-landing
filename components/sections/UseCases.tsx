@@ -33,10 +33,10 @@ export default function UseCases() {
             <section key={category} className="space-y-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-violet-600">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-600">
                     {category}
                   </p>
-                  <h3 className="mt-1.5 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+                  <h3 className="mt-1.5 text-[2rem] font-semibold tracking-tight text-slate-900 md:text-[2.25rem]">
                     {category === "Academic"
                       ? "Learning environments"
                       : "Decision environments"}
@@ -67,8 +67,6 @@ export default function UseCases() {
                       className="group block rounded-2xl border border-violet-200 bg-white shadow-[0_8px_32px_rgba(124,58,237,0.06)] transition duration-200 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-[0_12px_40px_rgba(124,58,237,0.10)]"
                     >
                       <div className="flex h-full flex-col p-6">
-
-                        {/* Badge + arrow */}
                         <div className="flex items-center justify-between gap-4">
                           <span className="inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-violet-700">
                             {item.category}
@@ -78,17 +76,14 @@ export default function UseCases() {
                           </span>
                         </div>
 
-                        {/* Title */}
-                        <h4 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-slate-900">
+                        <h4 className="mt-4 text-[1.55rem] font-semibold leading-tight tracking-tight text-slate-900">
                           {item.cardTitle ?? item.title}
                         </h4>
 
-                        {/* Description */}
-                        <p className="mt-2.5 text-sm leading-7 text-slate-500">
+                        <p className="mt-3 text-[15px] leading-7 text-slate-500">
                           {item.excerpt}
                         </p>
 
-                        {/* Dimension tags */}
                         <div className="mt-4 flex flex-wrap gap-2">
                           {dimensionLabels.map((label) => (
                             <span
@@ -100,22 +95,18 @@ export default function UseCases() {
                           ))}
                         </div>
 
-                        {/* Flow block — compact vertical steps */}
                         <div className="mt-5 rounded-xl border border-violet-100 bg-gradient-to-b from-[#fdfcff] to-[#f9f6ff] p-4">
                           <div className="mb-3 flex items-center justify-between">
                             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-600">
                               How it flows
                             </p>
-                            <p className="text-[10px] text-slate-400">
-                              3-step preview
-                            </p>
+                            <p className="text-[10px] text-slate-400">3-step preview</p>
                           </div>
 
                           <div className="flex flex-col">
                             {steps.map((step, index) => (
                               <div key={step.title}>
                                 <div className="flex items-center gap-2.5 rounded-lg border border-violet-100 bg-white px-3 py-2.5 shadow-sm">
-                                  {/* Compact number circle */}
                                   <div className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-600 text-[11px] font-bold text-white">
                                     {index + 1}
                                   </div>
@@ -134,11 +125,9 @@ export default function UseCases() {
                           </div>
                         </div>
 
-                        {/* Read more */}
                         <div className="mt-4 text-sm font-medium text-violet-600">
                           Read article →
                         </div>
-
                       </div>
                     </Link>
                   );

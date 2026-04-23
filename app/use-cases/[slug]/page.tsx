@@ -18,52 +18,52 @@ type HeroImageMeta = {
 function getUseCaseHero(slug: string, category?: string): HeroImageMeta {
   const map: Record<string, HeroImageMeta> = {
     "teaching-in-class": {
-      src: "/use-cases/academic/class.png",
+      src: "/use-cases/academic/class.webp",
       alt: "Faculty-led interactive classroom using PulseRoom",
       eyebrow: "Academic setting",
     },
     "experiential-learning": {
-      src: "/use-cases/academic/collaborate.png",
+      src: "/use-cases/academic/collaborate.webp",
       alt: "Experiential learning groups using PulseRoom",
       eyebrow: "Academic setting",
     },
     "research-meeting": {
-      src: "/use-cases/academic/discuss_room.png",
+      src: "/use-cases/academic/discuss_room.webp",
       alt: "Research discussion room using PulseRoom",
       eyebrow: "Academic setting",
     },
     "presentation-evaluation": {
-      src: "/use-cases/executive/presentation.png",
+      src: "/use-cases/executive/presentation.webp",
       alt: "Presentation evaluation setting using PulseRoom",
       eyebrow: "Evaluation setting",
     },
     "panel-discussion": {
-      src: "/use-cases/cover/panel_discussion.png",
+      src: "/use-cases/cover/panel_discussion.webp",
       alt: "Panel discussion using PulseRoom",
       eyebrow: "Panel setting",
     },
     meetings: {
-      src: "/use-cases/executive/executive_meeting.png",
+      src: "/use-cases/executive/executive_meeting.webp",
       alt: "Executive meeting using PulseRoom",
       eyebrow: "Executive setting",
     },
     brainstorming: {
-      src: "/use-cases/academic/collaborate.png",
+      src: "/use-cases/academic/collaborate.webp",
       alt: "Collaborative brainstorming using PulseRoom",
       eyebrow: "Workshop setting",
     },
     "policies-and-strategies": {
-      src: "/use-cases/cover/board_meeting.png",
+      src: "/use-cases/cover/board_meeting.webp",
       alt: "Policy and strategy discussion using PulseRoom",
       eyebrow: "Executive setting",
     },
     "budget-and-hiring": {
-      src: "/use-cases/cover/board_meeting.png",
+      src: "/use-cases/cover/board_meeting.webp",
       alt: "Budget and hiring discussion using PulseRoom",
       eyebrow: "Executive setting",
     },
     retrospectives: {
-      src: "/use-cases/academic/collaborate.png",
+      src: "/use-cases/academic/collaborate.webp",
       alt: "Retrospective session using PulseRoom",
       eyebrow: "Team setting",
     },
@@ -72,12 +72,12 @@ function getUseCaseHero(slug: string, category?: string): HeroImageMeta {
   const fallback =
     category === "Academic"
       ? {
-          src: "/use-cases/academic/class.png",
+          src: "/use-cases/academic/class.webp",
           alt: "Academic use case using PulseRoom",
           eyebrow: "Academic setting",
         }
       : {
-          src: "/use-cases/executive/executive_meeting.png",
+          src: "/use-cases/executive/executive_meeting.webp",
           alt: "Executive use case using PulseRoom",
           eyebrow: "Executive setting",
         };

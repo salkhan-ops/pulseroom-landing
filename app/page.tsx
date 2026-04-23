@@ -3,7 +3,6 @@ import WhyNow from "@/components/sections/WhyNow";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Outcomes from "@/components/sections/Outcomes";
 import Pricing from "@/components/sections/Pricing";
-import CaseSnapshots from "@/components/sections/CaseSnapshots";
 import UseCases from "@/components/sections/UseCases";
 import DemoVideo from "@/components/sections/DemoVideo";
 import VisualProof from "@/components/sections/VisualProof";
@@ -18,7 +17,6 @@ export default function Page() {
       <HowItWorks />
       <Outcomes />
       <Pricing />
-      <CaseSnapshots />
       <UseCases />
       <DemoVideo />
       <VisualProof />

@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { APP_URL } from "@/lib/site";
@@ -55,7 +53,6 @@ const participantInitials = ["S", "J", "P", "T", "A"];
 function AlignmentViz() {
   return (
     <div className="overflow-hidden rounded-[1.75rem] border border-violet-200 bg-white shadow-[0_16px_40px_rgba(124,58,237,0.13)]">
-      {/* Header */}
       <div className="flex items-center justify-between border-b border-violet-100 px-5 py-3">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
@@ -66,17 +63,18 @@ function AlignmentViz() {
         </span>
       </div>
 
-      {/* Body: 3-col — ring | bars | info cards */}
       <div className="grid grid-cols-[auto_1fr_auto] items-center gap-5 px-5 py-4">
-
-        {/* Ring */}
         <div className="flex items-center justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-3">
           <div className="relative h-28 w-28">
             <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90">
               <circle cx="60" cy="60" r="44" fill="none" stroke="#E9D5FF" strokeWidth="12" />
               <circle
-                cx="60" cy="60" r="44" fill="none"
-                stroke="url(#heroRing)" strokeWidth="12"
+                cx="60"
+                cy="60"
+                r="44"
+                fill="none"
+                stroke="url(#heroRing)"
+                strokeWidth="12"
                 strokeLinecap="round"
                 strokeDasharray={`${2 * Math.PI * 44}`}
                 strokeDashoffset={`${2 * Math.PI * 44 * (1 - 0.78)}`}
@@ -90,18 +88,21 @@ function AlignmentViz() {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span className="text-2xl font-semibold tracking-tight text-slate-900">78%</span>
-              <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-500">Alignment</span>
+              <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-500">
+                Alignment
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Signal bars */}
         <div className="min-w-0 space-y-2.5">
           {signals.map((signal) => (
             <div key={signal.label}>
               <div className="mb-1 flex items-center justify-between gap-2">
                 <span className="truncate text-xs font-medium text-slate-500">{signal.label}</span>
-                <span className="shrink-0 text-xs font-bold" style={{ color: signal.color }}>{signal.score}/10</span>
+                <span className="shrink-0 text-xs font-bold" style={{ color: signal.color }}>
+                  {signal.score}/10
+                </span>
               </div>
               <div className="h-1.5 rounded-full bg-slate-100">
                 <div
@@ -130,15 +131,22 @@ function AlignmentViz() {
           </div>
         </div>
 
-        {/* Info cards stacked */}
         <div className="flex flex-col gap-3 self-stretch">
           <div className="flex flex-1 flex-col justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Best-fit room</p>
-            <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-700">Board meeting /<br />executive alignment</p>
+            <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-700">
+              Board meeting /
+              <br />
+              executive alignment
+            </p>
           </div>
           <div className="flex flex-1 flex-col justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-3">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Signal style</p>
-            <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-700">Live audience +<br />presenter visibility</p>
+            <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-700">
+              Live audience +
+              <br />
+              presenter visibility
+            </p>
           </div>
         </div>
       </div>
@@ -152,7 +160,6 @@ export default function Hero() {
       id="top"
       className="relative overflow-hidden bg-[linear-gradient(180deg,#f5f0ff_0%,#fbf8ff_44%,#ffffff_100%)]"
     >
-      {/* Background radial glows */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
@@ -165,8 +172,6 @@ export default function Hero() {
       />
 
       <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14 lg:px-12 lg:pt-16">
-
-        {/* ── Top centred badge + headline ── */}
         <div className="mb-10 flex flex-col items-center text-center md:mb-12">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
             <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
@@ -184,10 +189,7 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* ── Two-column body ── */}
         <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-12">
-
-          {/* LEFT — stretched to match right column height */}
           <div className="flex flex-col lg:pt-2">
             <div className="grid gap-3">
               {featureCards.map((item) => (
@@ -202,20 +204,34 @@ export default function Hero() {
                     <p className="text-sm font-semibold text-slate-800">{item.label}</p>
                     <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{item.desc}</p>
                   </div>
-                  <svg className="ml-auto shrink-0 text-violet-300" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <svg
+                    className="ml-auto shrink-0 text-violet-300"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path
+                      d="M6 12l4-4-4-4"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </div>
               ))}
             </div>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-              <Link
+              <a
                 href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex min-w-[220px] items-center justify-center rounded-full bg-[linear-gradient(90deg,#7C3AED_0%,#9333EA_55%,#6D28D9_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.24)] transition hover:translate-y-[-1px]"
               >
                 Try PulseRoom free
-              </Link>
+              </a>
 
               <Link
                 href="/use-cases"
@@ -225,7 +241,6 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* Bottom anchor — fills the gap with light trust content */}
             <div className="mt-auto pt-8">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Trusted in</p>
               <div className="grid gap-3">
@@ -234,7 +249,10 @@ export default function Hero() {
                   { icon: "🏢", label: "Executive strategy sessions" },
                   { icon: "📋", label: "Board-level decision rooms" },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-3 rounded-2xl border border-violet-100 bg-white px-4 py-3 shadow-sm">
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-3 rounded-2xl border border-violet-100 bg-white px-4 py-3 shadow-sm"
+                  >
                     <span className="text-lg">{item.icon}</span>
                     <span className="text-sm font-medium text-slate-600">{item.label}</span>
                   </div>
@@ -243,27 +261,24 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT — image card + AlignmentViz below */}
           <div className="self-start">
-            {/* Image */}
             <div className="relative">
               <div className="absolute -inset-5 rounded-[2.7rem] bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.18),transparent_66%)] blur-2xl" />
               <div className="relative overflow-hidden rounded-[2.35rem] border border-violet-200 bg-white p-3 shadow-[0_26px_70px_rgba(124,58,237,0.08)]">
                 <div className="overflow-hidden rounded-[2rem]">
                   <Image
-                    src="/use-cases/cover/board_meeting.png"
+                    src="/use-cases/cover/board_meeting.webp"
                     alt="PulseRoom in a premium board meeting setting"
                     width={1792}
                     height={1024}
                     priority
-                    unoptimized
+                    sizes="(min-width: 1024px) 52vw, 100vw"
                     className="h-auto w-full object-cover"
                   />
                 </div>
               </div>
             </div>
 
-            {/* AlignmentViz — full width below image, info cards embedded inside */}
             <div className="mt-5">
               <AlignmentViz />
             </div>

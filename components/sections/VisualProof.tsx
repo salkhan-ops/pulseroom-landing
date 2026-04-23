@@ -1,93 +1,99 @@
+import Image from "next/image";
 import Section from "@/components/layout/Section";
-import { withBasePath } from "@/lib/paths";
 
-function ProofCard({
-  title,
-  desc,
-  imageSrc,
-  tag = "Example",
-}: {
-  title: string;
-  desc: string;
-  imageSrc: string;
-  tag?: string;
-}) {
-  return (
-    <div
-      className="rounded-2xl bg-white overflow-hidden flex flex-col"
-      style={{
-        border: "1px solid #E2E8F0",
-        boxShadow: "0 4px 40px rgba(99,102,241,0.07)",
-      }}
-    >
-      {/* Image */}
-      <div style={{ background: "#F8FAFC" }} className="overflow-hidden">
-        <img
-          src={imageSrc}
-          alt={title}
-          loading="lazy"
-          className="h-auto w-full object-cover"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="p-5 flex items-start justify-between gap-3 flex-1">
-        <div>
-          <h3 className="text-sm font-bold text-slate-900">{title}</h3>
-          <p className="mt-1 text-sm text-slate-500">{desc}</p>
-        </div>
-        <span
-          className="flex-shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold"
-          style={{
-            background: "rgba(99,102,241,0.08)",
-            color: "#6366F1",
-            border: "1px solid rgba(99,102,241,0.15)",
-          }}
-        >
-          {tag}
-        </span>
-      </div>
-    </div>
-  );
-}
+const analyticsCards = [
+  {
+    title: "Agenda comparison",
+    desc:
+      "See how different agenda items performed across the same session. Identify which topics created clarity, hesitation, divergence, or stronger consensus.",
+    image: "/analytics/analytics1.webp",
+    alt: "Agenda comparison analytics",
+    bullets: [
+      "Compare one agenda against another",
+      "Spot stronger and weaker dimensions",
+      "See where discussion quality shifted",
+    ],
+  },
+  {
+    title: "Session comparison",
+    desc:
+      "Track how outcomes change across sessions, cohorts, or repeated teaching runs. Useful for teaching improvement, leadership reviews, and facilitation quality.",
+    image: "/analytics/analytics2.webp",
+    alt: "Session comparison analytics",
+    bullets: [
+      "Compare one session to another",
+      "Review trends across repeated runs",
+      "See whether alignment improves over time",
+    ],
+  },
+  {
+    title: "Action follow-through",
+    desc:
+      "Convert the room’s output into a more structured record of priorities, next steps, and follow-up actions after the discussion ends.",
+    image: "/analytics/analytics3.webp",
+    alt: "Action follow-through analytics",
+    bullets: [
+      "Turn output into next-step visibility",
+      "Keep priorities and rationale visible",
+      "Support post-session review and accountability",
+    ],
+  },
+];
 
 export default function VisualProof() {
   return (
     <Section
       id="proof"
-      eyebrow="Proof"
-      title="What the room can see — and what you walk away with."
-      subtitle="Even simple visuals change the conversation: they make trade-offs and alignment explicit."
-      className="bg-slate-50"
+      eyebrow="Analytics"
+      title="After-session analytics."
+      subtitle="PulseRoom does not end when the room ends. Compare agendas, compare sessions, and carry the signal forward into review, refinement, and follow-through."
     >
-      <div className="grid gap-5 md:grid-cols-3">
-        <ProofCard
-          title="Live alignment snapshot"
-          desc="A clear view of convergence vs divergence during the session."
-          imageSrc={withBasePath("/proof/alignment.png")}
-        />
-        <ProofCard
-          title="Decision summary artifact"
-          desc="A shareable one-page summary with decision + rationale."
-          imageSrc={withBasePath("/proof/summary.png")}
-        />
-        <ProofCard
-          title="Actionable outcomes"
-          desc="Owners and next steps that survive beyond the meeting."
-          imageSrc={withBasePath("/proof/actions.png")}
-        />
-      </div>
+      <div className="grid gap-6 xl:grid-cols-3">
+        {analyticsCards.map((card) => (
+          <section
+            key={card.title}
+            className="overflow-hidden rounded-[2rem] border border-violet-200 bg-white shadow-[0_16px_52px_rgba(124,58,237,0.06)]"
+          >
+            <div className="border-b border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">
+                After the meeting
+              </p>
+              <h3 className="mt-3 text-[1.55rem] font-semibold leading-tight tracking-tight text-slate-900">
+                {card.title}
+              </h3>
+              <p className="mt-3 text-[15px] leading-7 text-slate-600">
+                {card.desc}
+              </p>
+            </div>
 
-      <p className="mt-6 text-xs text-slate-400">
-        Replace the three images in{" "}
-        <code
-          className="rounded px-1.5 py-0.5 text-xs"
-          style={{ background: "rgba(99,102,241,0.06)", color: "#6366F1" }}
-        >
-          /public/proof
-        </code>{" "}
-        with real screenshots whenever ready.
-      </p>
+            <div className="p-5">
+              <div className="overflow-hidden rounded-[1.5rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8f4ff_100%)] p-4">
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  width={1200}
+                  height={800}
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+
+              <div className="mt-5 space-y-3">
+                {card.bullets.map((item, index) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 rounded-[1.1rem] border border-violet-200 bg-violet-50/50 px-4 py-3"
+                  >
+                    <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-600 text-[11px] font-semibold text-white">
+                      {index + 1}
+                    </span>
+                    <p className="text-sm leading-6 text-slate-700">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
     </Section>
   );
 }
