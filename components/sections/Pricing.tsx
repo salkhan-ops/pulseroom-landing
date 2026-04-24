@@ -1,242 +1,276 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import Link from "next/link";
 import Section from "@/components/layout/Section";
-import { APP_URL } from "@/lib/site";
- // → components/sections/pricing.css
 
-// ─────────────────────────────────────────────────────────────
-// CONFIGURATION
-// ─────────────────────────────────────────────────────────────
-//
-// Option A — Your app exposes a public pricing API endpoint:
-//   Set PRICING_API to your endpoint, e.g.:
-//   "https://app.pulseroom.io/api/pricing"
-//
-//   Expected response shape:
-//   {
-//     tiers: [
-//       {
-//         id: "starter",
-//         name: "Starter",
-//         price: "Free",             // display string e.g. "Free" or "$29"
-//         priceOld?: "$39",          // optional strikethrough
-//         priceNote: "No credit card required",
-//         description: "...",
-//         cta: "Get started",
-//         ctaHref: "https://...",
-//         badge?: "Most popular",    // optional top banner
-//         highlight: false,          // indigo tint card
-//         dark: false,               // dark card (enterprise)
-//         featuresLabel: "INCLUDES", // optional label above features
-//         features: ["...", "..."],
-//       }
-//     ]
-//   }
-//
-// Option B — No API yet? Set PRICING_API to "" and edit
-//   FALLBACK_TIERS below to match your current plans.
-//   Update admin panel → update FALLBACK_TIERS here.
-//
-// ─────────────────────────────────────────────────────────────
-const PRICING_API  = "https://us-central1-my-pulseroom-project.cloudfunctions.net/pricing";                       // ← paste your API URL here
-const PRICING_PAGE = `${APP_URL}/pricing`;     // ← full pricing page in app
+const HOST_SIGNUP = "https://app.pulseroom.app/host/signup";
+const HOST_LOGIN = "https://app.pulseroom.app/host/login";
 
-// ─────────────────────────────────────────────────────────────
-// FALLBACK (used when API is empty or fails)
-// Mirror your admin panel tiers here
-// ─────────────────────────────────────────────────────────────
-const FALLBACK_TIERS: Tier[] = [
+type Plan = {
+  id: string;
+  name: string;
+  price: string;
+  note: string;
+  description: string;
+  badge?: string;
+  dark?: boolean;
+  highlight?: boolean;
+  ctaLabel: string;
+  ctaHref: string;
+  ctaInternal?: boolean;
+  features: string[];
+};
+
+const plans: Plan[] = [
   {
-    id: "free",
-    name: "Free",
-    price: "Free",
-    priceNote: "No credit card required",
-    description: "Run your first PulseRoom session today.",
-    cta: "Get started",
-    ctaHref: APP_URL,
-    badge: null,
-    highlight: false,
-    dark: false,
-    featuresLabel: "INCLUDES",
+    id: "basic",
+    name: "Basic",
+    price: "$12",
+    note: "/mo · or $96/yr",
+    description: "Essential live engagement for small groups.",
+    ctaLabel: "Get started",
+    ctaHref: HOST_SIGNUP,
     features: [
-      "Up to 10 participants",
-      "1 live session at a time",
-      "Basic alignment visualisation",
-      "Session summary export",
+      "Live sessions per month (10)",
+      "Participants per session (30)",
+      "Session duration (60 min)",
+      "Agenda items (5)",
+      "Dimensions per agenda (5)",
+      "Live radar engagement",
+      "Basic facilitator controls",
     ],
   },
   {
     id: "pro",
     name: "Pro",
     price: "$29",
-    priceOld: "$39",
-    priceNote: "/mo · billed yearly",
-    description: "For facilitators who run regular workshops.",
-    cta: "Start free trial",
-    ctaHref: `${APP_URL}/signup?plan=pro`,
-    badge: "Most popular",
-    highlight: true,
-    dark: false,
-    featuresLabel: "EVERYTHING IN FREE +",
+    note: "/mo · or $228/yr",
+    description: "Structured sessions with group workflows and analytics.",
+    ctaLabel: "Get started",
+    ctaHref: HOST_SIGNUP,
     features: [
-      "Up to 30 participants",
-      "Unlimited sessions",
-      "Full signal library",
-      "PDF decision artifact export",
-      "Custom signal weighting",
-      "Priority support",
+      "Live sessions per month (50)",
+      "Participants per session (100)",
+      "Session duration (120 min)",
+      "Agenda items (15)",
+      "Dimensions per agenda (8)",
+      "Group mode (Included)",
+      "Groups per session (5)",
+      "Analytics reports",
     ],
   },
   {
-    id: "team",
-    name: "Team",
+    id: "premium-ai",
+    name: "Premium AI",
     price: "$79",
-    priceNote: "/mo · billed yearly",
-    description: "For teams running multiple workshops a month.",
-    cta: "Start free trial",
-    ctaHref: `${APP_URL}/signup?plan=team`,
-    badge: "For teams",
-    highlight: false,
-    dark: false,
-    featuresLabel: "EVERYTHING IN PRO +",
+    note: "/mo · or $708/yr",
+    description: "Full PulseRoom with AI reports and decision intelligence.",
+    badge: "Most popular",
+    highlight: true,
+    ctaLabel: "Get started",
+    ctaHref: HOST_SIGNUP,
     features: [
-      "5 facilitator seats",
-      "Shared session library",
-      "Team analytics dashboard",
-      "Brand kit",
-      "SSO / SAML",
+      "Live sessions per month (150)",
+      "Participants per session (300)",
+      "Session duration (180 min)",
+      "Agenda items (30)",
+      "Dimensions per agenda (12)",
+      "Group mode (Included)",
+      "AI reports",
+      "Decision intelligence workflows",
     ],
   },
   {
     id: "enterprise",
     name: "Enterprise",
     price: "Let's talk",
-    priceNote: "Custom pricing",
-    description: "For organisations running PulseRoom at scale.",
-    cta: "Book a call",
-    ctaHref: "https://calendar.app.google/WMFb5GpB8wNxyWcZ8",
+    note: "Custom pricing",
+    description: "For institutional deployment, larger teams, and custom requirements.",
     badge: "Enterprise",
-    highlight: false,
     dark: true,
-    featuresLabel: "EVERYTHING IN TEAM +",
+    ctaLabel: "Contact us",
+    ctaHref: "/contact",
+    ctaInternal: true,
     features: [
-      "Unlimited seats",
-      "Dedicated CSM",
-      "Custom integrations",
-      "SLA & compliance docs",
-      "Onboarding & training",
+      "Custom participant and session limits",
+      "Advanced enablement and onboarding",
+      "Custom workflows and integrations",
+      "Institutional rollout support",
+      "Priority commercial support",
     ],
   },
 ];
 
-// ─────────────────────────────────────────────────────────────
-// Types
-// ─────────────────────────────────────────────────────────────
-type Tier = {
-  id: string;
-  name: string;
-  price: string;
-  priceOld?: string;
-  priceNote: string;
-  description: string;
-  cta: string;
-  ctaHref: string;
-  badge: string | null;
-  highlight: boolean;
-  dark: boolean;
-  featuresLabel?: string;
-  features: string[];
-};
-
-// ─────────────────────────────────────────────────────────────
-// Sub-components
-// ─────────────────────────────────────────────────────────────
-function CheckIcon() {
+function CheckIcon({ dark = false }: { dark?: boolean }) {
   return (
-    <svg
-      className="pricing-check"
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      aria-hidden="true"
+    <span
+      className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+      style={{
+        background: dark ? "rgba(129,140,248,0.18)" : "rgba(99,102,241,0.12)",
+        color: dark ? "#C7D2FE" : "#6366F1",
+      }}
+      aria-hidden
     >
-      <circle cx="7" cy="7" r="7" fill="currentColor" fillOpacity="0.12" />
-      <path
-        d="M4 7l2 2 4-4"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+      <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
+        <path
+          d="M4 7l2 2 4-4"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
   );
 }
 
-function TierCard({ tier }: { tier: Tier }) {
-  const cardClass = [
-    "pricing-card",
-    "anim-hidden",
-    tier.highlight ? "pricing-card--highlight" : "",
-    tier.dark       ? "pricing-card--dark"      : "",
-  ].filter(Boolean).join(" ");
+function PlanButton({
+  href,
+  label,
+  internal,
+  primary,
+  dark,
+}: {
+  href: string;
+  label: string;
+  internal?: boolean;
+  primary?: boolean;
+  dark?: boolean;
+}) {
+  const className = primary
+    ? "inline-flex w-full items-center justify-center rounded-[1.15rem] px-5 py-4 text-base font-semibold text-white shadow-[0_14px_30px_rgba(99,102,241,0.28)] transition hover:translate-y-[-1px]"
+    : dark
+    ? "inline-flex w-full items-center justify-center rounded-[1.15rem] px-5 py-4 text-base font-semibold text-white shadow-[0_12px_28px_rgba(99,102,241,0.20)] transition hover:translate-y-[-1px]"
+    : "inline-flex w-full items-center justify-center rounded-[1.15rem] border px-5 py-4 text-base font-semibold transition hover:translate-y-[-1px]";
 
-  const ctaClass = tier.highlight
-    ? "pricing-cta pricing-cta--primary"
-    : tier.dark
-    ? "pricing-cta pricing-cta--dark"
-    : "pricing-cta pricing-cta--secondary";
+  const style = primary
+    ? {
+        background: "linear-gradient(90deg, #6366F1 0%, #6D28D9 100%)",
+      }
+    : dark
+    ? {
+        background: "linear-gradient(90deg, #6366F1 0%, #4F46E5 100%)",
+      }
+    : {
+        background: "#FFFFFF",
+        borderColor: "rgba(99,102,241,0.28)",
+        color: "#0F172A",
+        boxShadow: "0 4px 16px rgba(15,23,42,0.06)",
+      };
 
-  const badgeClass = tier.dark
-    ? "pricing-badge pricing-badge--dark"
-    : tier.highlight
-    ? "pricing-badge pricing-badge--highlight"
-    : "pricing-badge";
+  if (internal) {
+    return (
+      <Link href={href} className={className} style={style}>
+        {label}
+      </Link>
+    );
+  }
 
   return (
-    <div className={cardClass}>
-      {/* Top badge */}
-      {tier.badge && (
-        <div className={badgeClass}>{tier.badge}</div>
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className} style={style}>
+      {label}
+    </a>
+  );
+}
+
+function PricingCard({ plan }: { plan: Plan }) {
+  const isDark = !!plan.dark;
+  const isHighlight = !!plan.highlight;
+
+  return (
+    <div
+      className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border"
+      style={{
+        borderColor: isDark
+          ? "rgba(79,70,229,0.22)"
+          : isHighlight
+          ? "rgba(99,102,241,0.34)"
+          : "rgba(99,102,241,0.12)",
+        background: isDark
+          ? "linear-gradient(180deg,#08122E 0%,#07152F 100%)"
+          : isHighlight
+          ? "linear-gradient(180deg,#F5F7FF 0%,#EEF2FF 100%)"
+          : "#FFFFFF",
+        boxShadow: isDark
+          ? "0 18px 44px rgba(2,6,23,0.16)"
+          : "0 12px 34px rgba(99,102,241,0.07)",
+      }}
+    >
+      {plan.badge ? (
+        <div
+          className="px-6 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.22em]"
+          style={{
+            background: isDark
+              ? "rgba(129,140,248,0.22)"
+              : "linear-gradient(90deg,#6366F1 0%,#4F46E5 100%)",
+            color: "#FFFFFF",
+          }}
+        >
+          {plan.badge}
+        </div>
+      ) : (
+        <div className="h-[42px]" />
       )}
 
-      <div className="pricing-body">
-        {/* Name */}
-        <h3 className="pricing-name">{tier.name}</h3>
-
-        {/* Price */}
-        {tier.priceOld && (
-          <div className="pricing-price-old">{tier.priceOld}</div>
-        )}
-        <div className="pricing-price">{tier.price}</div>
-        <div className="pricing-price-note">{tier.priceNote}</div>
-
-        {/* Description */}
-        <p className="pricing-desc">{tier.description}</p>
-
-        {/* CTA */}
-        <a
-          href={tier.ctaHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={ctaClass}
+      <div className="flex flex-1 flex-col px-8 pb-8 pt-8">
+        <h3
+          className="text-[2.05rem] font-semibold tracking-tight"
+          style={{ color: isDark ? "#FFFFFF" : "#0F172A" }}
         >
-          {tier.cta}
-        </a>
+          {plan.name}
+        </h3>
 
-        {/* Divider */}
-        <div className="pricing-divider" />
+        <div
+          className="mt-4 text-[3.15rem] font-semibold leading-none tracking-tight"
+          style={{ color: isDark ? "#FFFFFF" : "#0F172A" }}
+        >
+          {plan.price}
+        </div>
 
-        {/* Features */}
-        {tier.featuresLabel && (
-          <p className="pricing-features-label">{tier.featuresLabel}</p>
-        )}
-        <ul className="pricing-features">
-          {tier.features.map((f) => (
-            <li key={f} className="pricing-feature">
-              <CheckIcon />
-              <span>{f}</span>
+        <div
+          className="mt-2 text-[15px] leading-6"
+          style={{ color: isDark ? "rgba(226,232,240,0.74)" : "#94A3B8" }}
+        >
+          {plan.note}
+        </div>
+
+        <p
+          className="mt-5 min-h-[72px] text-[15px] leading-8"
+          style={{ color: isDark ? "rgba(226,232,240,0.82)" : "#64748B" }}
+        >
+          {plan.description}
+        </p>
+
+        <div className="mt-6">
+          <PlanButton
+            href={plan.ctaHref}
+            label={plan.ctaLabel}
+            internal={plan.ctaInternal}
+            primary={isHighlight}
+            dark={isDark}
+          />
+        </div>
+
+        <div
+          className="mt-6 h-px"
+          style={{ background: isDark ? "rgba(148,163,184,0.18)" : "#EAEFF7" }}
+        />
+
+        <p
+          className="mt-7 text-[12px] font-semibold uppercase tracking-[0.18em]"
+          style={{ color: isDark ? "rgba(199,210,254,0.88)" : "#94A3B8" }}
+        >
+          Includes
+        </p>
+
+        <ul className="mt-4 grid gap-3">
+          {plan.features.map((feature) => (
+            <li key={feature} className="flex items-start gap-3">
+              <CheckIcon dark={isDark} />
+              <span
+                className="text-[15px] leading-7"
+                style={{ color: isDark ? "rgba(226,232,240,0.88)" : "#475569" }}
+              >
+                {feature}
+              </span>
             </li>
           ))}
         </ul>
@@ -245,91 +279,39 @@ function TierCard({ tier }: { tier: Tier }) {
   );
 }
 
-function SkeletonCards() {
-  return (
-    <>
-      {[1, 2, 3, 4].map((i) => (
-        <div key={i} className="pricing-skeleton" />
-      ))}
-    </>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────
-// Main component
-// ─────────────────────────────────────────────────────────────
 export default function Pricing() {
-  const [tiers,   setTiers]   = useState<Tier[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error,   setError]   = useState(false);
-
-  useEffect(() => {
-    // No API configured — use fallback immediately
-    if (!PRICING_API) {
-      setTiers(FALLBACK_TIERS);
-      setLoading(false);
-      return;
-    }
-
-    // Fetch live pricing from your app's API
-    const controller = new AbortController();
-
-    fetch(PRICING_API, {
-      signal: controller.signal,
-      headers: { "Accept": "application/json" },
-      // No auth header needed — this should be a public endpoint
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data: { tiers: Tier[] }) => {
-        if (Array.isArray(data.tiers) && data.tiers.length > 0) {
-          setTiers(data.tiers);
-        } else {
-          // API returned empty — fall back
-          setTiers(FALLBACK_TIERS);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err.name === "AbortError") return;
-        console.warn("[Pricing] API fetch failed, using fallback tiers.", err);
-        setTiers(FALLBACK_TIERS);
-        setError(true);
-        setLoading(false);
-      });
-
-    return () => controller.abort();
-  }, []);
-
   return (
     <Section
       id="pricing"
       eyebrow="Pricing"
       title="Simple, transparent pricing."
-      subtitle="Start free. Scale when you're ready."
+      subtitle="Choose the plan that fits your room today, then scale as your usage grows."
       className="section-bright"
     >
-      <div className="pricing-grid anim-stagger">
-        {loading ? (
-          <SkeletonCards />
-        ) : (
-          <>
-            {(tiers ?? FALLBACK_TIERS).map((tier) => (
-              <TierCard key={tier.id} tier={tier} />
-            ))}
+      <div className="grid gap-6 xl:grid-cols-4">
+        {plans.map((plan) => (
+          <PricingCard key={plan.id} plan={plan} />
+        ))}
+      </div>
 
-            {/* Footer note */}
-            <div className="pricing-footer">
-              {error && "Showing cached pricing. "}
-              Full pricing details and billing →{" "}
-              <a href={PRICING_PAGE} target="_blank" rel="noopener noreferrer">
-                open in app
-              </a>
-            </div>
-          </>
-        )}
+      <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-[1.6rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#faf7ff_100%)] px-6 py-5 text-center shadow-sm md:flex-row md:text-left">
+        <div>
+          <p className="text-sm font-semibold text-slate-900">
+            Already have an account?
+          </p>
+          <p className="mt-1 text-sm leading-6 text-slate-600">
+            Log in to the PulseRoom app and continue from your host workspace.
+          </p>
+        </div>
+
+        <a
+          href={HOST_LOGIN}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-full border border-violet-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50"
+        >
+          Go to login
+        </a>
       </div>
     </Section>
   );
