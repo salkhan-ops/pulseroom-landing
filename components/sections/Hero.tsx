@@ -234,7 +234,7 @@ export default function Hero() {
               </a>
 
               <Link
-                href="/use-cases"
+                href="/#use-cases"
                 className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-violet-200 bg-white px-7 py-4 text-base font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50"
               >
                 Explore use cases
