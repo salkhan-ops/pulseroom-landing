@@ -47,41 +47,45 @@ export default function VisualProof() {
       eyebrow="Analytics"
       title="After-session analytics."
       subtitle="PulseRoom does not end when the room ends. Compare agendas, compare sessions, and carry the signal forward into review, refinement, and follow-through."
+      className="section-bright"
     >
-      <div className="grid gap-6 xl:grid-cols-3">
+      <div className="grid gap-5 xl:grid-cols-3">
         {analyticsCards.map((card) => (
           <section
             key={card.title}
-            className="overflow-hidden rounded-[2rem] border border-violet-200 bg-white shadow-[0_16px_52px_rgba(124,58,237,0.06)]"
+            className="overflow-hidden rounded-[1.8rem] border border-violet-200 bg-white shadow-[0_14px_42px_rgba(124,58,237,0.06)]"
           >
-            <div className="border-b border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700">
+            <div className="border-b border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-5 sm:p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 sm:text-xs">
                 After the meeting
               </p>
-              <h3 className="mt-3 text-[1.55rem] font-semibold leading-tight tracking-tight text-slate-900">
+
+              <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-[1.7rem]">
                 {card.title}
               </h3>
+
               <p className="mt-3 text-[15px] leading-7 text-slate-600">
                 {card.desc}
               </p>
             </div>
 
-            <div className="p-5">
-              <div className="overflow-hidden rounded-[1.5rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8f4ff_100%)] p-4">
+            <div className="p-5 sm:p-6">
+              <div className="overflow-hidden rounded-[1.3rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8f4ff_100%)] p-3 sm:p-4">
                 <Image
                   src={card.image}
                   alt={card.alt}
                   width={1200}
                   height={800}
+                  unoptimized
                   className="h-auto w-full object-contain"
                 />
               </div>
 
-              <div className="mt-5 space-y-3">
+              <div className="mt-4 space-y-3">
                 {card.bullets.map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-start gap-3 rounded-[1.1rem] border border-violet-200 bg-violet-50/50 px-4 py-3"
+                    className="flex items-start gap-3 rounded-[1rem] border border-violet-200 bg-violet-50/50 px-4 py-3"
                   >
                     <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-600 text-[11px] font-semibold text-white">
                       {index + 1}

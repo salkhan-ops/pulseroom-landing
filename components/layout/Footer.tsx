@@ -1,118 +1,139 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
     <footer
-      style={{
-        background: "#ffffff",
-        borderTop: "1px solid #E2E8F0",
-        marginTop: 56,
-      }}
+      className="border-t py-10 sm:py-12"
+      style={{ borderColor: "rgba(148,163,184,0.16)", background: "#ffffff" }}
     >
-      <Container className="py-12">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr 1.2fr",
-            gap: 28,
-          }}
-        >
+      <Container>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.85fr_0.85fr_1fr]">
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+            <div className="flex items-start gap-3">
               <div
+                className="flex h-12 w-12 items-center justify-center rounded-[1.1rem] text-xl font-extrabold text-white"
                 style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: 12,
-                  display: "grid",
-                  placeItems: "center",
-                  color: "#fff",
-                  fontWeight: 800,
-                  background: "linear-gradient(135deg, #818CF8, #6366F1)",
+                  background: "linear-gradient(135deg, #818CF8 0%, #6366F1 100%)",
                 }}
               >
                 PR
               </div>
+
               <div>
-                <div style={{ fontWeight: 800, color: "#0F172A" }}>{site.name}</div>
-                <div style={{ fontSize: 13, color: "#64748B" }}>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900">
+                  PulseRoom
+                </h3>
+                <p className="mt-1 text-base leading-7 text-slate-500">
                   Decision intelligence platform
-                </div>
+                </p>
               </div>
             </div>
 
-            <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.7, maxWidth: 420 }}>
-              PulseRoom is a web-based software platform that helps facilitators, educators,
-              and teams structure discussion, collect multi-dimensional input, visualize alignment,
-              and produce clearer decision outcomes.
+            <p className="mt-5 max-w-sm text-[15px] leading-8 text-slate-600">
+              PulseRoom is a web-based software platform that helps facilitators,
+              educators, and teams structure discussion, collect multi-dimensional
+              input, visualize alignment, and produce clearer decision outcomes.
             </p>
           </div>
 
           <div>
-            <h4 style={{ color: "#0F172A", fontWeight: 700, marginBottom: 12 }}>Product</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Link href="/#how-it-works" className="footer-link">How it works</Link>
-              <Link href="/#use-cases" className="footer-link">Use cases</Link>
-              <Link href="/pricing" className="footer-link">Pricing</Link>
-              <a href="https://app.pulseroom.app" target="_blank" rel="noopener noreferrer" className="footer-link">
-                Open app
-              </a>
-            </div>
+            <h4 className="text-xl font-semibold text-slate-900">Product</h4>
+            <ul className="mt-4 space-y-3 text-[15px] leading-7 text-slate-600">
+              <li>
+                <Link href="/#how-it-works" className="hover:text-violet-600">
+                  How it works
+                </Link>
+              </li>
+              <li>
+                <Link href="/#use-cases" className="hover:text-violet-600">
+                  Use cases
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-violet-600">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://app.pulseroom.app/host/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-violet-600"
+                >
+                  Open app
+                </a>
+              </li>
+            </ul>
           </div>
 
           <div>
-            <h4 style={{ color: "#0F172A", fontWeight: 700, marginBottom: 12 }}>Company</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Link href="/about" className="footer-link">About</Link>
-              <Link href="/contact" className="footer-link">Contact</Link>
-              <Link href="/blog" className="footer-link">Blog</Link>
-              <Link href="/#faq" className="footer-link">FAQ</Link>
-            </div>
+            <h4 className="text-xl font-semibold text-slate-900">Company</h4>
+            <ul className="mt-4 space-y-3 text-[15px] leading-7 text-slate-600">
+              <li>
+                <Link href="/about" className="hover:text-violet-600">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-violet-600">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-violet-600">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-violet-600">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
           </div>
 
           <div>
-            <h4 style={{ color: "#0F172A", fontWeight: 700, marginBottom: 12 }}>Legal</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Link href="/privacy" className="footer-link">Privacy Policy</Link>
-              <Link href="/terms" className="footer-link">Terms of Service</Link>
-              <Link href="/pricing" className="footer-link">Billing & pricing</Link>
-            </div>
+            <h4 className="text-xl font-semibold text-slate-900">Legal</h4>
+            <ul className="mt-4 space-y-3 text-[15px] leading-7 text-slate-600">
+              <li>
+                <Link href="/privacy" className="hover:text-violet-600">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-violet-600">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-violet-600">
+                  Billing & pricing
+                </Link>
+              </li>
+            </ul>
 
-            <div style={{ marginTop: 18, color: "#64748B", fontSize: 14, lineHeight: 1.7 }}>
-              <div>Email: {site.supportEmail}</div>
-              <div>Sales: {site.salesEmail}</div>
+            <div className="mt-6 space-y-2 text-[15px] leading-7 text-slate-600">
+              <p>
+                <span className="font-medium text-slate-900">Email:</span>{" "}
+                support@pulseroom.app
+              </p>
+              <p>
+                <span className="font-medium text-slate-900">Sales:</span>{" "}
+                sales@pulseroom.app
+              </p>
             </div>
           </div>
         </div>
 
         <div
-          style={{
-            marginTop: 28,
-            paddingTop: 18,
-            borderTop: "1px solid #F1F5F9",
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 12,
-            flexWrap: "wrap",
-            color: "#94A3B8",
-            fontSize: 13,
-          }}
+          className="mt-8 border-t pt-6 text-sm text-slate-400"
+          style={{ borderColor: "rgba(148,163,184,0.14)" }}
         >
-          <div>© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
-          <div>Software platform for structured group decision-making.</div>
+          © 2026 PulseRoom. All rights reserved.
         </div>
       </Container>
-
-          <div
-            className="footer-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 1fr 1fr 1.2fr",
-              gap: 28,
-            }}
-></div>
     </footer>
   );
 }

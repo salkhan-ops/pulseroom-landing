@@ -1,17 +1,20 @@
+"use client";
+
 import Container from "@/components/ui/Container";
-import { APP_URL } from "@/lib/site";
+
+const SIGNUP_URL = "https://app.pulseroom.app/host/signup";
 
 export default function FinalCTA() {
   return (
-    <section className="py-20 sm:py-28" style={{ background: "#ffffff" }}>
+    <section className="py-12 sm:py-16 md:py-20" style={{ background: "#ffffff" }}>
       <Container>
         <div
-          className="relative overflow-hidden rounded-3xl px-10 py-16 text-center anim-scale sm:px-16"
+          className="relative overflow-hidden rounded-[2rem] px-5 py-10 text-center sm:px-8 sm:py-12 md:px-12 md:py-14 anim-scale"
           style={{
             background: "linear-gradient(160deg, #EEF2FF 0%, #E0E7FF 45%, #EEF2FF 100%)",
             border: "1px solid rgba(99,102,241,0.18)",
             boxShadow:
-              "0 0 0 1px rgba(255,255,255,0.8) inset, 0 8px 80px rgba(99,102,241,0.16)",
+              "0 0 0 1px rgba(255,255,255,0.8) inset, 0 8px 60px rgba(99,102,241,0.14)",
           }}
         >
           <div
@@ -28,6 +31,7 @@ export default function FinalCTA() {
             aria-hidden
             style={{ background: "rgba(99,102,241,0.18)" }}
           />
+
           <div
             className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full blur-3xl glow-pulse"
             aria-hidden
@@ -35,7 +39,7 @@ export default function FinalCTA() {
           />
 
           <div className="relative">
-            <div className="eyebrow-pill mx-auto" style={{ width: "fit-content" }}>
+            <div className="eyebrow-pill mx-auto mb-4" style={{ width: "fit-content" }}>
               <span
                 className="h-1.5 w-1.5 rounded-full pulse-dot"
                 style={{ background: "#6366F1", flexShrink: 0 }}
@@ -44,47 +48,46 @@ export default function FinalCTA() {
             </div>
 
             <h2
-              className="text-[2.65rem] font-semibold tracking-tight sm:text-[3rem] lg:text-[3.2rem]"
-              style={{
-                color: "#0F172A",
-                lineHeight: "1.04",
-                letterSpacing: "-0.03em",
-              }}
+              className="text-[2.15rem] font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+              style={{ color: "#0F172A", lineHeight: "1.06", letterSpacing: "-0.03em" }}
             >
-              Ready to turn discussion into <span className="gradient-text">decisions?</span>
+              Ready to turn discussion
+              <br />
+              into <span className="gradient-text">decisions?</span>
             </h2>
 
             <p
-              className="mx-auto mt-4 max-w-[36rem] text-[1.06rem] leading-8"
+              className="mx-auto mt-4 max-w-xl text-base leading-7 sm:text-lg"
               style={{ color: "#64748B" }}
             >
-              Start with PulseRoom and structure the room, surface live signals, and leave with a usable outcome.
+              Jump into PulseRoom now and start structuring live discussion with clarity.
             </p>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <a
-                href={APP_URL}
+                href={SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-glow inline-flex items-center gap-2 rounded-2xl px-8 py-4 text-base font-bold text-white"
+                className="btn-glow inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-4 text-base font-bold text-white sm:w-auto sm:px-8"
                 style={{
                   background: "#6366F1",
-                  boxShadow: "0 4px 24px rgba(99,102,241,0.4)",
+                  boxShadow: "0 4px 24px rgba(99,102,241,0.35)",
                 }}
               >
                 Get Started →
               </a>
+
               <a
-                href="#why-now"
-                className="inline-flex items-center gap-2 rounded-2xl px-6 py-4 text-base font-semibold transition-colors"
+                href="/#use-cases"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl px-6 py-4 text-base font-semibold transition-colors sm:w-auto"
                 style={{
-                  background: "rgba(255,255,255,0.8)",
+                  background: "rgba(255,255,255,0.82)",
                   border: "1px solid rgba(99,102,241,0.2)",
                   color: "#374151",
                   boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
                 }}
               >
-                Learn more
+                Explore use cases
               </a>
             </div>
           </div>

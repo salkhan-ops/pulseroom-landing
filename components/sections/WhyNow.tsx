@@ -7,11 +7,11 @@ const problems = [
   },
   {
     title: "A few voices dominate",
-    desc: "In high-stakes rooms, quieter signals often matter most—but they are the easiest to miss.",
+    desc: "In high-stakes rooms, quieter signals often matter most—but they're the easiest to miss.",
   },
   {
     title: "No durable artifact",
-    desc: "A long doc or slide deck is not the same as a clear decision record with rationale and ownership.",
+    desc: "A long doc or slide deck isn't the same as a clear decision record with rationale and ownership.",
   },
 ];
 
@@ -30,7 +30,7 @@ const notIdeal = [
 function Dot({ active }: { active?: boolean }) {
   return (
     <span
-      className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full"
+      className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full"
       style={{ background: active ? "#6366F1" : "#CBD5E1" }}
       aria-hidden
     />
@@ -46,25 +46,31 @@ export default function WhyNow() {
       subtitle="PulseRoom is built for rooms where stakes are real and outcomes must hold up after the session."
       className="section-bright"
     >
-      <div className="grid gap-5 md:grid-cols-3 anim-stagger">
+      <div className="grid gap-4 md:grid-cols-3 anim-stagger">
         {problems.map((it) => (
-          <div key={it.title} className="rounded-[1.75rem] p-7 card-bright anim-hidden">
+          <div
+            key={it.title}
+            className="rounded-[1.6rem] p-5 sm:p-6 card-bright anim-hidden"
+          >
             <h3
-              className="text-[1.45rem] font-semibold leading-tight tracking-tight"
+              className="text-xl font-bold leading-tight sm:text-[1.55rem]"
               style={{ color: "#0F172A" }}
             >
               {it.title}
             </h3>
-            <p className="mt-3 text-base leading-8" style={{ color: "#64748B" }}>
+            <p
+              className="mt-3 text-[15px] leading-7 sm:text-base"
+              style={{ color: "#64748B" }}
+            >
               {it.desc}
             </p>
           </div>
         ))}
       </div>
 
-      <div className="mt-6 grid gap-5 lg:grid-cols-2">
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <div
-          className="rounded-[1.75rem] p-7 anim-hidden"
+          className="rounded-[1.7rem] p-5 sm:p-6 anim-hidden"
           style={{
             background: "linear-gradient(135deg, #FAFBFF 0%, #F5F3FF 100%)",
             border: "1px solid rgba(99,102,241,0.12)",
@@ -72,7 +78,7 @@ export default function WhyNow() {
           }}
         >
           <p
-            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em]"
+            className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"
             style={{ color: "#94A3B8" }}
           >
             Before PulseRoom
@@ -85,19 +91,19 @@ export default function WhyNow() {
             ].map((b) => (
               <li
                 key={b}
-                className="flex items-start gap-3 text-[1rem] leading-7"
+                className="flex items-start gap-3 text-[15px] leading-7 sm:text-base"
                 style={{ color: "#475569" }}
               >
                 <Dot />
-                {b}
+                <span>{b}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="rounded-[1.75rem] p-7 card-bright anim-hidden">
+        <div className="rounded-[1.7rem] p-5 sm:p-6 card-bright anim-hidden">
           <p
-            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em]"
+            className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"
             style={{ color: "#6366F1" }}
           >
             After PulseRoom
@@ -110,21 +116,21 @@ export default function WhyNow() {
             ].map((a) => (
               <li
                 key={a}
-                className="flex items-start gap-3 text-[1rem] leading-7"
+                className="flex items-start gap-3 text-[15px] leading-7 sm:text-base"
                 style={{ color: "#475569" }}
               >
                 <Dot active />
-                {a}
+                <span>{a}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      <div className="mt-5 grid gap-5 md:grid-cols-2">
-        <div className="rounded-[1.75rem] p-7 card-bright anim-hidden">
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <div className="rounded-[1.7rem] p-5 sm:p-6 card-bright anim-hidden">
           <p
-            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em]"
+            className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"
             style={{ color: "#6366F1" }}
           >
             PulseRoom is for
@@ -133,19 +139,19 @@ export default function WhyNow() {
             {forTeams.map((x) => (
               <li
                 key={x}
-                className="flex items-start gap-3 text-[1rem] leading-7"
+                className="flex items-start gap-3 text-[15px] leading-7 sm:text-base"
                 style={{ color: "#475569" }}
               >
                 <Dot active />
-                {x}
+                <span>{x}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="rounded-[1.75rem] p-7 card-bright anim-hidden">
+        <div className="rounded-[1.7rem] p-5 sm:p-6 card-bright anim-hidden">
           <p
-            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em]"
+            className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"
             style={{ color: "#94A3B8" }}
           >
             Not ideal for
@@ -154,11 +160,11 @@ export default function WhyNow() {
             {notIdeal.map((x) => (
               <li
                 key={x}
-                className="flex items-start gap-3 text-[1rem] leading-7"
+                className="flex items-start gap-3 text-[15px] leading-7 sm:text-base"
                 style={{ color: "#475569" }}
               >
                 <Dot />
-                {x}
+                <span>{x}</span>
               </li>
             ))}
           </ul>

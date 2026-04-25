@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { APP_URL } from "@/lib/site";
@@ -53,57 +55,70 @@ const participantInitials = ["S", "J", "P", "T", "A"];
 function AlignmentViz() {
   return (
     <div className="overflow-hidden rounded-[1.75rem] border border-violet-200 bg-white shadow-[0_16px_40px_rgba(124,58,237,0.13)]">
-      <div className="flex items-center justify-between border-b border-violet-100 px-5 py-3">
-        <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-          <span className="text-sm font-semibold text-slate-800">Live session · 6 participants</span>
+      <div className="flex items-center justify-between gap-3 border-b border-violet-100 px-4 py-3 sm:px-5">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" />
+          <span className="truncate text-sm font-semibold text-slate-800 sm:text-[15px]">
+            Live session · 6 participants
+          </span>
         </div>
-        <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700">
+
+        <span className="shrink-0 rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700 sm:text-sm">
           78% aligned
         </span>
       </div>
 
-      <div className="grid grid-cols-[auto_1fr_auto] items-center gap-5 px-5 py-4">
-        <div className="flex items-center justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-3">
-          <div className="relative h-28 w-28">
-            <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90">
-              <circle cx="60" cy="60" r="44" fill="none" stroke="#E9D5FF" strokeWidth="12" />
-              <circle
-                cx="60"
-                cy="60"
-                r="44"
-                fill="none"
-                stroke="url(#heroRing)"
-                strokeWidth="12"
-                strokeLinecap="round"
-                strokeDasharray={`${2 * Math.PI * 44}`}
-                strokeDashoffset={`${2 * Math.PI * 44 * (1 - 0.78)}`}
-              />
-              <defs>
-                <linearGradient id="heroRing" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#7C3AED" />
-                  <stop offset="100%" stopColor="#A855F7" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-semibold tracking-tight text-slate-900">78%</span>
-              <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-500">
-                Alignment
-              </span>
+      <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-5">
+        {/* Ring */}
+        <div className="flex justify-center lg:justify-start">
+          <div className="flex items-center justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-3">
+            <div className="relative h-28 w-28 sm:h-32 sm:w-32">
+              <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90">
+                <circle cx="60" cy="60" r="44" fill="none" stroke="#E9D5FF" strokeWidth="12" />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="44"
+                  fill="none"
+                  stroke="url(#heroRing)"
+                  strokeWidth="12"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 44}`}
+                  strokeDashoffset={`${2 * Math.PI * 44 * (1 - 0.78)}`}
+                />
+                <defs>
+                  <linearGradient id="heroRing" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#7C3AED" />
+                    <stop offset="100%" stopColor="#A855F7" />
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[2rem]">
+                  78%
+                </span>
+                <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-500">
+                  Alignment
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
+        {/* Signal bars */}
         <div className="min-w-0 space-y-2.5">
           {signals.map((signal) => (
             <div key={signal.label}>
               <div className="mb-1 flex items-center justify-between gap-2">
-                <span className="truncate text-xs font-medium text-slate-500">{signal.label}</span>
-                <span className="shrink-0 text-xs font-bold" style={{ color: signal.color }}>
+                <span className="truncate text-xs font-medium text-slate-500 sm:text-[13px]">
+                  {signal.label}
+                </span>
+                <span className="shrink-0 text-xs font-bold sm:text-[13px]" style={{ color: signal.color }}>
                   {signal.score}/10
                 </span>
               </div>
+
               <div className="h-1.5 rounded-full bg-slate-100">
                 <div
                   className="h-1.5 rounded-full"
@@ -115,6 +130,7 @@ function AlignmentViz() {
               </div>
             </div>
           ))}
+
           <div className="flex items-center gap-2 border-t border-violet-100 pt-2.5">
             <div className="flex -space-x-2">
               {participantInitials.map((p, i) => (
@@ -131,21 +147,23 @@ function AlignmentViz() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 self-stretch">
-          <div className="flex flex-1 flex-col justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Best-fit room</p>
-            <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-700">
-              Board meeting /
-              <br />
-              executive alignment
+        {/* Info cards */}
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Best-fit room
+            </p>
+            <p className="mt-2 text-base font-semibold leading-7 text-slate-700">
+              Board meeting / executive alignment
             </p>
           </div>
-          <div className="flex flex-1 flex-col justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">Signal style</p>
-            <p className="mt-1.5 text-sm font-semibold leading-snug text-slate-700">
-              Live audience +
-              <br />
-              presenter visibility
+
+          <div className="rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Signal style
+            </p>
+            <p className="mt-2 text-base font-semibold leading-7 text-slate-700">
+              Live audience + presenter visibility
             </p>
           </div>
         </div>
@@ -158,7 +176,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#f5f0ff_0%,#fbf8ff_44%,#ffffff_100%)]"
+      className="relative overflow-x-clip bg-[linear-gradient(180deg,#f5f0ff_0%,#fbf8ff_44%,#ffffff_100%)]"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -171,39 +189,57 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-10 md:px-8 md:pb-20 md:pt-14 lg:px-12 lg:pt-16">
-        <div className="mb-10 flex flex-col items-center text-center md:mb-12">
+      <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-8 sm:px-6 sm:pb-16 md:px-8 md:pb-20 md:pt-12 lg:px-12 lg:pt-16">
+        <div className="mb-8 flex flex-col items-center text-center sm:mb-10 md:mb-12">
           <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
             <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
             Decision intelligence platform
           </span>
 
-          <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[0.94] tracking-tight text-slate-950 sm:text-6xl lg:text-[5rem] xl:text-[5.5rem]">
+          <h1
+            className="mt-5 max-w-4xl font-semibold tracking-tight text-slate-950"
+            style={{
+              fontSize: "clamp(3rem, 10vw, 5.5rem)",
+              lineHeight: "0.94",
+              letterSpacing: "-0.05em",
+            }}
+          >
             See alignment live.
           </h1>
 
-          <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+          <p
+            className="mt-5 max-w-2xl text-slate-600"
+            style={{
+              fontSize: "clamp(1rem, 3.8vw, 1.125rem)",
+              lineHeight: "1.9",
+            }}
+          >
             PulseRoom helps groups structure the room, collect live multi-dimensional
             input, and leave with a clearer picture of what the audience, class, or
             leadership team actually understands.
           </p>
         </div>
 
-        <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-12">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
+          {/* LEFT */}
           <div className="flex flex-col lg:pt-2">
             <div className="grid gap-3">
               {featureCards.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 rounded-2xl border border-violet-100 bg-white px-5 py-4 shadow-sm"
+                  className="flex items-center gap-4 rounded-2xl border border-violet-100 bg-white px-4 py-4 shadow-sm sm:px-5"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#f5f0ff,#ede9fe)] shadow-[inset_0_1px_2px_rgba(124,58,237,0.08)]">
                     {item.icon}
                   </div>
+
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-slate-800">{item.label}</p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{item.desc}</p>
+                    <p className="mt-0.5 text-xs leading-6 text-slate-500 sm:text-[13px]">
+                      {item.desc}
+                    </p>
                   </div>
+
                   <svg
                     className="ml-auto shrink-0 text-violet-300"
                     width="16"
@@ -223,27 +259,28 @@ export default function Hero() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-              <a
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link
                 href={APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-w-[220px] items-center justify-center rounded-full bg-[linear-gradient(90deg,#7C3AED_0%,#9333EA_55%,#6D28D9_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.24)] transition hover:translate-y-[-1px]"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(90deg,#7C3AED_0%,#9333EA_55%,#6D28D9_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.24)] transition hover:translate-y-[-1px] sm:min-w-[220px] sm:w-auto"
               >
-                Try PulseRoom free
-              </a>
+                Get Started
+              </Link>
 
               <Link
                 href="/#use-cases"
-                className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-violet-200 bg-white px-7 py-4 text-base font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50"
+                className="inline-flex w-full items-center justify-center rounded-full border border-violet-200 bg-white px-7 py-4 text-base font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50 sm:min-w-[220px] sm:w-auto"
               >
                 Explore use cases
               </Link>
             </div>
 
-            <div className="mt-auto pt-8">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Trusted in</p>
-              <div className="grid gap-3">
+            <div className="mt-8 pt-2">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                Trusted in
+              </p>
+
+              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
                 {[
                   { icon: "🎓", label: "University lecture halls" },
                   { icon: "🏢", label: "Executive strategy sessions" },
@@ -261,18 +298,20 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* RIGHT */}
           <div className="self-start">
             <div className="relative">
               <div className="absolute -inset-5 rounded-[2.7rem] bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.18),transparent_66%)] blur-2xl" />
-              <div className="relative overflow-hidden rounded-[2.35rem] border border-violet-200 bg-white p-3 shadow-[0_26px_70px_rgba(124,58,237,0.08)]">
-                <div className="overflow-hidden rounded-[2rem]">
+
+              <div className="relative overflow-hidden rounded-[2.1rem] border border-violet-200 bg-white p-2.5 shadow-[0_26px_70px_rgba(124,58,237,0.08)] sm:p-3">
+                <div className="overflow-hidden rounded-[1.7rem] sm:rounded-[2rem]">
                   <Image
                     src="/use-cases/cover/board_meeting.webp"
                     alt="PulseRoom in a premium board meeting setting"
                     width={1792}
                     height={1024}
                     priority
-                    sizes="(min-width: 1024px) 52vw, 100vw"
+                    sizes="(max-width: 1024px) 100vw, 56vw"
                     className="h-auto w-full object-cover"
                   />
                 </div>

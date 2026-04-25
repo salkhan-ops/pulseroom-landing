@@ -75,7 +75,7 @@ export const site = {
     ctas: [
       {
         key: "start",
-        title: "Try PulseRoom free",
+        title: "Get Started",
         blurb: "Run your first session in minutes. No credit card required.",
         href: APP_URL,
         badge: "Free tier",
