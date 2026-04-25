@@ -24,14 +24,14 @@ export default function Section({
     <section
       id={id}
       className={cn(
-        "scroll-mt-24 py-12 sm:py-16 md:py-20 lg:py-24",
+        "scroll-mt-24 py-14 sm:py-18 md:py-22 lg:py-28",
         sectionClass
       )}
     >
       <div className="section-divider" style={{ marginBottom: 0 }} />
 
       <Container>
-        <div className="mb-8 max-w-3xl anim-hidden sm:mb-10 md:mb-12">
+        <div className="mb-10 max-w-3xl anim-hidden sm:mb-12 md:mb-14">
           {eyebrow && (
             <div className="eyebrow-pill mb-4 sm:mb-5">
               <span
@@ -43,11 +43,11 @@ export default function Section({
           )}
 
           <h2
-            className="text-[2.2rem] font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+            className="max-w-[14ch] text-[2.35rem] font-extrabold tracking-tight sm:text-5xl md:text-[3.5rem]"
             style={{
               color: "#0F172A",
-              lineHeight: "1.06",
-              letterSpacing: "-0.03em",
+              lineHeight: "0.98",
+              letterSpacing: "-0.045em",
             }}
           >
             {title}
@@ -55,8 +55,8 @@ export default function Section({
 
           {subtitle && (
             <p
-              className="mt-3 text-base leading-8 sm:mt-4 sm:text-lg"
-              style={{ color: "#64748B", maxWidth: "42rem" }}
+              className="mt-4 text-[1.02rem] leading-8 sm:text-[1.08rem]"
+              style={{ color: "#64748B", maxWidth: "44rem" }}
             >
               {subtitle}
             </p>

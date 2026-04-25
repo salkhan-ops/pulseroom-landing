@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { site, APP_URL } from "@/lib/site";
 import "./header.css";
 
@@ -120,6 +121,7 @@ export default function Header() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   const burgerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -158,20 +160,20 @@ export default function Header() {
     () => [
       { label: "How it works", href: "/#how-it-works" },
       { label: "Outcomes", href: "/#outcomes" },
-      { label: "Get PulseRoom", href: "/#get-pulseroom" },
+      { label: "Pricing", href: "/pricing" },
     ],
     [],
   );
 
-const resourcesItems: SimpleItem[] = useMemo(
-  () => [
-    { label: "Use cases", href: "/#use-cases" },
-    { label: "Visual proof", href: "/#proof" },
-    { label: "FAQ", href: "/#faq" },
-    { label: "Blog / Decision notes", href: "/blog" },
-  ],
-  [],
-);
+  const resourcesItems: SimpleItem[] = useMemo(
+    () => [
+      { label: "Use cases", href: "/#use-cases" },
+      { label: "Visual proof", href: "/#proof" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Blog / Decision notes", href: "/blog" },
+    ],
+    [],
+  );
 
   return (
     <>
@@ -199,7 +201,10 @@ const resourcesItems: SimpleItem[] = useMemo(
           </Link>
 
           <nav className="header__nav" aria-label="Primary navigation">
-            <Link href="/" className="header__nav-link">
+            <Link
+              href="/"
+              className={`header__nav-link${pathname === "/" ? " header__nav-link--active" : ""}`}
+            >
               Home
             </Link>
 
@@ -211,7 +216,10 @@ const resourcesItems: SimpleItem[] = useMemo(
               items={productItems}
             />
 
-            <Link href="/pricing" className="header__nav-link">
+            <Link
+              href="/pricing"
+              className={`header__nav-link${pathname === "/pricing" ? " header__nav-link--active" : ""}`}
+            >
               Pricing
             </Link>
 
@@ -223,7 +231,10 @@ const resourcesItems: SimpleItem[] = useMemo(
               items={resourcesItems}
             />
 
-            <Link href="/contact" className="header__nav-link">
+            <Link
+              href="/contact"
+              className={`header__nav-link${pathname === "/contact" ? " header__nav-link--active" : ""}`}
+            >
               Contact
             </Link>
           </nav>
@@ -235,7 +246,7 @@ const resourcesItems: SimpleItem[] = useMemo(
               rel="noopener noreferrer"
               className="header__cta"
             >
-              <span className="header__cta-text">Get Started</span>
+              <span className="header__cta-text">Start free</span>
               <span className="header__cta-arrow" aria-hidden="true">
                 →
               </span>
@@ -350,7 +361,7 @@ const resourcesItems: SimpleItem[] = useMemo(
             className="mobile-drawer__cta"
             onClick={() => setMobileOpen(false)}
           >
-            Get Started →
+            Start free →
           </a>
         </nav>
       </div>

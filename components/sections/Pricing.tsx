@@ -10,6 +10,7 @@ type Plan = {
   price: string;
   note: string;
   description: string;
+  anchor: string;
   badge?: string;
   dark?: boolean;
   highlight?: boolean;
@@ -26,6 +27,7 @@ const plans: Plan[] = [
     price: "$12",
     note: "/mo · or $96/yr",
     description: "Essential live engagement for small groups.",
+    anchor: "For first sessions and lighter facilitation needs.",
     ctaLabel: "Get started",
     ctaHref: HOST_SIGNUP,
     features: [
@@ -44,6 +46,7 @@ const plans: Plan[] = [
     price: "$29",
     note: "/mo · or $228/yr",
     description: "Structured sessions with group workflows and analytics.",
+    anchor: "Best for recurring workshops and more serious team use.",
     ctaLabel: "Get started",
     ctaHref: HOST_SIGNUP,
     features: [
@@ -63,6 +66,7 @@ const plans: Plan[] = [
     price: "$79",
     note: "/mo · or $708/yr",
     description: "Full PulseRoom with AI reports and decision intelligence.",
+    anchor: "For heavier usage, richer review, and AI-supported follow-through.",
     badge: "Most popular",
     highlight: true,
     ctaLabel: "Get started",
@@ -84,6 +88,7 @@ const plans: Plan[] = [
     price: "Let's talk",
     note: "Custom pricing",
     description: "For institutional deployment, larger teams, and custom requirements.",
+    anchor: "For institutional rollout, enablement, and commercial support.",
     badge: "Enterprise",
     dark: true,
     ctaLabel: "Contact us",
@@ -177,7 +182,7 @@ function PricingCard({ plan }: { plan: Plan }) {
 
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border"
+      className="pricing-card relative flex h-full flex-col overflow-hidden rounded-[2rem] border"
       style={{
         borderColor: isDark
           ? "rgba(79,70,229,0.22)"
@@ -194,6 +199,17 @@ function PricingCard({ plan }: { plan: Plan }) {
           : "0 12px 34px rgba(99,102,241,0.07)",
       }}
     >
+      {!isDark && (
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-24"
+          style={{
+            background: isHighlight
+              ? "linear-gradient(180deg, rgba(255,255,255,0.28), transparent)"
+              : "linear-gradient(180deg, rgba(99,102,241,0.04), transparent)",
+          }}
+        />
+      )}
+
       {plan.badge ? (
         <div
           className="px-6 py-3 text-center text-[12px] font-semibold uppercase tracking-[0.22em]"
@@ -238,6 +254,17 @@ function PricingCard({ plan }: { plan: Plan }) {
         >
           {plan.description}
         </p>
+
+        <div
+          className="mt-4 rounded-[1.15rem] px-4 py-3 text-sm leading-6"
+          style={{
+            background: isDark ? "rgba(129,140,248,0.12)" : "rgba(99,102,241,0.06)",
+            color: isDark ? "rgba(224,231,255,0.9)" : "#475569",
+            border: isDark ? "1px solid rgba(129,140,248,0.12)" : "1px solid rgba(99,102,241,0.1)",
+          }}
+        >
+          {plan.anchor}
+        </div>
 
         <div className="mt-6">
           <PlanButton
@@ -284,17 +311,33 @@ export default function Pricing() {
     <Section
       id="pricing"
       eyebrow="Pricing"
-      title="Simple, transparent pricing."
-      subtitle="Choose the plan that fits your room today, then scale as your usage grows."
+      title="Start small. Scale when the room gets more serious."
+      subtitle="Simple pricing for individuals and teams, with a clear path to institutional rollout when PulseRoom becomes part of your operating rhythm."
       className="section-bright"
     >
+      <div className="mb-6 grid gap-4 md:grid-cols-3 xl:grid-cols-3">
+        {[
+          "No credit card needed to explore the product",
+          "Upgrade when usage, group size, or analytics depth grows",
+          "Enterprise support available for institutional rollout",
+        ].map((item) => (
+          <div
+            key={item}
+            className="rounded-[1.35rem] border border-violet-100 bg-white px-5 py-4 text-sm leading-6 text-slate-600 shadow-sm"
+          >
+            <span className="mr-2 font-semibold text-violet-700">•</span>
+            {item}
+          </div>
+        ))}
+      </div>
+
       <div className="grid gap-6 xl:grid-cols-4">
         {plans.map((plan) => (
           <PricingCard key={plan.id} plan={plan} />
         ))}
       </div>
 
-      <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-[1.6rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#faf7ff_100%)] px-6 py-5 text-center shadow-sm md:flex-row md:text-left">
+      <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-[1.8rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#faf7ff_100%)] px-6 py-5 text-center shadow-sm md:flex-row md:text-left">
         <div>
           <p className="text-sm font-semibold text-slate-900">
             Already have an account?

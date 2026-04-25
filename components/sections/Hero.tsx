@@ -51,6 +51,11 @@ const signals = [
 
 const participantColors = ["#7C3AED", "#10B981", "#EC4899", "#F59E0B", "#8B5CF6"];
 const participantInitials = ["S", "J", "P", "T", "A"];
+const proofStats = [
+  { value: "3-5", label: "live dimensions per room" },
+  { value: "<3 min", label: "to first useful signal" },
+  { value: "1 artifact", label: "captured at the end" },
+];
 
 function AlignmentViz() {
   return (
@@ -68,11 +73,11 @@ function AlignmentViz() {
         </span>
       </div>
 
-      <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-5">
+      <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[220px_minmax(0,1fr)_auto] lg:items-center lg:gap-5">
         {/* Ring */}
         <div className="flex justify-center lg:justify-start">
           <div className="flex items-center justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-3">
-            <div className="relative h-28 w-28 sm:h-32 sm:w-32">
+            <div className="relative h-36 w-36 sm:h-40 sm:w-40">
               <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90">
                 <circle cx="60" cy="60" r="44" fill="none" stroke="#E9D5FF" strokeWidth="12" />
                 <circle
@@ -95,10 +100,10 @@ function AlignmentViz() {
               </svg>
 
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[2rem]">
+                <span className="text-[2.5rem] font-semibold tracking-tight text-slate-900 sm:text-[2.8rem]">
                   78%
                 </span>
-                <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.16em] text-slate-500">
+                <span className="mt-1 text-[11px] font-medium uppercase tracking-[0.22em] text-slate-500 sm:text-xs">
                   Alignment
                 </span>
               </div>
@@ -143,7 +148,7 @@ function AlignmentViz() {
                 </div>
               ))}
             </div>
-            <span className="text-xs text-slate-400">Decision locked · 2 min ago</span>
+            <span className="text-xs text-slate-400">Decision locked</span>
           </div>
         </div>
 
@@ -176,7 +181,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-x-clip bg-[linear-gradient(180deg,#f5f0ff_0%,#fbf8ff_44%,#ffffff_100%)]"
+      className="relative overflow-x-clip bg-[linear-gradient(180deg,#f4efff_0%,#fbf8ff_30%,#ffffff_72%)]"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -189,45 +194,46 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 pb-14 pt-8 sm:px-6 sm:pb-16 md:px-8 md:pb-20 md:pt-12 lg:px-12 lg:pt-16">
-        <div className="mb-8 flex flex-col items-center text-center sm:mb-10 md:mb-12">
-          <span className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm">
+      <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-8 sm:px-6 sm:pb-18 md:px-8 md:pb-24 md:pt-12 lg:px-12 lg:pt-16">
+        <div className="mb-9 flex flex-col items-center text-center sm:mb-11 md:mb-14">
+          <span className="inline-flex items-center gap-2 rounded-full border border-violet-200/90 bg-white/90 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-[0_10px_30px_rgba(124,58,237,0.08)] backdrop-blur">
             <span className="h-2.5 w-2.5 rounded-full bg-violet-500" />
             Decision intelligence platform
           </span>
 
           <h1
-            className="mt-5 max-w-4xl font-semibold tracking-tight text-slate-950"
+            className="mt-5 max-w-5xl font-medium tracking-tight text-slate-950"
             style={{
-              fontSize: "clamp(3rem, 10vw, 5.5rem)",
+              fontSize: "clamp(2.7rem, 8.8vw, 5.15rem)",
               lineHeight: "0.94",
               letterSpacing: "-0.05em",
             }}
           >
-            See alignment live.
+            Turn live discussion
+            <br className="hidden sm:block" /> into visible alignment.
           </h1>
 
           <p
             className="mt-5 max-w-2xl text-slate-600"
             style={{
-              fontSize: "clamp(1rem, 3.8vw, 1.125rem)",
-              lineHeight: "1.9",
+              fontSize: "clamp(0.98rem, 2.9vw, 1.06rem)",
+              lineHeight: "1.8",
             }}
           >
-            PulseRoom helps groups structure the room, collect live multi-dimensional
-            input, and leave with a clearer picture of what the audience, class, or
-            leadership team actually understands.
+            PulseRoom helps teams capture live signals, see alignment clearly,
+            and leave with a decision record they can reuse.
           </p>
+
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-10">
           {/* LEFT */}
-          <div className="flex flex-col lg:pt-2">
-            <div className="grid gap-3">
+          <div className="anim-hidden anim-left flex flex-col lg:pt-2">
+            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
               {featureCards.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 rounded-2xl border border-violet-100 bg-white px-4 py-4 shadow-sm sm:px-5"
+                  className="flex items-start gap-4 rounded-[1.5rem] border border-violet-100 bg-white px-4 py-4 shadow-sm sm:px-5"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#f5f0ff,#ede9fe)] shadow-[inset_0_1px_2px_rgba(124,58,237,0.08)]">
                     {item.icon}
@@ -240,21 +246,7 @@ export default function Hero() {
                     </p>
                   </div>
 
-                  <svg
-                    className="ml-auto shrink-0 text-violet-300"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M6 12l4-4-4-4"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <div className="ml-auto mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-violet-200" />
                 </div>
               ))}
             </div>
@@ -262,36 +254,38 @@ export default function Hero() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href={APP_URL}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(90deg,#7C3AED_0%,#9333EA_55%,#6D28D9_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.24)] transition hover:translate-y-[-1px] sm:min-w-[220px] sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[linear-gradient(90deg,#7C3AED_0%,#9333EA_55%,#6D28D9_100%)] px-7 py-4 text-base font-semibold text-white shadow-[0_18px_40px_rgba(124,58,237,0.28)] transition hover:translate-y-[-1px] sm:min-w-[230px] sm:w-auto"
               >
-                Get Started
+                Start free
               </Link>
 
               <Link
-                href="/#use-cases"
-                className="inline-flex w-full items-center justify-center rounded-full border border-violet-200 bg-white px-7 py-4 text-base font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50 sm:min-w-[220px] sm:w-auto"
+                href="/pricing"
+                className="inline-flex w-full items-center justify-center rounded-full border border-violet-200 bg-white px-7 py-4 text-base font-semibold text-slate-700 shadow-sm transition hover:border-violet-300 hover:bg-violet-50 sm:min-w-[230px] sm:w-auto"
               >
-                Explore use cases
+                See pricing
               </Link>
             </div>
 
-            <div className="mt-8 pt-2">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Trusted in
-              </p>
+            <div className="mt-5 rounded-[1.95rem] border border-violet-100 bg-white/90 p-5 shadow-[0_14px_34px_rgba(124,58,237,0.08)] backdrop-blur sm:p-6">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400 sm:text-xs">
+                  Proof of use
+                </p>
+              </div>
 
-              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                {[
-                  { icon: "🎓", label: "University lecture halls" },
-                  { icon: "🏢", label: "Executive strategy sessions" },
-                  { icon: "📋", label: "Board-level decision rooms" },
-                ].map((item) => (
+              <div className="grid gap-3 sm:grid-cols-3">
+                {proofStats.map((stat) => (
                   <div
-                    key={item.label}
-                    className="flex items-center gap-3 rounded-2xl border border-violet-100 bg-white px-4 py-3 shadow-sm"
+                    key={stat.label}
+                    className="min-h-[160px] rounded-[1.3rem] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf6ff_100%)] px-5 py-5"
                   >
-                    <span className="text-lg">{item.icon}</span>
-                    <span className="text-sm font-medium text-slate-600">{item.label}</span>
+                    <div className="text-[1.65rem] font-semibold tracking-tight text-slate-950 sm:text-[1.9rem]">
+                      {stat.value}
+                    </div>
+                    <div className="mt-3 text-[15px] leading-8 text-slate-500 sm:text-base">
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -299,11 +293,12 @@ export default function Hero() {
           </div>
 
           {/* RIGHT */}
-          <div className="self-start">
-            <div className="relative">
-              <div className="absolute -inset-5 rounded-[2.7rem] bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.18),transparent_66%)] blur-2xl" />
+          <div className="anim-hidden anim-right self-start">
+            <div className="relative" data-parallax="0.08">
+              <div className="parallax-node absolute -inset-5 rounded-[2.7rem] bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.18),transparent_66%)] blur-2xl" />
 
-              <div className="relative overflow-hidden rounded-[2.1rem] border border-violet-200 bg-white p-2.5 shadow-[0_26px_70px_rgba(124,58,237,0.08)] sm:p-3">
+              <div className="relative overflow-hidden rounded-[2.2rem] border border-violet-200/90 bg-white p-2.5 shadow-[0_30px_80px_rgba(124,58,237,0.1)] sm:p-3">
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.38),transparent)]" />
                 <div className="overflow-hidden rounded-[1.7rem] sm:rounded-[2rem]">
                   <Image
                     src="/use-cases/cover/board_meeting.webp"
@@ -318,7 +313,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="mt-5">
+            <div className="anim-zoom mt-5">
               <AlignmentViz />
             </div>
           </div>

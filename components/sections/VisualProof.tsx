@@ -50,10 +50,10 @@ export default function VisualProof() {
       className="section-bright"
     >
       <div className="grid gap-5 xl:grid-cols-3">
-        {analyticsCards.map((card) => (
+        {analyticsCards.map((card, index) => (
           <section
             key={card.title}
-            className="overflow-hidden rounded-[1.8rem] border border-violet-200 bg-white shadow-[0_14px_42px_rgba(124,58,237,0.06)]"
+            className={`anim-hidden ${index % 2 === 0 ? "anim-left" : "anim-right"} overflow-hidden rounded-[1.8rem] border border-violet-200 bg-white shadow-[0_14px_42px_rgba(124,58,237,0.06)]`}
           >
             <div className="border-b border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-5 sm:p-6">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 sm:text-xs">
@@ -70,14 +70,17 @@ export default function VisualProof() {
             </div>
 
             <div className="p-5 sm:p-6">
-              <div className="overflow-hidden rounded-[1.3rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8f4ff_100%)] p-3 sm:p-4">
+              <div
+                className="overflow-hidden rounded-[1.3rem] border border-violet-200 bg-[linear-gradient(180deg,#ffffff_0%,#f8f4ff_100%)] p-3 sm:p-4"
+                data-parallax="0.05"
+              >
                 <Image
                   src={card.image}
                   alt={card.alt}
                   width={1200}
                   height={800}
                   unoptimized
-                  className="h-auto w-full object-contain"
+                  className="parallax-node h-auto w-full object-contain"
                 />
               </div>
 

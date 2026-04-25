@@ -26,8 +26,8 @@ export default function Outcomes() {
     <Section
       id="outcomes"
       eyebrow="Outcomes"
-      title="Outcomes, not features."
-      subtitle="PulseRoom is designed to change what happens after the meeting—not just what happens during it."
+      title="The room ends. The decision should still hold."
+      subtitle="PulseRoom is designed to improve what happens after the meeting, not just make the meeting feel interactive."
       className="section-bright"
     >
       <div className="grid gap-4 md:grid-cols-3 anim-stagger">
@@ -91,19 +91,28 @@ export default function Outcomes() {
       </div>
 
       <div
-        className="mt-4 rounded-[1.7rem] p-5 sm:p-6 anim-hidden"
+        className="mt-5 rounded-[1.9rem] p-6 sm:p-7 anim-hidden"
         style={{
-          background: "linear-gradient(135deg, #F5F3FF 0%, #EEF2FF 100%)",
-          border: "1px solid rgba(99,102,241,0.15)",
+          background: "linear-gradient(135deg, #F8F7FF 0%, #EEF2FF 55%, #F8FBFF 100%)",
+          border: "1px solid rgba(99,102,241,0.14)",
+          boxShadow: "0 12px 34px rgba(99,102,241,0.08)",
         }}
       >
-        <p className="text-[15px] leading-7 sm:text-base" style={{ color: "#475569" }}>
-          <span className="font-bold" style={{ color: "#0F172A" }}>
-            Executive note:{" "}
-          </span>
-          PulseRoom is designed for serious rooms where accountability matters—workshops, exec
-          education, and pilot programs.
-        </p>
+        <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+          <p className="text-[15px] leading-7 sm:text-base" style={{ color: "#475569" }}>
+            <span className="font-bold" style={{ color: "#0F172A" }}>
+              Executive note:{" "}
+            </span>
+            PulseRoom fits rooms where the output needs to be defendable later:
+            strategy sessions, executive education, facilitated workshops, and scoped pilots.
+          </p>
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2 text-sm font-semibold text-violet-700 shadow-sm">
+            Clear signal
+            <span aria-hidden>→</span>
+            Clear action
+          </div>
+        </div>
       </div>
     </Section>
   );

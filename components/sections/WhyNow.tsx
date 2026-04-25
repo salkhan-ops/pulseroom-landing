@@ -42,8 +42,8 @@ export default function WhyNow() {
     <Section
       id="why-now"
       eyebrow="Why now"
-      title="Meetings create motion. Decisions require alignment."
-      subtitle="PulseRoom is built for rooms where stakes are real and outcomes must hold up after the session."
+      title="Meetings create motion. Good decisions survive the room."
+      subtitle="PulseRoom is built for high-stakes rooms where clarity, participation, and follow-through matter more than vague meeting energy."
       className="section-bright"
     >
       <div className="grid gap-4 md:grid-cols-3 anim-stagger">
@@ -68,7 +68,7 @@ export default function WhyNow() {
         ))}
       </div>
 
-      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+      <div className="mt-5 grid gap-4 lg:grid-cols-2">
         <div
           className="rounded-[1.7rem] p-5 sm:p-6 anim-hidden"
           style={{
@@ -81,7 +81,7 @@ export default function WhyNow() {
             className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"
             style={{ color: "#94A3B8" }}
           >
-            Before PulseRoom
+            Without structure
           </p>
           <ul className="grid gap-3">
             {[
@@ -106,7 +106,7 @@ export default function WhyNow() {
             className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"
             style={{ color: "#6366F1" }}
           >
-            After PulseRoom
+            With PulseRoom
           </p>
           <ul className="grid gap-3">
             {[
@@ -127,7 +127,7 @@ export default function WhyNow() {
         </div>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
         <div className="rounded-[1.7rem] p-5 sm:p-6 card-bright anim-hidden">
           <p
             className="mb-3 text-[11px] font-bold uppercase tracking-[0.22em] sm:text-xs"

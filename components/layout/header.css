@@ -235,6 +235,15 @@
   width: calc(100% - 1.9rem);
 }
 
+.header__nav-link--active {
+  color: #4f46e5;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.header__nav-link--active::after {
+  width: calc(100% - 1.9rem);
+}
+
 /* ── Drop menu button ───────────────────────────────────────── */
 .dropmenu__trigger {
   display: inline-flex;

@@ -14,6 +14,9 @@ body {
   color: rgb(15 23 42); /* slate-900 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image:
+    radial-gradient(circle at top, rgba(99, 102, 241, 0.04), transparent 24%),
+    linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 ::selection {
@@ -84,6 +87,14 @@ body {
   transform: translateY(0);
 }
 
+.anim-hidden.anim-left {
+  transform: translateX(-34px) translateY(18px);
+}
+
+.anim-hidden.anim-right {
+  transform: translateX(34px) translateY(18px);
+}
+
 .anim-scale {
   opacity: 0;
   transform: scale(0.95) translateY(18px);
@@ -92,6 +103,19 @@ body {
   will-change: opacity, transform;
 }
 .anim-scale.anim-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.anim-zoom {
+  opacity: 0;
+  transform: scale(0.92) translateY(26px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.anim-zoom.anim-visible {
   opacity: 1;
   transform: scale(1) translateY(0);
 }
@@ -125,8 +149,8 @@ body {
   height: 400px;
   background: radial-gradient(
     ellipse 70% 60% at 50% 0%,
-    rgba(99, 102, 241, 0.08) 0%,
-    rgba(165, 180, 252, 0.04) 50%,
+    rgba(99, 102, 241, 0.09) 0%,
+    rgba(165, 180, 252, 0.045) 46%,
     transparent 100%
   );
   z-index: 0;
@@ -168,7 +192,7 @@ body {
   border: 1px solid rgba(226, 232, 240, 0.8);
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 24px rgba(99, 102, 241, 0.06),
+    0 8px 30px rgba(99, 102, 241, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
@@ -177,7 +201,7 @@ body {
   transform: translateY(-4px);
   box-shadow:
     0 2px 6px rgba(0, 0, 0, 0.05),
-    0 12px 40px rgba(99, 102, 241, 0.14),
+    0 16px 48px rgba(99, 102, 241, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
@@ -202,6 +226,16 @@ body {
 .float-anim  { animation: floatY   4s ease-in-out infinite; }
 .pulse-dot   { animation: pulseDot 2s ease-in-out infinite; }
 .glow-pulse  { animation: glowPulse 3s ease-in-out infinite; }
+
+[data-parallax] {
+  --parallax-y: 0px;
+}
+
+.parallax-node {
+  transform: translate3d(0, calc(var(--parallax-y) * -1), 0);
+  transition: transform 0.18s linear;
+  will-change: transform;
+}
 
 /* ── 8. Button glow ─────────────────────────────────────────── */
 .btn-glow {
