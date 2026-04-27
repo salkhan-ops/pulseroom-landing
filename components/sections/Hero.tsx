@@ -73,7 +73,7 @@ function AlignmentViz() {
         </span>
       </div>
 
-      <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[220px_minmax(0,1fr)_auto] lg:items-center lg:gap-5">
+      <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-center lg:gap-5">
         {/* Ring */}
         <div className="flex justify-center lg:justify-start">
           <div className="flex items-center justify-center rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#ffffff_0%,#faf5ff_100%)] p-3">
@@ -111,7 +111,6 @@ function AlignmentViz() {
           </div>
         </div>
 
-        {/* Signal bars */}
         <div className="min-w-0 space-y-2.5">
           {signals.map((signal) => (
             <div key={signal.label}>
@@ -149,27 +148,6 @@ function AlignmentViz() {
               ))}
             </div>
             <span className="text-xs text-slate-400">Decision locked</span>
-          </div>
-        </div>
-
-        {/* Info cards */}
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          <div className="rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Best-fit room
-            </p>
-            <p className="mt-2 text-base font-semibold leading-7 text-slate-700">
-              Board meeting / executive alignment
-            </p>
-          </div>
-
-          <div className="rounded-[1.2rem] border border-violet-100 bg-[linear-gradient(180deg,#fdfbff,#f9f5ff)] px-4 py-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-              Signal style
-            </p>
-            <p className="mt-2 text-base font-semibold leading-7 text-slate-700">
-              Live audience + presenter visibility
-            </p>
           </div>
         </div>
       </div>

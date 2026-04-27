@@ -311,8 +311,8 @@ export default function Pricing() {
     <Section
       id="pricing"
       eyebrow="Pricing"
-      title="Start small. Scale when the room gets more serious."
-      subtitle="Simple pricing for individuals and teams, with a clear path to institutional rollout when PulseRoom becomes part of your operating rhythm."
+      title="Simple Pricing"
+      subtitle="Start small, then scale when usage gets more serious."
       className="section-bright"
     >
       <div className="mb-6 grid gap-4 md:grid-cols-3 xl:grid-cols-3">

@@ -20,8 +20,8 @@ export default function UseCases() {
     <Section
       id="use-cases"
       eyebrow="Resources"
-      title="Use cases built for real rooms."
-      subtitle="Academic and executive settings where PulseRoom helps a room become clearer while the discussion is still alive."
+      title="Real Rooms"
+      subtitle="Academic and executive settings where PulseRoom brings clarity into the discussion."
       className="section-cool"
     >
       <div className="space-y-10 md:space-y-14">

@@ -43,11 +43,11 @@ export default function Section({
           )}
 
           <h2
-            className="max-w-[14ch] text-[2.35rem] font-extrabold tracking-tight sm:text-5xl md:text-[3.5rem]"
+            className="max-w-[18ch] text-[2.2rem] font-bold tracking-tight sm:text-[3.3rem] md:text-[3.9rem]"
             style={{
               color: "#0F172A",
-              lineHeight: "0.98",
-              letterSpacing: "-0.045em",
+              lineHeight: "0.96",
+              letterSpacing: "-0.05em",
             }}
           >
             {title}
@@ -55,7 +55,7 @@ export default function Section({
 
           {subtitle && (
             <p
-              className="mt-4 text-[1.02rem] leading-8 sm:text-[1.08rem]"
+              className="mt-4 text-[1rem] leading-8 sm:text-[1.04rem]"
               style={{ color: "#64748B", maxWidth: "44rem" }}
             >
               {subtitle}

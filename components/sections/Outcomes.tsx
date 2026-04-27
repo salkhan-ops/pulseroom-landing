@@ -26,8 +26,8 @@ export default function Outcomes() {
     <Section
       id="outcomes"
       eyebrow="Outcomes"
-      title="The room ends. The decision should still hold."
-      subtitle="PulseRoom is designed to improve what happens after the meeting, not just make the meeting feel interactive."
+      title="What Sticks"
+      subtitle="What remains clear after the room ends."
       className="section-bright"
     >
       <div className="grid gap-4 md:grid-cols-3 anim-stagger">

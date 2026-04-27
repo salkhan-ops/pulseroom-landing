@@ -42,8 +42,8 @@ export default function WhyNow() {
     <Section
       id="why-now"
       eyebrow="Why now"
-      title="Meetings create motion. Good decisions survive the room."
-      subtitle="PulseRoom is built for high-stakes rooms where clarity, participation, and follow-through matter more than vague meeting energy."
+      title="Why PulseRoom"
+      subtitle="Built for high-stakes rooms where clarity and follow-through matter."
       className="section-bright"
     >
       <div className="grid gap-4 md:grid-cols-3 anim-stagger">
